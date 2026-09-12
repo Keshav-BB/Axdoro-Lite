@@ -225,3 +225,64 @@ input.button,
     border: 1px solid var(--axdoro-sand);
     border-radius: 8px;
 }
+
+/* ==========================================================================
+   AXDORO MOTION & ANIMATION SYSTEM
+   Style: Premium • Masculine • Fashion-Forward • Smooth • Minimal • Fast
+   Reference: Nike / Zara / COS / High-End Streetwear
+   ========================================================================== */
+:root {
+    --duration-micro: 180ms;
+    --duration-standard: 320ms;
+    --duration-reveal: 600ms;
+    --duration-hero: 850ms;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.woocommerce ul.products li.product {
+    transition: transform var(--duration-standard) var(--ease-out-expo), 
+                box-shadow var(--duration-standard) var(--ease-out-expo) !important;
+}
+.woocommerce ul.products li.product:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 24px -6px rgba(0, 0, 0, 0.08), 0 6px 12px -4px rgba(0, 0, 0, 0.03) !important;
+}
+.woocommerce ul.products li.product img {
+    transition: transform 550ms var(--ease-out-expo) !important;
+}
+.woocommerce ul.products li.product:hover img {
+    transform: scale(1.04) !important;
+}
+
+/* Button Micro-interactions */
+.woocommerce a.button, 
+.woocommerce button.button, 
+.button, 
+.axdoro-sticky-btn {
+    transition: transform var(--duration-micro) var(--ease-out-expo), 
+                background-color var(--duration-micro) ease !important;
+}
+.woocommerce a.button:hover, 
+.woocommerce button.button:hover, 
+.button:hover, 
+.axdoro-sticky-btn:hover {
+    transform: scale(1.015) !important;
+}
+.woocommerce a.button:active, 
+.woocommerce button.button:active, 
+.button:active, 
+.axdoro-sticky-btn:active {
+    transform: scale(0.98) !important;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transform: none !important;
+    }
+}
