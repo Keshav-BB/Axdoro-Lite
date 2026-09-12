@@ -30,18 +30,26 @@
         }
     </script>
     <style>
-        body {
-            background-color: #F7F5F0;
-            color: #111111;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
+        /* ==========================================================================
+           AXDORO PREMIUM ANIMATION & MOTION SYSTEM
+           Style: Premium • Masculine • Fashion-Forward • Smooth • Minimal • Fast
+           Reference: Nike / Zara / COS / High-End Streetwear
+           ========================================================================== */
+        
+        :root {
+            /* Motion Timing */
+            --duration-micro: 180ms;
+            --duration-standard: 320ms;
+            --duration-reveal: 600ms;
+            --duration-hero: 850ms;
+
+            /* Luxury Streetwear Easing Curves */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
-        .aspect-4-5 {
-            aspect-ratio: 4 / 5;
-        }
+
+        /* Custom Scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
             width: 5px;
             height: 5px;
@@ -53,16 +61,274 @@
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #F7F5F0;
         }
-        
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+
+        /* --------------------------------------------------------------------------
+           1. PAGE LOAD & HERO CINEMATIC ENTRANCE
+           Staggered Sequence: Header -> Badge -> Headline -> Subhead -> CTA -> Visual
+           -------------------------------------------------------------------------- */
+        @keyframes headerSlideIn {
+            from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in {
-            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .animate-header-enter {
+            animation: headerSlideIn 450ms var(--ease-out-expo) forwards;
         }
-        
+
+        @keyframes heroRevealUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge-enter {
+            opacity: 0;
+            animation: heroRevealUp 500ms var(--ease-out-expo) 120ms forwards;
+        }
+        .hero-title-enter {
+            opacity: 0;
+            animation: heroRevealUp 750ms var(--ease-out-expo) 220ms forwards;
+        }
+        .hero-subtitle-enter {
+            opacity: 0;
+            animation: heroRevealUp 650ms var(--ease-out-expo) 380ms forwards;
+        }
+        .hero-cta-enter {
+            opacity: 0;
+            animation: heroRevealUp 500ms var(--ease-out-expo) 520ms forwards;
+        }
+
+        /* Hero Image Cinematic Initial Scale (scale 1.04 -> 1.00, non-looping) */
+        @keyframes heroCinematicScale {
+            0% { transform: scale(1.04); opacity: 0.85; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .hero-visual-scale {
+            animation: heroCinematicScale 1000ms var(--ease-out-expo) forwards;
+            will-change: transform, opacity;
+        }
+
+        /* --------------------------------------------------------------------------
+           2. HEADER SCROLL BEHAVIOR (Integrated -> Sticky Solid with Blur)
+           -------------------------------------------------------------------------- */
+        #mainHeader {
+            transition: background-color var(--duration-standard) ease, 
+                        border-color var(--duration-standard) ease, 
+                        box-shadow var(--duration-standard) ease;
+        }
+        #mainHeader.header-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            border-bottom-color: #E2DBD0;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+        }
+        #mainHeader.header-scrolled .header-inner-row {
+            height: 3.5rem; /* 56px instead of 64px for clean compact feel */
+        }
+        .header-inner-row {
+            transition: height var(--duration-standard) var(--ease-out-expo);
+        }
+
+        /* --------------------------------------------------------------------------
+           3. SCROLL REVEAL SYSTEM & STAGGER
+           -------------------------------------------------------------------------- */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity var(--duration-reveal) var(--ease-out-expo), 
+                        transform var(--duration-reveal) var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sibling Stagger (Category Cards, Trending Drops, Fabric Points) */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 550ms var(--ease-out-expo), transform 550ms var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+        .reveal-stagger.is-revealed > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-revealed > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateY(0); }
+
+        /* --------------------------------------------------------------------------
+           4. CATEGORY CARDS LUXURY INTERACTION (Zara / COS Style)
+           -------------------------------------------------------------------------- */
+        .cat-card {
+            position: relative;
+            overflow: hidden;
+            transition: border-color var(--duration-standard) var(--ease-out-expo), 
+                        box-shadow var(--duration-standard) var(--ease-out-expo);
+        }
+        .cat-card:hover {
+            border-color: #121212;
+            box-shadow: 0 16px 28px -6px rgba(0, 0, 0, 0.12);
+        }
+        .cat-card .cat-img {
+            transition: transform 650ms var(--ease-out-expo);
+            will-change: transform;
+        }
+        .cat-card:hover .cat-img {
+            transform: scale(1.05);
+        }
+        .cat-card .cat-overlay {
+            transition: opacity var(--duration-standard) ease;
+        }
+        .cat-card:hover .cat-overlay {
+            opacity: 0.22;
+        }
+        .cat-card .cat-content {
+            transition: transform var(--duration-standard) var(--ease-out-expo);
+        }
+        .cat-card:hover .cat-content {
+            transform: translateY(-4px);
+        }
+        .cat-card .cat-arrow {
+            transition: transform var(--duration-micro) var(--ease-out-expo);
+        }
+        .cat-card:hover .cat-arrow {
+            transform: translateX(4px);
+        }
+
+        /* --------------------------------------------------------------------------
+           5. PRODUCT CARD ANIMATION & MICRO-INTERACTIONS
+           -------------------------------------------------------------------------- */
+        .product-card {
+            position: relative;
+            transition: transform var(--duration-standard) var(--ease-out-expo), 
+                        box-shadow var(--duration-standard) var(--ease-out-expo),
+                        border-color var(--duration-standard) var(--ease-out-expo);
+            will-change: transform, box-shadow;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 24px -6px rgba(0, 0, 0, 0.08), 0 6px 12px -4px rgba(0, 0, 0, 0.03);
+            border-color: #121212;
+        }
+        .product-card .img-zoom {
+            transition: transform 550ms var(--ease-out-expo);
+            will-change: transform;
+        }
+        .product-card:hover .img-zoom {
+            transform: scale(1.04);
+        }
+
+        /* Button Micro-Interactions */
+        .btn-press {
+            transition: transform var(--duration-micro) var(--ease-out-expo), 
+                        background-color var(--duration-micro) ease,
+                        box-shadow var(--duration-micro) ease;
+        }
+        .btn-press:hover {
+            transform: scale(1.015);
+        }
+        .btn-press:active {
+            transform: scale(0.98);
+        }
+
+        /* Tactile Bag Counter Pop */
+        @keyframes bagPop {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        .animate-bag-pop {
+            animation: bagPop 280ms var(--ease-out-expo);
+        }
+
+        /* Wishlist Heart Pop (No Confetti, Minimal Scale) */
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        .heart-pop {
+            animation: heartPop 260ms var(--ease-out-expo);
+        }
+
+        /* --------------------------------------------------------------------------
+           6. DRAWERS (BAG / CART & FILTERS) SLIDE-IN
+           -------------------------------------------------------------------------- */
+        .drawer-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--duration-standard) var(--ease-out-expo), 
+                        visibility var(--duration-standard);
+        }
+        .drawer-overlay.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .drawer-slide-panel {
+            transform: translateX(100%);
+            transition: transform var(--duration-standard) var(--ease-out-expo);
+            will-change: transform;
+        }
+        .drawer-overlay.is-active .drawer-slide-panel {
+            transform: translateX(0);
+        }
+
+        /* --------------------------------------------------------------------------
+           7. MODALS (QUICK VIEW, CHECKOUT, SIZE GUIDE) SCALE-IN
+           -------------------------------------------------------------------------- */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 240ms var(--ease-out-expo), visibility 240ms;
+        }
+        .modal-overlay.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-box {
+            opacity: 0;
+            transform: scale(0.96) translateY(10px);
+            transition: opacity 260ms var(--ease-out-expo), transform 260ms var(--ease-out-expo);
+            will-change: transform, opacity;
+        }
+        .modal-overlay.is-active .modal-box {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* --------------------------------------------------------------------------
+           8. FABRIC / 240 GSM SECTION & IMAGE MASK REVEAL
+           -------------------------------------------------------------------------- */
+        .img-mask-reveal {
+            clip-path: inset(0 0 100% 0);
+            transition: clip-path 850ms var(--ease-out-expo);
+            will-change: clip-path;
+        }
+        .img-mask-reveal.is-revealed {
+            clip-path: inset(0 0 0% 0);
+        }
+
+        /* --------------------------------------------------------------------------
+           9. ORDER SUCCESS CHECKMARK DRAWING ANIMATION
+           -------------------------------------------------------------------------- */
+        @keyframes strokeDash {
+            to { stroke-dashoffset: 0; }
+        }
+        .check-circle {
+            stroke-dasharray: 157;
+            stroke-dashoffset: 157;
+            animation: strokeDash 0.5s var(--ease-out-expo) forwards;
+        }
+        .check-tick {
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: strokeDash 0.35s 0.25s var(--ease-out-expo) forwards;
+        }
+
+        /* --------------------------------------------------------------------------
+           10. MARQUEE TICKER (Slow, Fashion Pace)
+           -------------------------------------------------------------------------- */
         @keyframes marquee {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -70,134 +336,50 @@
         .marquee-track {
             display: inline-flex;
             width: max-content;
-            animation: marquee 25s linear infinite;
+            animation: marquee 34s linear infinite;
         }
         .marquee-track:hover {
             animation-play-state: paused;
         }
 
-        @keyframes heroZoom {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-            100% { transform: scale(1); }
+        /* --------------------------------------------------------------------------
+           11. FLOATING WHATSAPP BUTTON (Single Entrance, No Continuous Flashing)
+           -------------------------------------------------------------------------- */
+        @keyframes whatsappEnter {
+            from { opacity: 0; transform: translateY(20px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .animate-hero-zoom {
-            animation: heroZoom 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes shimmerSweep {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
-        .shimmer-badge {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer-badge::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmerSweep 2.5s infinite;
+        .whatsapp-float-enter {
+            opacity: 0;
+            animation: whatsappEnter 450ms var(--ease-out-expo) 1.2s forwards;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 164, 109, 0.45); }
-            50% { box-shadow: 0 0 0 10px rgba(197, 164, 109, 0); }
-        }
-        .animate-pulse-glow {
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes floatBot {
-            0%, 100% { transform: translateY(0); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
-            50% { transform: translateY(-6px); box-shadow: 0 20px 30px -5px rgba(0,0,0,0.4); }
-        }
-        .animate-bot-float {
-            animation: floatBot 3.5s ease-in-out infinite;
-        }
-
-        @keyframes heartPop {
-            0% { transform: scale(1); }
-            45% { transform: scale(1.4); }
-            80% { transform: scale(0.9); }
-            100% { transform: scale(1); }
-        }
-        .heart-pop {
-            animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes badgeBounce {
-            0%, 100% { transform: scale(1); }
-            40% { transform: scale(1.4); }
-            70% { transform: scale(0.9); }
-        }
-        .animate-badge-bounce {
-            animation: badgeBounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes radarPulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        .whatsapp-radar {
-            animation: radarPulse 2.4s infinite;
-        }
-
-        /* Luxury Streetwear Card Styling & Hover Sheen */
-        .product-card {
-            position: relative;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
-            border-color: #C5A46D;
-        }
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 80%;
-            height: 100%;
-            background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
-            transition: left 0.75s ease;
-            z-index: 10;
-            pointer-events: none;
-        }
-        .product-card:hover::before {
-            left: 150%;
-        }
-        .product-card .img-zoom {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .product-card:hover .img-zoom {
-            transform: scale(1.06);
-        }
-
-        /* Category Card Hover Depth */
-        .cat-card {
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .cat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15);
-            border-color: #C5A46D;
-        }
-
-        /* Gradient shipping bar */
-        .free-shipping-bar-fill {
-            background: linear-gradient(90deg, #C5A46D, #1F7A4D, #22c55e);
-            background-size: 200% 100%;
-            animation: gradientShift 2s linear infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        /* --------------------------------------------------------------------------
+           12. ACCESSIBILITY & PREFERS-REDUCED-MOTION (MANDATORY RULE 35)
+           -------------------------------------------------------------------------- */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .marquee-track {
+                animation: none !important;
+            }
+            .reveal-on-scroll, 
+            .reveal-stagger > *, 
+            .img-mask-reveal,
+            .hero-badge-enter,
+            .hero-title-enter,
+            .hero-subtitle-enter,
+            .hero-cta-enter,
+            .hero-visual-scale,
+            .whatsapp-float-enter {
+                opacity: 1 !important;
+                transform: none !important;
+                clip-path: none !important;
+            }
         }
     </style>
 </head>
@@ -236,8 +418,8 @@
     </div>
 
     <!-- Header Navigation -->
-    <header class="bg-white/95 backdrop-blur border-b border-axSand sticky top-[37px] z-40 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <header id="mainHeader" class="bg-white/95 backdrop-blur border-b border-axSand sticky top-[37px] z-40 transition-all animate-header-enter">
+        <div class="header-inner-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             
             <!-- Mobile Menu Toggle & Brand Logo -->
             <div class="flex items-center gap-3">
@@ -307,21 +489,22 @@
             <!-- Hero Banner -->
             <div class="relative bg-axCharcoal text-white overflow-hidden">
                 <div class="absolute inset-0 z-0 opacity-45 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=1600&q=80" alt="AXDORO Men's Streetwear Campaign" class="w-full h-full object-cover animate-hero-zoom scale-105">
+                    <img src="https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=1600&q=80" alt="AXDORO Men's Streetwear Campaign" class="w-full h-full object-cover hero-visual-scale">
                 </div>
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
-                    <span class="inline-block bg-axGold text-axCharcoal text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded mb-4 shimmer-badge shadow-lg">MEN'S HEAVYWEIGHT STREETWEAR</span>
-                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-tight mb-6">
+                    <span class="inline-block bg-axGold text-axCharcoal text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded mb-4 shadow-lg hero-badge-enter">MEN'S HEAVYWEIGHT STREETWEAR</span>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-tight mb-6 hero-title-enter">
                         ENGINEERED FOR MEN.<br>240 GSM ARCHITECTURAL SUBSTANCE.
                     </h1>
-                    <p class="max-w-2xl text-base sm:text-lg text-gray-200 mb-8 font-normal">
+                    <p class="max-w-2xl text-base sm:text-lg text-gray-200 mb-8 font-normal hero-subtitle-enter">
                         Calibrated with broader shoulders, dropped armholes, and dense 240 GSM combed cotton. Built for men who demand structured drape, zero cling, and permanent collar shape.
                     </p>
-                    <div class="flex flex-wrap gap-4 justify-center">
-                        <button onclick="navigatePage('shop')" class="bg-white text-axCharcoal hover:bg-gray-100 font-bold px-8 py-3.5 rounded text-sm tracking-wider uppercase transition-all shadow-xl hover:-translate-y-1 hover:shadow-2xl animate-pulse-glow">
-                            SHOP MEN'S T-SHIRTS (26+ DROPS) →
+                    <div class="flex flex-wrap gap-4 justify-center hero-cta-enter">
+                        <button onclick="navigatePage('shop')" class="btn-press bg-white text-axCharcoal hover:bg-gray-100 font-bold px-8 py-3.5 rounded text-sm tracking-wider uppercase shadow-xl flex items-center gap-2 group">
+                            <span>SHOP MEN'S T-SHIRTS (26+ DROPS)</span>
+                            <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </button>
-                        <button onclick="navigatePage('about')" class="border-2 border-white/80 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded text-sm tracking-wider uppercase transition-all hover:-translate-y-0.5">
+                        <button onclick="navigatePage('about')" class="btn-press border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded text-sm tracking-wider uppercase">
                             THE 240 GSM STANDARD
                         </button>
                     </div>
@@ -330,54 +513,70 @@
 
             <!-- Categories Showcase -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center mb-10">
+                <div class="text-center mb-10 reveal-on-scroll">
                     <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy">MENSWEAR SILHOUETTES</span>
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal mt-1">SHOP MEN'S T-SHIRTS BY CATEGORY</h2>
                     <p class="text-axGrey text-sm mt-1">26+ distinct cuts, washes, and fabric weights engineered exclusively in Men's T-Shirts.</p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 reveal-stagger">
                     <div onclick="filterByCategory('Oversized Tees')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
                         <div class="aspect-4-5 overflow-hidden bg-axSand relative">
-                            <img src="https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&w=600&q=80" alt="Men's Oversized Tees" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&w=600&q=80" alt="Men's Oversized Tees" class="cat-img w-full h-full object-cover">
+                            <div class="cat-overlay absolute inset-0 bg-black opacity-0"></div>
                             <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-axGold text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">240 GSM</span>
                         </div>
-                        <div class="p-3.5 text-center bg-white">
-                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">MEN'S OVERSIZED TEES</h3>
-                            <span class="text-xs text-axGrey">Drop Shoulder • Boxy Cut</span>
+                        <div class="cat-content p-3.5 text-center bg-white flex items-center justify-between">
+                            <div class="text-left flex-1">
+                                <h3 class="font-bold text-xs sm:text-sm tracking-wide text-axCharcoal">MEN'S OVERSIZED TEES</h3>
+                                <span class="text-[11px] text-axGrey">Drop Shoulder • Boxy</span>
+                            </div>
+                            <span class="cat-arrow text-axCharcoal text-sm font-bold pl-1">→</span>
                         </div>
                     </div>
 
                     <div onclick="filterByCategory('Boxy Half Sleeve')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
                         <div class="aspect-4-5 overflow-hidden bg-axSand relative">
-                            <img src="images/men_sand_tee.jpg" alt="Men's Boxy Half Sleeve" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="images/men_sand_tee.jpg" alt="Men's Boxy Half Sleeve" class="cat-img w-full h-full object-cover">
+                            <div class="cat-overlay absolute inset-0 bg-black opacity-0"></div>
                             <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">RELAXED</span>
                         </div>
-                        <div class="p-3.5 text-center bg-white">
-                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">BOXY HALF SLEEVE</h3>
-                            <span class="text-xs text-axGrey">Relaxed Masculine Drape</span>
+                        <div class="cat-content p-3.5 text-center bg-white flex items-center justify-between">
+                            <div class="text-left flex-1">
+                                <h3 class="font-bold text-xs sm:text-sm tracking-wide text-axCharcoal">BOXY HALF SLEEVE</h3>
+                                <span class="text-[11px] text-axGrey">Relaxed Masculine Drape</span>
+                            </div>
+                            <span class="cat-arrow text-axCharcoal text-sm font-bold pl-1">→</span>
                         </div>
                     </div>
 
                     <div onclick="filterByCategory('Graphic & Back-Print')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
                         <div class="aspect-4-5 overflow-hidden bg-axSand relative">
-                            <img src="images/men_backprint_tee.jpg" alt="Graphic Streetwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="images/men_backprint_tee.jpg" alt="Graphic Streetwear" class="cat-img w-full h-full object-cover">
+                            <div class="cat-overlay absolute inset-0 bg-black opacity-0"></div>
                             <span class="absolute top-2.5 left-2.5 bg-axBurgundy text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">GRAPHICS</span>
                         </div>
-                        <div class="p-3.5 text-center bg-white">
-                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">GRAPHIC &amp; BACK-PRINTS</h3>
-                            <span class="text-xs text-axGrey">Brutalist Typography &amp; Art</span>
+                        <div class="cat-content p-3.5 text-center bg-white flex items-center justify-between">
+                            <div class="text-left flex-1">
+                                <h3 class="font-bold text-xs sm:text-sm tracking-wide text-axCharcoal">GRAPHIC &amp; BACK-PRINTS</h3>
+                                <span class="text-[11px] text-axGrey">Brutalist Typography</span>
+                            </div>
+                            <span class="cat-arrow text-axCharcoal text-sm font-bold pl-1">→</span>
                         </div>
                     </div>
 
                     <div onclick="filterByCategory('Acid & Vintage Wash')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
                         <div class="aspect-4-5 overflow-hidden bg-axSand relative">
-                            <img src="images/men_acid_wash_tee.jpg" alt="Acid Wash Tees" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <img src="images/men_acid_wash_tee.jpg" alt="Acid Wash Tees" class="cat-img w-full h-full object-cover">
+                            <div class="cat-overlay absolute inset-0 bg-black opacity-0"></div>
                             <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-axGold text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">MINERAL DYE</span>
                         </div>
-                        <div class="p-3.5 text-center bg-white">
-                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">ACID &amp; VINTAGE WASH</h3>
-                            <span class="text-xs text-axGrey">Mineral Wash • Distressed</span>
+                        <div class="cat-content p-3.5 text-center bg-white flex items-center justify-between">
+                            <div class="text-left flex-1">
+                                <h3 class="font-bold text-xs sm:text-sm tracking-wide text-axCharcoal">ACID &amp; VINTAGE WASH</h3>
+                                <span class="text-[11px] text-axGrey">Mineral Wash • Distressed</span>
+                            </div>
+                            <span class="cat-arrow text-axCharcoal text-sm font-bold pl-1">→</span>
                         </div>
                     </div>
                 </div>
@@ -387,28 +586,32 @@
             <div class="bg-axSand/70 border-y border-axSand py-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy">THE FABRIC SPECIFICATION</span>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold text-axCharcoal mt-2 mb-6">WHY 240 GSM MATTERS</h2>
+                        <div class="reveal-on-scroll">
+                            <div class="inline-flex items-baseline gap-2 mb-2">
+                                <span class="text-5xl sm:text-6xl font-black tracking-tighter text-axCharcoal font-heading stat-counter" data-target="240">0</span>
+                                <span class="text-2xl sm:text-3xl font-black text-axGold font-heading">GSM</span>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy block mb-1">THE MATERIAL STANDARD • BUILT HEAVY</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-axCharcoal mb-4">BUILT HEAVY. WORN EASY.</h2>
                             <p class="text-axGrey text-base mb-6 leading-relaxed">
                                 Conventional t-shirts range from 160–180 GSM, which cling, curl at the collar, and easily turn translucent. AXDORO garments are constructed with authentic <strong>240 GSM heavy combed cotton</strong>.
                             </p>
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-3">
+                            <div class="space-y-3.5 reveal-stagger">
+                                <div class="flex items-start gap-3 bg-white/70 p-3.5 rounded-lg border border-axSand shadow-2xs">
                                     <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
                                     <div>
                                         <h4 class="font-bold text-sm text-axCharcoal">Structured Boxy Silhouette</h4>
                                         <p class="text-xs text-axGrey">Garment holds its own architectural shape without clinging or sagging.</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-3">
+                                <div class="flex items-start gap-3 bg-white/70 p-3.5 rounded-lg border border-axSand shadow-2xs">
                                     <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
                                     <div>
                                         <h4 class="font-bold text-sm text-axCharcoal">Zero See-Through Guarantee</h4>
                                         <p class="text-xs text-axGrey">High yarn density ensures total opacity even in Off-White and Light Cream tones.</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-3">
+                                <div class="flex items-start gap-3 bg-white/70 p-3.5 rounded-lg border border-axSand shadow-2xs">
                                     <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
                                     <div>
                                         <h4 class="font-bold text-sm text-axCharcoal">Heavy 1.25" Anti-Sag Ribbed Collar</h4>
@@ -417,12 +620,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80" alt="Fabric Detail" class="rounded-xl shadow-lg w-full object-cover aspect-4-5">
+                        <div class="relative reveal-on-scroll">
+                            <div class="overflow-hidden rounded-xl shadow-lg img-mask-reveal">
+                                <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80" alt="Fabric Detail" class="w-full object-cover aspect-4-5">
+                            </div>
                             <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur p-4 rounded-lg border border-axSand shadow">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <span class="text-[11px] font-bold text-axGrey uppercase">Fabric Density Test</span>
+                                        <span class="text-[11px] font-bold text-axGrey uppercase">Fabric Density Standard</span>
                                         <div class="text-base font-black text-axCharcoal font-heading">240 GSM Heavy Cotton</div>
                                     </div>
                                     <span class="bg-axGreen text-white text-[11px] font-bold px-2.5 py-1 rounded">VERIFIED DENSITY</span>
@@ -435,7 +640,7 @@
 
             <!-- Trending Drops Grid -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="flex items-end justify-between mb-8">
+                <div class="flex items-end justify-between mb-8 reveal-on-scroll">
                     <div>
                         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal">TRENDING DROPS</h2>
                         <p class="text-axGrey text-sm mt-1">Our most sought-after oversized and half-sleeve silhouettes.</p>
@@ -445,7 +650,7 @@
                     </button>
                 </div>
 
-                <div id="homeTrendingGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div id="homeTrendingGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 reveal-stagger">
                     <!-- Injected via JS -->
                 </div>
             </div>
@@ -630,7 +835,7 @@
         </section>
 
         <!-- ================= PAGE 3: ABOUT ================= -->
-        <section id="page-about" class="page-view hidden animate-fade-in py-12">
+        <section id="page-about" class="page-view hidden py-12">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                 <div class="text-center">
                     <span class="text-xs font-bold tracking-widest text-axGold uppercase">BRAND ORIGINS</span>
@@ -669,7 +874,7 @@
         </section>
 
         <!-- ================= PAGE 4: CUSTOM / BULK ORDERS ================= -->
-        <section id="page-bulk" class="page-view hidden animate-fade-in py-12">
+        <section id="page-bulk" class="page-view hidden py-12">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-10">
                     <span class="text-xs font-bold tracking-widest text-axBurgundy uppercase">B2B & INSTITUTIONAL MERCHANDISE</span>
@@ -749,7 +954,7 @@
         </section>
 
         <!-- ================= PAGE 5: CONTACT & SUPPORT ================= -->
-        <section id="page-contact" class="page-view hidden animate-fade-in py-12">
+        <section id="page-contact" class="page-view hidden py-12">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-10">
                     <span class="text-xs font-bold tracking-widest text-axGold uppercase">CUSTOMER CARE</span>
@@ -818,7 +1023,7 @@
         </section>
 
         <!-- ================= TRACK ORDER PAGE ================= -->
-        <section id="page-track" class="page-view hidden animate-fade-in py-12">
+        <section id="page-track" class="page-view hidden py-12">
             <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white p-6 sm:p-8 rounded-xl border border-axSand shadow-sm">
                     <div class="text-center mb-6">
@@ -947,8 +1152,8 @@
     <!-- ================= MODALS & DRAWERS ================= -->
 
     <!-- Product Detail Modal -->
-    <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar relative border border-axSand animate-fade-in">
+    <div id="productDetailModal" class="modal-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="modal-box bg-white rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar relative border border-axSand shadow-2xl">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-axIvory hover:bg-gray-200 text-axCharcoal flex items-center justify-center z-20 font-bold">✕</button>
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <!-- Gallery -->
@@ -1016,7 +1221,7 @@
     </div>
 
     <!-- Size Guide Modal -->
-    <div id="sizeGuideModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="sizeGuideModal" class="modal-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-xl max-w-lg w-full p-6 relative border border-axSand animate-fade-in">
             <button onclick="closeSizeGuideModal()" class="absolute top-4 right-4 text-axCharcoal font-bold">✕</button>
             <h3 class="text-lg font-bold text-axCharcoal">AXDORO 240 GSM SIZE MEASUREMENTS</h3>
@@ -1047,10 +1252,10 @@
     </div>
 
     <!-- Bag / Cart Slide-out Drawer -->
-    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+    <div id="cartDrawer" class="drawer-overlay fixed inset-0 z-50 overflow-hidden hidden">
         <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-white border-l border-axSand flex flex-col shadow-2xl">
+            <div class="drawer-slide-panel w-screen max-w-md bg-white border-l border-axSand flex flex-col shadow-2xl">
                 <!-- Cart Header -->
                 <div class="p-5 border-b border-axSand flex items-center justify-between">
                     <div class="flex items-center gap-2">
@@ -1096,8 +1301,8 @@
     </div>
 
     <!-- Checkout Modal -->
-    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative border border-axSand animate-fade-in">
+    <div id="checkoutModal" class="modal-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="modal-box bg-white rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative border border-axSand">
             <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-axCharcoal font-bold">✕</button>
             
             <div class="border-b border-axSand pb-4 mb-6">
@@ -1159,8 +1364,8 @@
     </div>
 
     <!-- WhatsApp Payment Flow & Verification Modal -->
-    <div id="whatsappPaymentModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 relative border border-axSand shadow-2xl animate-fade-in">
+    <div id="whatsappPaymentModal" class="modal-overlay fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="modal-box bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 relative border border-axSand shadow-2xl">
             
             <div class="text-center mb-6">
                 <span class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Step 2: WhatsApp Payment</span>
@@ -1202,7 +1407,7 @@
                     <span class="text-[10px] bg-blue-200 text-blue-800 px-2 py-0.5 rounded font-mono">HMAC SHA-256</span>
                 </div>
                 <p class="text-blue-800 text-[11px] mb-3">Simulate what happens when Razorpay/Cashfree sends webhook callback with valid signature.</p>
-                <button onclick="simulateWebhookPayment()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded text-xs transition-colors">
+                <button id="simulateWebhookBtn" onclick="simulateWebhookPayment()" class="btn-press w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded text-xs transition-all">
                     Simulate Gateway Payment Success Webhook
                 </button>
             </div>
@@ -1241,7 +1446,7 @@
     <!-- Luxury Toast Notification System -->
     <div id="toastNotification" class="fixed top-20 right-4 sm:right-8 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out max-w-sm w-[90vw]">
         <div class="bg-axCharcoal/95 backdrop-blur-md text-white rounded-xl shadow-2xl p-3.5 border border-white/10 flex items-center gap-3">
-            <div id="toastIcon" class="w-9 h-9 rounded-full bg-axGold text-axCharcoal font-bold flex items-center justify-center text-sm flex-shrink-0 animate-badge-bounce">?</div>
+            <div id="toastIcon" class="w-9 h-9 rounded-full bg-axGold text-axCharcoal font-bold flex items-center justify-center text-sm flex-shrink-0 animate-bag-pop">?</div>
             <div class="flex-1 min-w-0">
                 <h5 id="toastTitle" class="font-bold text-xs uppercase tracking-wider text-white">Added to Bag</h5>
                 <p id="toastMessage" class="text-xs text-gray-300 truncate mt-0.5">AXDORO 240 GSM Oversized Tee</p>
@@ -1779,7 +1984,7 @@
             const defaultSize = p.sizes.includes('M') ? 'M' : p.sizes[0];
 
             return `
-            <div class="product-card group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+            <div class="product-card reveal-on-scroll group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
                 <div class="relative overflow-hidden rounded-lg bg-axIvory aspect-4-5 cursor-pointer" onclick="openProductModal(${p.id})">
                     <img src="${p.image}" alt="${p.name}" class="img-zoom w-full h-full object-cover ${!p.inStock ? 'grayscale-[35%] opacity-85' : ''}" loading="lazy">
                     <button onclick="event.stopPropagation(); toggleWishlist(${p.id});" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-axCharcoal flex items-center justify-center hover:bg-white shadow-md hover:scale-110 active:scale-90 transition-all duration-200 z-20 ${isWish ? 'heart-pop text-red-500 bg-white' : ''}" title="${isWish ? 'Remove from Wishlist' : 'Add to Wishlist'}">
@@ -1847,7 +2052,7 @@
                             <!-- 3. Prominent Add to Bag Button Immediately Below Size Selection -->
                             <button onclick="event.stopPropagation(); addCardToBag(this, ${p.id})" 
                                 id="card-add-btn-${p.id}"
-                                class="card-add-bag-btn w-full bg-axCharcoal hover:bg-black active:scale-98 text-white text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow flex items-center justify-center gap-1.5 cursor-pointer">
+                                class="card-add-bag-btn btn-press w-full bg-axCharcoal hover:bg-black active:scale-98 text-white text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow flex items-center justify-center gap-1.5 cursor-pointer">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                                 <span id="card-btn-text-${p.id}">+ ADD TO BAG</span>
                             </button>
@@ -1931,7 +2136,10 @@
                 `).join('');
             }
 
-            document.getElementById('productDetailModal').classList.remove('hidden');
+            const pModal = document.getElementById('productDetailModal');
+            pModal.classList.remove('hidden');
+            void pModal.offsetWidth;
+            pModal.classList.add('is-active');
         }
 
         function selectModalSize(s) {
