@@ -1,0 +1,291 @@
+/**
+ * AXDORO Lean AI / FAQ Support Chatbot Styles
+ */
+
+.axdoro-bot-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+}
+
+/* Floating Launcher Button */
+.axdoro-bot-launcher {
+    background: #111111;
+    color: #FFFFFF;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
+    outline: none;
+}
+
+.axdoro-bot-launcher:hover {
+    transform: scale(1.06);
+    background: #222222;
+}
+
+.axdoro-bot-icon-open {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.axdoro-bot-icon-close {
+    font-size: 22px;
+    display: none;
+    line-height: 1;
+}
+
+.axdoro-bot-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #C5A46D;
+    color: #111111;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.3px;
+    border: 2px solid #FFFFFF;
+}
+
+/* Chatbot Window */
+.axdoro-bot-window {
+    position: absolute;
+    bottom: 74px;
+    right: 0;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    height: 520px;
+    max-height: calc(100vh - 120px);
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    border: 1px solid #E9E2D5;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: axdoroFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes axdoroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Chat Header */
+.axdoro-bot-header {
+    background: #111111;
+    color: #FFFFFF;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.axdoro-bot-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.axdoro-bot-avatar {
+    width: 34px;
+    height: 34px;
+    background: #C5A46D;
+    color: #111111;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.axdoro-bot-profile h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.axdoro-bot-status {
+    font-size: 11px;
+    color: #A3E635;
+}
+
+.axdoro-bot-close {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+.axdoro-bot-close:hover {
+    color: #FFFFFF;
+}
+
+/* Chat Messages */
+.axdoro-bot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background: #F7F5F0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.axdoro-msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.axdoro-msg-bot {
+    align-self: flex-start;
+    background: #FFFFFF;
+    color: #111111;
+    border: 1px solid #E8E2D7;
+    border-top-left-radius: 3px;
+}
+
+.axdoro-msg-bot p {
+    margin: 0;
+}
+
+.axdoro-msg-user {
+    align-self: flex-end;
+    background: #111111;
+    color: #FFFFFF;
+    border-top-right-radius: 3px;
+}
+
+.axdoro-msg-user p {
+    margin: 0;
+}
+
+/* Chips / Suggestions */
+.axdoro-bot-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.axdoro-chip {
+    background: #FFFFFF;
+    border: 1px solid #D8D0C2;
+    color: #222222;
+    padding: 6px 11px;
+    border-radius: 16px;
+    font-size: 11.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+}
+
+.axdoro-chip:hover {
+    background: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}
+
+/* Chat Footer & Input */
+.axdoro-bot-footer {
+    background: #FFFFFF;
+    border-top: 1px solid #EBE5DB;
+    padding: 10px 14px;
+}
+
+.axdoro-bot-form {
+    display: flex;
+    gap: 8px;
+}
+
+.axdoro-bot-form input {
+    flex: 1;
+    height: 38px;
+    padding: 6px 12px;
+    border: 1px solid #D2C8B8;
+    border-radius: 20px;
+    font-size: 13px;
+    outline: none;
+}
+
+.axdoro-bot-form input:focus {
+    border-color: #111111;
+}
+
+.axdoro-bot-form button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #111111;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.axdoro-bot-form button:hover {
+    background: #333333;
+}
+
+.axdoro-bot-human-handoff {
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed #E5DFD4;
+}
+
+.axdoro-bot-human-handoff a {
+    color: #1F7A4D;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.axdoro-bot-human-handoff a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile full-width adjustments */
+@media (max-width: 480px) {
+    .axdoro-bot-container {
+        bottom: 16px;
+        right: 16px;
+    }
+    .axdoro-bot-window {
+        width: calc(100vw - 32px);
+        height: 480px;
+        bottom: 70px;
+    }
+}

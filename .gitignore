@@ -1,0 +1,19 @@
+﻿# Scratch & temporary development files
+scratch/
+.tempmediaStorage/
+*.log
+
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment / local config
+.env
+.env.local

@@ -1,0 +1,405 @@
+/**
+ * AXDORO Commerce Core - Frontend & Admin Styles
+ */
+
+:root {
+    --axdoro-ivory: #F7F5F0;
+    --axdoro-charcoal: #111111;
+    --axdoro-sand: #E9E2D5;
+    --axdoro-gold: #C5A46D;
+    --axdoro-burgundy: #7A1F2B;
+    --axdoro-green: #1F7A4D;
+    --axdoro-red: #A72A2A;
+    --axdoro-white: #FFFFFF;
+}
+
+/* ===================================================
+   WhatsApp Thank You / Payment Handoff Box
+   =================================================== */
+.axdoro-whatsapp-handoff-container {
+    background: #FFFFFF;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 30px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.axdoro-handoff-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.axdoro-badge {
+    display: inline-block;
+    background: #FFF3CD;
+    color: #856404;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.axdoro-badge-gold {
+    background: var(--axdoro-sand);
+    color: var(--axdoro-charcoal);
+}
+
+.axdoro-handoff-header h2 {
+    font-size: 22px;
+    color: var(--axdoro-charcoal);
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.axdoro-handoff-header p {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+}
+
+.axdoro-action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.axdoro-action-card {
+    background: var(--axdoro-ivory);
+    border: 1px solid #E5E0D5;
+    border-radius: 10px;
+    padding: 22px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.axdoro-action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.axdoro-card-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.axdoro-action-card h3 {
+    margin: 0 0 6px 0;
+    font-size: 17px;
+    color: var(--axdoro-charcoal);
+}
+
+.axdoro-action-card p {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+}
+
+.axdoro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.axdoro-btn-whatsapp {
+    background: #25D366;
+    color: #FFFFFF !important;
+}
+
+.axdoro-btn-whatsapp:hover {
+    background: #20BA5A;
+}
+
+.axdoro-btn-upi {
+    background: var(--axdoro-charcoal);
+    color: #FFFFFF !important;
+}
+
+.axdoro-btn-upi:hover {
+    background: #2E2E2E;
+}
+
+.axdoro-btn-primary {
+    background: var(--axdoro-charcoal);
+    color: #FFFFFF;
+}
+
+.axdoro-btn-primary:hover {
+    background: #333333;
+}
+
+.axdoro-btn-secondary {
+    background: var(--axdoro-sand);
+    color: var(--axdoro-charcoal);
+}
+
+.axdoro-btn-secondary:hover {
+    background: #DDD3C2;
+}
+
+.axdoro-vpa-copy {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* ===================================================
+   UTR Fallback Card
+   =================================================== */
+.axdoro-utr-fallback-card {
+    background: #FAF8F5;
+    border: 1px dashed #D2C8B8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.axdoro-utr-fallback-card h3 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    color: var(--axdoro-charcoal);
+}
+
+.axdoro-utr-fallback-card p {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 14px 0;
+}
+
+.axdoro-form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.axdoro-form-row input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    height: 44px;
+    padding: 8px 14px;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.axdoro-form-row button {
+    width: auto;
+    white-space: nowrap;
+}
+
+.axdoro-status-msg {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.axdoro-error {
+    background: #FCE8E6;
+    color: var(--axdoro-red);
+    border: 1px solid #FAD2CF;
+}
+
+.axdoro-success {
+    background: #E6F4EA;
+    color: var(--axdoro-green);
+    border: 1px solid #CEEAD6;
+}
+
+.axdoro-payment-success-card {
+    background: #E6F4EA;
+    border: 1px solid #CEEAD6;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.axdoro-payment-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+/* ===================================================
+   Shiprocket Order Tracking Shortcode
+   =================================================== */
+.axdoro-tracking-wrapper {
+    max-width: 720px;
+    margin: 30px auto;
+}
+
+.axdoro-tracking-search-box {
+    background: #FFFFFF;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+
+.axdoro-tracking-search-box h2 {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 22px;
+    color: var(--axdoro-charcoal);
+}
+
+.axdoro-track-field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+    .axdoro-track-field-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+.axdoro-track-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--axdoro-charcoal);
+    margin-bottom: 6px;
+}
+
+.axdoro-track-field input {
+    width: 100%;
+    height: 44px;
+    padding: 8px 14px;
+    border: 1px solid #D2C8B8;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.axdoro-order-summary-card {
+    background: #FFFFFF;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 12px;
+    padding: 26px;
+    margin-top: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+
+.axdoro-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.axdoro-summary-header h3 {
+    margin: 6px 0 0 0;
+    font-size: 20px;
+}
+
+.axdoro-summary-meta {
+    text-align: right;
+    font-size: 13px;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    .axdoro-summary-meta {
+        text-align: left;
+    }
+}
+
+/* Timeline */
+.axdoro-timeline-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 30px 0;
+}
+
+.axdoro-timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    right: 20px;
+    height: 3px;
+    background: #E5E0D5;
+    z-index: 1;
+}
+
+.axdoro-timeline-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.axdoro-step-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #E5E0D5;
+    color: #888;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border: 3px solid #FFF;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+}
+
+.axdoro-step-label {
+    font-size: 11px;
+    color: #777;
+    font-weight: 500;
+}
+
+.axdoro-timeline-step.completed .axdoro-step-dot {
+    background: var(--axdoro-charcoal);
+    color: #FFFFFF;
+}
+
+.axdoro-timeline-step.completed .axdoro-step-label {
+    color: var(--axdoro-charcoal);
+    font-weight: 700;
+}
+
+.axdoro-awb-card {
+    background: var(--axdoro-ivory);
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-top: 20px;
+}
+
+.axdoro-awb-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+}
+
+.axdoro-awb-meta {
+    font-size: 13px;
+    line-height: 1.6;
+}

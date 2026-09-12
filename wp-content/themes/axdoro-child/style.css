@@ -1,0 +1,227 @@
+/*
+Theme Name: AXDORO Child
+Theme URI: https://axdoro.com/
+Description: Custom child theme for AXDORO Clothing / Apparel, built on Blocksy. Implements the Warm Ivory / Charcoal Black / Muted Gold fashion design system, mobile-first 2-column grid, 44px+ tap targets, and streamlined checkout.
+Author: PeoplePoint Consultants
+Author URI: https://peoplepoint.in/
+Template: blocksy
+Version: 1.0.0
+Text Domain: axdoro-child
+*/
+
+:root {
+    --axdoro-ivory: #F7F5F0;
+    --axdoro-charcoal: #111111;
+    --axdoro-sand: #E9E2D5;
+    --axdoro-gold: #C5A46D;
+    --axdoro-grey: #6B6B6B;
+    --axdoro-burgundy: #7A1F2B;
+    --axdoro-white: #FFFFFF;
+}
+
+/* Page Background */
+body {
+    background-color: var(--axdoro-ivory);
+    color: var(--axdoro-charcoal);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", "Inter", sans-serif;
+    font-weight: 700;
+    color: var(--axdoro-charcoal);
+    letter-spacing: -0.02em;
+}
+
+/* Top Announcement Bar */
+.axdoro-announcement-bar {
+    background: var(--axdoro-charcoal);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.axdoro-announcement-bar strong {
+    color: var(--axdoro-gold);
+}
+
+/* Primary CTA Buttons */
+.button, 
+button.button, 
+input.button, 
+#respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button {
+    background-color: var(--axdoro-charcoal) !important;
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    letter-spacing: 0.3px !important;
+    min-height: 44px !important;
+    padding: 12px 24px !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+}
+
+.woocommerce a.button:hover, 
+.woocommerce button.button:hover, 
+.button:hover {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+}
+
+/* Sale Badge */
+.woocommerce span.onsale {
+    background-color: var(--axdoro-burgundy) !important;
+    color: #FFFFFF !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    padding: 4px 10px !important;
+    min-height: auto !important;
+    min-width: auto !important;
+    line-height: 1 !important;
+    border-radius: 2px !important;
+}
+
+/* Product Card Styling */
+.woocommerce ul.products li.product {
+    background: #FFFFFF;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 6px;
+    padding: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.woocommerce ul.products li.product:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--axdoro-charcoal);
+    margin-top: 10px;
+    line-height: 1.35;
+}
+
+.woocommerce ul.products li.product .price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--axdoro-charcoal) !important;
+    margin-top: 6px;
+}
+
+.woocommerce ul.products li.product .price del {
+    color: #888888;
+    font-weight: 400;
+    font-size: 13px;
+    margin-right: 6px;
+}
+
+.woocommerce ul.products li.product .price ins {
+    text-decoration: none;
+    color: var(--axdoro-charcoal);
+}
+
+/* Mobile 2-Column Product Grid */
+@media (max-width: 767px) {
+    .woocommerce ul.products[class*="columns-"] li.product, 
+    .woocommerce-page ul.products[class*="columns-"] li.product {
+        width: 48% !important;
+        float: left !important;
+        clear: none !important;
+        margin: 0 4% 16px 0 !important;
+    }
+
+    .woocommerce ul.products[class*="columns-"] li.product:nth-child(2n), 
+    .woocommerce-page ul.products[class*="columns-"] li.product:nth-child(2n) {
+        margin-right: 0 !important;
+    }
+
+    .woocommerce ul.products[class*="columns-"] li.product:nth-child(2n+1), 
+    .woocommerce-page ul.products[class*="columns-"] li.product:nth-child(2n+1) {
+        clear: both !important;
+    }
+}
+
+/* Sticky Mobile Add to Bag CTA on Product Pages */
+@media (max-width: 767px) {
+    .axdoro-sticky-mobile-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        padding: 10px 16px;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+        z-index: 999;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .axdoro-sticky-mobile-cta .axdoro-sticky-price {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--axdoro-charcoal);
+        flex: 1;
+    }
+
+    .axdoro-sticky-mobile-cta .axdoro-sticky-btn {
+        flex: 2;
+        background: var(--axdoro-charcoal);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 4px;
+        height: 44px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
+
+/* "Need Help with Size?" WhatsApp Button on Single Product */
+.axdoro-size-whatsapp-cta {
+    margin: 14px 0 20px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #128C7E;
+    font-weight: 600;
+    text-decoration: none;
+    background: #E8F8F5;
+    border: 1px solid #C4EFE7;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+}
+
+.axdoro-size-whatsapp-cta:hover {
+    background: #D4F4ED;
+    color: #0B665C;
+}
+
+/* Checkout Clean Surfaces */
+.woocommerce-checkout #customer_details {
+    background: #FFFFFF;
+    padding: 24px;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 8px;
+}
+
+.woocommerce-checkout #order_review {
+    background: #FFFFFF;
+    padding: 24px;
+    border: 1px solid var(--axdoro-sand);
+    border-radius: 8px;
+}
