@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXDORO | 240 GSM Heavyweight Streetwear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        axIvory: '#F7F5F0',
+                        axCharcoal: '#111111',
+                        axSand: '#E9E2D5',
+                        axGold: '#C5A46D',
+                        axGrey: '#6B6B6B',
+                        axBurgundy: '#7A1F2B',
+                        axGreen: '#1F7A4D'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F7F5F0;
+            color: #111111;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .aspect-4-5 {
+            aspect-ratio: 4 / 5;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D2C8B8;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F7F5F0;
+        }
+        
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            display: inline-flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+        .animate-hero-zoom {
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmerSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .shimmer-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-badge::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmerSweep 2.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 164, 109, 0.45); }
+            50% { box-shadow: 0 0 0 10px rgba(197, 164, 109, 0); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes floatBot {
+            0%, 100% { transform: translateY(0); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+            50% { transform: translateY(-6px); box-shadow: 0 20px 30px -5px rgba(0,0,0,0.4); }
+        }
+        .animate-bot-float {
+            animation: floatBot 3.5s ease-in-out infinite;
+        }
+
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.4); }
+            80% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .heart-pop {
+            animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes badgeBounce {
+            0%, 100% { transform: scale(1); }
+            40% { transform: scale(1.4); }
+            70% { transform: scale(0.9); }
+        }
+        .animate-badge-bounce {
+            animation: badgeBounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes radarPulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-radar {
+            animation: radarPulse 2.4s infinite;
+        }
+
+        /* Luxury Streetwear Card Styling & Hover Sheen */
+        .product-card {
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
+            border-color: #C5A46D;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+            transition: left 0.75s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .product-card:hover::before {
+            left: 150%;
+        }
+        .product-card .img-zoom {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card:hover .img-zoom {
+            transform: scale(1.06);
+        }
+
+        /* Category Card Hover Depth */
+        .cat-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15);
+            border-color: #C5A46D;
+        }
+
+        /* Gradient shipping bar */
+        .free-shipping-bar-fill {
+            background: linear-gradient(90deg, #C5A46D, #1F7A4D, #22c55e);
+            background-size: 200% 100%;
+            animation: gradientShift 2s linear infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-axCharcoal selection:text-white">
+
+    <!-- Infinite Animated Streetwear Marquee Bar -->
+    <div class="bg-axCharcoal text-white text-xs font-bold tracking-wider uppercase py-2.5 overflow-hidden sticky top-0 z-50 border-b border-white/10 select-none">
+        <div class="marquee-track flex whitespace-nowrap gap-10 items-center">
+            <div class="flex items-center gap-8 text-[11px]">
+                <span class="inline-flex items-center gap-2 text-axGold">⚡ <span>MEN'S LAUNCH DROP 01</span></span>
+                <span class="text-gray-500">•</span>
+                <span>FREE EXPRESS SHIPPING ON ORDERS ABOVE ₹999</span>
+                <span class="text-gray-500">•</span>
+                <span class="text-axGold font-bold">100% 240 GSM COMBED COTTON</span>
+                <span class="text-gray-500">•</span>
+                <span>ENGINEERED FOR MEN • BROADER SHOULDERS</span>
+                <span class="text-gray-500">•</span>
+                <span class="text-axGold">WHATSAPP FIT CONSULT: 8807304713</span>
+                <span class="text-gray-500">•</span>
+                <span>7-DAY HASSLE-FREE SIZE EXCHANGE</span>
+            </div>
+            <div class="flex items-center gap-8 text-[11px]">
+                <span class="inline-flex items-center gap-2 text-axGold">⚡ <span>MEN'S LAUNCH DROP 01</span></span>
+                <span class="text-gray-500">•</span>
+                <span>FREE EXPRESS SHIPPING ON ORDERS ABOVE ₹999</span>
+                <span class="text-gray-500">•</span>
+                <span class="text-axGold font-bold">100% 240 GSM COMBED COTTON</span>
+                <span class="text-gray-500">•</span>
+                <span>ENGINEERED FOR MEN • BROADER SHOULDERS</span>
+                <span class="text-gray-500">•</span>
+                <span class="text-axGold">WHATSAPP FIT CONSULT: 8807304713</span>
+                <span class="text-gray-500">•</span>
+                <span>7-DAY HASSLE-FREE SIZE EXCHANGE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="bg-white/95 backdrop-blur border-b border-axSand sticky top-[37px] z-40 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Mobile Menu Toggle & Brand Logo -->
+            <div class="flex items-center gap-3">
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-axCharcoal hover:bg-axIvory rounded">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <a href="#" onclick="navigatePage('home')" class="flex items-center gap-2">
+                    <span class="text-2xl font-black tracking-tighter text-axCharcoal font-heading">AXDORO</span>
+                    <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest bg-axCharcoal text-axGold px-1.5 py-0.5 rounded border border-axGold/40">MEN • 240 GSM</span>
+                </a>
+            </div>
+
+            <!-- Primary 5 Navigation Links (Desktop) -->
+            <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs xl:text-sm font-semibold tracking-wide text-axCharcoal whitespace-nowrap flex-shrink-0">
+                <button onclick="navigatePage('home')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="home">Home</button>
+                <button onclick="navigatePage('shop')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="shop">Men's T-Shirts</button>
+                <button onclick="navigatePage('about')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="about">About</button>
+                <button onclick="navigatePage('bulk')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="bulk">Bulk Orders</button>
+                <button onclick="navigatePage('contact')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="contact">Contact &amp; Support</button>
+            </nav>
+
+            <!-- Search Bar & Action Icons -->
+            <div class="flex items-center gap-2 sm:gap-3 xl:gap-4 flex-shrink-0">
+                <!-- Search Input Container -->
+                <div class="relative hidden sm:block w-36 md:w-44 lg:w-48 xl:w-60">
+                    <input type="text" id="headerSearch" oninput="handleSearch(this.value)" placeholder="Search Men's T-Shirts..." class="w-full bg-axIvory text-xs px-3.5 py-2 pl-8 rounded-full border border-axSand focus:outline-none focus:border-axCharcoal transition-colors">
+                    <svg class="w-4 h-4 text-axGrey absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <div id="searchSuggestions" class="hidden absolute top-full left-0 right-0 mt-1.5 bg-white border border-axSand rounded-lg shadow-xl py-2 z-50 max-h-64 overflow-y-auto"></div>
+                </div>
+
+                <!-- Track Order Quick Button -->
+                <button onclick="navigatePage('track')" title="Track Order" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative hidden md:flex items-center gap-1.5 text-xs font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span>Track</span>
+                </button>
+
+                <!-- Wishlist Icon -->
+                <button onclick="toggleWishlistDrawer()" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative" title="Wishlist">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span id="wishlistCountBadge" class="absolute -top-1 -right-1 bg-axBurgundy text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <!-- Cart / Bag Icon -->
+                <button onclick="toggleCartDrawer()" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative flex items-center gap-1.5" title="Bag">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span id="cartCountBadge" class="bg-axCharcoal text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileNav" class="hidden lg:hidden border-t border-axSand bg-white px-4 py-3 space-y-2">
+            <button onclick="navigatePage('home')" class="block w-full text-left py-2 font-medium text-axCharcoal">Home</button>
+            <button onclick="navigatePage('shop')" class="block w-full text-left py-2 font-medium text-axCharcoal">Men's T-Shirts (26 Styles)</button>
+            <button onclick="navigatePage('about')" class="block w-full text-left py-2 font-medium text-axCharcoal">About AXDORO</button>
+            <button onclick="navigatePage('bulk')" class="block w-full text-left py-2 font-medium text-axCharcoal">Bulk Orders</button>
+            <button onclick="navigatePage('contact')" class="block w-full text-left py-2 font-medium text-axCharcoal">Contact & Support</button>
+            <button onclick="navigatePage('track')" class="block w-full text-left py-2 font-semibold text-axGold">📍 Track Order</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="app" class="flex-1">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="page-home" class="page-view animate-fade-in">
+            <!-- Hero Banner -->
+            <div class="relative bg-axCharcoal text-white overflow-hidden">
+                <div class="absolute inset-0 z-0 opacity-45 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=1600&q=80" alt="AXDORO Men's Streetwear Campaign" class="w-full h-full object-cover animate-hero-zoom scale-105">
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
+                    <span class="inline-block bg-axGold text-axCharcoal text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded mb-4 shimmer-badge shadow-lg">MEN'S HEAVYWEIGHT STREETWEAR</span>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-tight mb-6">
+                        ENGINEERED FOR MEN.<br>240 GSM ARCHITECTURAL SUBSTANCE.
+                    </h1>
+                    <p class="max-w-2xl text-base sm:text-lg text-gray-200 mb-8 font-normal">
+                        Calibrated with broader shoulders, dropped armholes, and dense 240 GSM combed cotton. Built for men who demand structured drape, zero cling, and permanent collar shape.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button onclick="navigatePage('shop')" class="bg-white text-axCharcoal hover:bg-gray-100 font-bold px-8 py-3.5 rounded text-sm tracking-wider uppercase transition-all shadow-xl hover:-translate-y-1 hover:shadow-2xl animate-pulse-glow">
+                            SHOP MEN'S T-SHIRTS (26+ DROPS) →
+                        </button>
+                        <button onclick="navigatePage('about')" class="border-2 border-white/80 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded text-sm tracking-wider uppercase transition-all hover:-translate-y-0.5">
+                            THE 240 GSM STANDARD
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Showcase -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy">MENSWEAR SILHOUETTES</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal mt-1">SHOP MEN'S T-SHIRTS BY CATEGORY</h2>
+                    <p class="text-axGrey text-sm mt-1">26+ distinct cuts, washes, and fabric weights engineered exclusively in Men's T-Shirts.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    <div onclick="filterByCategory('Oversized Tees')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
+                        <div class="aspect-4-5 overflow-hidden bg-axSand relative">
+                            <img src="https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&w=600&q=80" alt="Men's Oversized Tees" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-axGold text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">240 GSM</span>
+                        </div>
+                        <div class="p-3.5 text-center bg-white">
+                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">MEN'S OVERSIZED TEES</h3>
+                            <span class="text-xs text-axGrey">Drop Shoulder • Boxy Cut</span>
+                        </div>
+                    </div>
+
+                    <div onclick="filterByCategory('Boxy Half Sleeve')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
+                        <div class="aspect-4-5 overflow-hidden bg-axSand relative">
+                            <img src="/images/men_sand_tee.jpg" alt="Men's Boxy Half Sleeve" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">RELAXED</span>
+                        </div>
+                        <div class="p-3.5 text-center bg-white">
+                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">BOXY HALF SLEEVE</h3>
+                            <span class="text-xs text-axGrey">Relaxed Masculine Drape</span>
+                        </div>
+                    </div>
+
+                    <div onclick="filterByCategory('Graphic & Back-Print')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
+                        <div class="aspect-4-5 overflow-hidden bg-axSand relative">
+                            <img src="/images/men_backprint_tee.jpg" alt="Graphic Streetwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <span class="absolute top-2.5 left-2.5 bg-axBurgundy text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">GRAPHICS</span>
+                        </div>
+                        <div class="p-3.5 text-center bg-white">
+                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">GRAPHIC &amp; BACK-PRINTS</h3>
+                            <span class="text-xs text-axGrey">Brutalist Typography &amp; Art</span>
+                        </div>
+                    </div>
+
+                    <div onclick="filterByCategory('Acid & Vintage Wash')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
+                        <div class="aspect-4-5 overflow-hidden bg-axSand relative">
+                            <img src="/images/men_acid_wash_tee.jpg" alt="Acid Wash Tees" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <span class="absolute top-2.5 left-2.5 bg-axCharcoal/85 backdrop-blur text-axGold text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider">MINERAL DYE</span>
+                        </div>
+                        <div class="p-3.5 text-center bg-white">
+                            <h3 class="font-bold text-sm tracking-wide text-axCharcoal">ACID &amp; VINTAGE WASH</h3>
+                            <span class="text-xs text-axGrey">Mineral Wash • Distressed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why AXDORO: 240 GSM Section -->
+            <div class="bg-axSand/70 border-y border-axSand py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy">THE FABRIC SPECIFICATION</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-axCharcoal mt-2 mb-6">WHY 240 GSM MATTERS</h2>
+                            <p class="text-axGrey text-base mb-6 leading-relaxed">
+                                Conventional t-shirts range from 160–180 GSM, which cling, curl at the collar, and easily turn translucent. AXDORO garments are constructed with authentic <strong>240 GSM heavy combed cotton</strong>.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-axCharcoal">Structured Boxy Silhouette</h4>
+                                        <p class="text-xs text-axGrey">Garment holds its own architectural shape without clinging or sagging.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-axCharcoal">Zero See-Through Guarantee</h4>
+                                        <p class="text-xs text-axGrey">High yarn density ensures total opacity even in Off-White and Light Cream tones.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-axCharcoal">Heavy 1.25" Anti-Sag Ribbed Collar</h4>
+                                        <p class="text-xs text-axGrey">Reinforced with elastane-ribbing to prevent collar waving wash after wash.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80" alt="Fabric Detail" class="rounded-xl shadow-lg w-full object-cover aspect-4-5">
+                            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur p-4 rounded-lg border border-axSand shadow">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="text-[11px] font-bold text-axGrey uppercase">Fabric Density Test</span>
+                                        <div class="text-base font-black text-axCharcoal font-heading">240 GSM Heavy Cotton</div>
+                                    </div>
+                                    <span class="bg-axGreen text-white text-[11px] font-bold px-2.5 py-1 rounded">VERIFIED DENSITY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Drops Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex items-end justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal">TRENDING DROPS</h2>
+                        <p class="text-axGrey text-sm mt-1">Our most sought-after oversized and half-sleeve silhouettes.</p>
+                    </div>
+                    <button onclick="navigatePage('shop')" class="text-xs font-bold tracking-wider text-axCharcoal hover:underline uppercase">
+                        View All (12+) →
+                    </button>
+                </div>
+
+                <div id="homeTrendingGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Custom / Bulk Order Banner -->
+            <div class="bg-axCharcoal text-white py-14 border-t border-axCharcoal">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                    <div>
+                        <span class="bg-axGold text-axCharcoal text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded">B2B & EVENTS</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold font-heading mt-2">COLLEGE MERCH & CUSTOM BULK TEES</h3>
+                        <p class="text-gray-300 text-sm mt-1 max-w-xl">Need 20+ pieces of 240 GSM heavyweight tees for your startup, college fest, or creative brand? Connect directly with our bulk orders desk on WhatsApp.</p>
+                    </div>
+                    <button onclick="navigatePage('bulk')" class="bg-axGold text-axCharcoal hover:bg-yellow-400 font-bold px-8 py-3.5 rounded text-xs tracking-wider uppercase whitespace-nowrap transition-all shadow-md">
+                        REQUEST BULK QUOTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: SHOP ================= -->
+        <section id="page-shop" class="page-view hidden animate-fade-in py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Shop Header & Controls -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-axSand gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-black font-heading text-axCharcoal">MEN'S T-SHIRTS COLLECTION</h1>
+                        <p class="text-xs text-axGrey mt-1"><span id="productResultCount">0</span> styles found in 240 GSM Men's T-Shirt catalogue</p>
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                        <!-- Mobile Filter Drawer Trigger -->
+                        <button onclick="toggleMobileFilters()" class="lg:hidden flex items-center gap-1.5 px-3.5 py-2 bg-white border border-axSand rounded text-xs font-semibold text-axCharcoal">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+                            <span>Filters</span>
+                        </button>
+
+                        <!-- Sort Dropdown -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs text-axGrey font-medium hidden sm:inline">Sort By:</label>
+                            <select id="shopSortSelect" onchange="handleSortChange(this.value)" class="bg-white border border-axSand text-xs font-semibold px-3 py-2 rounded focus:outline-none focus:border-axCharcoal">
+                                <option value="newest">Newest Drops</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="popular">Best Sellers</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filter Tags Row -->
+                <div id="activeFilterTags" class="flex flex-wrap gap-2 py-3 items-center empty:hidden"></div>
+
+                <!-- Main Shop Layout: Sidebar + Product Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
+                    
+                    <!-- Desktop & Responsive Filter Sidebar -->
+                    <aside id="filterSidebar" class="hidden lg:block space-y-6 bg-white p-5 rounded-lg border border-axSand h-fit">
+                        <div class="flex items-center justify-between pb-3 border-b border-axSand">
+                            <h3 class="text-xs font-bold tracking-wider uppercase text-axCharcoal">Filters</h3>
+                            <button onclick="clearAllFilters()" class="text-[11px] font-semibold text-axBurgundy hover:underline">Clear All</button>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div>
+                            <h4 class="text-xs font-bold text-axCharcoal uppercase mb-3">Category</h4>
+                            <div class="space-y-2 text-xs text-axGrey">
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Oversized Tees" onchange="handleFilterCheck('category', 'Oversized Tees', this.checked)" class="filter-check-cat rounded text-axCharcoal">
+                                    <span>Oversized Tees (240 GSM)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Boxy Half Sleeve" onchange="handleFilterCheck('category', 'Boxy Half Sleeve', this.checked)" class="filter-check-cat rounded text-axCharcoal">
+                                    <span>Boxy Half Sleeve Tees</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Graphic & Back-Print" onchange="handleFilterCheck('category', 'Graphic & Back-Print', this.checked)" class="filter-check-cat rounded text-axCharcoal">
+                                    <span>Graphic &amp; Back-Prints</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Acid & Vintage Wash" onchange="handleFilterCheck('category', 'Acid & Vintage Wash', this.checked)" class="filter-check-cat rounded text-axCharcoal">
+                                    <span>Acid &amp; Vintage Wash</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Heavy Plain & Pocket" onchange="handleFilterCheck('category', 'Heavy Plain & Pocket', this.checked)" class="filter-check-cat rounded text-axCharcoal">
+                                    <span>Heavy Plain &amp; Pocket Tees</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div>
+                            <h4 class="text-xs font-bold text-axCharcoal uppercase mb-3">Size</h4>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="handleSizeChip('XS')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="XS">XS</button>
+                                <button onclick="handleSizeChip('S')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="S">S</button>
+                                <button onclick="handleSizeChip('M')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="M">M</button>
+                                <button onclick="handleSizeChip('L')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="L">L</button>
+                                <button onclick="handleSizeChip('XL')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="XL">XL</button>
+                                <button onclick="handleSizeChip('XXL')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal transition-colors" data-size="XXL">XXL</button>
+                            </div>
+                        </div>
+
+                        <!-- Color Filter -->
+                        <div>
+                            <h4 class="text-xs font-bold text-axCharcoal uppercase mb-3">Color Swatch</h4>
+                            <div class="space-y-2 text-xs text-axGrey">
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Jet Black" onchange="handleFilterCheck('color', 'Jet Black', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+                                    <span>Jet Black</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Vintage Off-White" onchange="handleFilterCheck('color', 'Vintage Off-White', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#f8f6f0] border border-gray-400"></span>
+                                    <span>Vintage Off-White</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Sage Olive" onchange="handleFilterCheck('color', 'Sage Olive', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#6b7b65] border border-gray-300"></span>
+                                    <span>Sage Olive</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Mocha Brown" onchange="handleFilterCheck('color', 'Mocha Brown', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#4e3629] border border-gray-300"></span>
+                                    <span>Mocha Brown</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Cobalt Blue" onchange="handleFilterCheck('color', 'Cobalt Blue', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#2563eb] border border-gray-300"></span>
+                                    <span>Cobalt Blue</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Charcoal Grey" onchange="handleFilterCheck('color', 'Charcoal Grey', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#374151] border border-gray-300"></span>
+                                    <span>Charcoal Grey</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Terracotta" onchange="handleFilterCheck('color', 'Terracotta', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#c2410c] border border-gray-300"></span>
+                                    <span>Terracotta</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Forest Green" onchange="handleFilterCheck('color', 'Forest Green', this.checked)" class="filter-check-color rounded text-axCharcoal">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-[#14532d] border border-gray-300"></span>
+                                    <span>Forest Green</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Slider -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xs font-bold text-axCharcoal uppercase">Max Price</h4>
+                                <span id="priceSliderLabel" class="text-xs font-bold text-axCharcoal font-mono">₹1,499</span>
+                            </div>
+                            <input type="range" id="priceRange" min="499" max="1499" step="50" value="1499" oninput="handlePriceRange(this.value)" class="w-full accent-axCharcoal cursor-pointer">
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="pt-2 border-t border-axSand">
+                            <label class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-axCharcoal">
+                                <input type="checkbox" id="inStockOnly" onchange="handleInStock(this.checked)" class="rounded text-axCharcoal">
+                                <span>In Stock Only</span>
+                            </label>
+                        </div>
+                    </aside>
+
+                    <!-- Product Grid (3 cols on desktop, 2 cols on mobile) -->
+                    <div class="lg:col-span-3">
+                        <div id="shopProductGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                            <!-- Injected via JS -->
+                        </div>
+                        <div id="shopEmptyState" class="hidden text-center py-16 bg-white rounded-lg border border-axSand">
+                            <p class="text-lg font-bold text-axCharcoal">No products match your filters.</p>
+                            <p class="text-xs text-axGrey mt-1">Try resetting sizes or categories to view our full collection.</p>
+                            <button onclick="clearAllFilters()" class="mt-4 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold">Reset Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: ABOUT ================= -->
+        <section id="page-about" class="page-view hidden animate-fade-in py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center">
+                    <span class="text-xs font-bold tracking-widest text-axGold uppercase">BRAND ORIGINS</span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-axCharcoal font-heading mt-2">THE AXDORO STORY</h1>
+                    <p class="text-axGrey text-sm sm:text-base mt-3 max-w-2xl mx-auto">Redefining Indian streetwear through structured fabrics and uncompromising fit.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-axSand space-y-6">
+                    <h2 class="text-2xl font-bold text-axCharcoal">BORN FOR THE STREETS</h2>
+                    <p class="text-axGrey text-sm leading-relaxed">
+                        AXDORO began with a simple observation: everyday apparel in India was either flimsy and shapeless or locked behind inflated designer markups. We set out to bridge this divide by engineering everyday streetwear staples that deliver high-density texture, structured silhouettes, and accessible pricing.
+                    </p>
+                    <p class="text-axGrey text-sm leading-relaxed">
+                        We believe great style starts with the weight and hand-feel of the fabric. Rather than chasing fleeting micro-trends, our collections prioritize timeless drop-shoulder fits, versatile earth tones, and enduring craftsmanship.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg border border-axSand">
+                        <span class="text-2xl font-black text-axGold">01</span>
+                        <h3 class="font-bold text-sm text-axCharcoal mt-2 mb-1">HEAVYWEIGHT STRUCTURE</h3>
+                        <p class="text-xs text-axGrey leading-relaxed">At 240 GSM, our cotton achieves an architectural drape that holds its shape independently.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-axSand">
+                        <span class="text-2xl font-black text-axGold">02</span>
+                        <h3 class="font-bold text-sm text-axCharcoal mt-2 mb-1">COMPLETE OPACITY</h3>
+                        <p class="text-xs text-axGrey leading-relaxed">Dense weave eliminates transparency across all off-white and light tone drops.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-axSand">
+                        <span class="text-2xl font-black text-axGold">03</span>
+                        <h3 class="font-bold text-sm text-axCharcoal mt-2 mb-1">REINFORCED COLLARS</h3>
+                        <p class="text-xs text-axGrey leading-relaxed">Heavy ribbed collar double-stitched to maintain a sharp neckline over repeated wear.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: CUSTOM / BULK ORDERS ================= -->
+        <section id="page-bulk" class="page-view hidden animate-fade-in py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold tracking-widest text-axBurgundy uppercase">B2B & INSTITUTIONAL MERCHANDISE</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-axCharcoal font-heading mt-2">CUSTOM &amp; BULK ORDERS</h1>
+                    <p class="text-axGrey text-sm sm:text-base mt-2 max-w-xl mx-auto">Heavy 240 GSM t-shirts for college festivals, corporate teams, streetwear brands, and events.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Lead Form -->
+                    <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-axSand">
+                        <h3 class="text-lg font-bold text-axCharcoal mb-4">Request a Bulk Quote</h3>
+                        <form id="bulkOrderForm" onsubmit="event.preventDefault(); submitBulkForm();" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-axCharcoal mb-1">Full Name *</label>
+                                <input type="text" id="bulkName" required class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-axCharcoal mb-1">WhatsApp Number *</label>
+                                    <input type="tel" id="bulkPhone" required placeholder="10-digit mobile" class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-axCharcoal mb-1">Email Address *</label>
+                                    <input type="email" id="bulkEmail" required class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-axCharcoal mb-1">Product Type *</label>
+                                    <select id="bulkProduct" class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                                        <option value="240 GSM Oversized Heavy Tee">240 GSM Oversized Heavy Tee</option>
+                                        <option value="240 GSM Half Sleeve Regular Tee">240 GSM Half Sleeve Regular Tee</option>
+                                        <option value="Blank Heavyweight Tees">Blank / Unprinted Heavyweight Tees</option>
+                                        <option value="Custom Graphic Capsule">Custom Graphic Print / Embroidery</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-axCharcoal mb-1">Estimated Quantity *</label>
+                                    <input type="number" id="bulkQty" min="20" placeholder="Minimum 20 pcs" required class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-axCharcoal mb-1">Preferred Sizes &amp; Colors</label>
+                                <input type="text" id="bulkSizes" placeholder="e.g. 15 Black (L), 10 White (M)" class="w-full text-xs px-3 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-axCharcoal mb-1">Customization / Print Notes</label>
+                                <textarea id="bulkNotes" rows="3" placeholder="Describe screen print, puff print, DTF, or embroidery..." class="w-full text-xs p-3 border border-axSand rounded focus:outline-none focus:border-axCharcoal"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-axCharcoal text-white hover:bg-gray-800 font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow">
+                                SUBMIT &amp; CONTINUE ON WHATSAPP →
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-axSand/80 p-6 rounded-xl border border-axSand space-y-4">
+                            <h3 class="font-bold text-sm text-axCharcoal">MERCHANDISE ADVANTAGES</h3>
+                            <ul class="text-xs text-axCharcoal space-y-2.5">
+                                <li class="flex items-center gap-2">✓ <strong>Real 240 GSM Cotton:</strong> High-density fabric elevates your brand.</li>
+                                <li class="flex items-center gap-2">✓ <strong>Low MOQ (20 Pcs):</strong> Accessible tier for college clubs & startups.</li>
+                                <li class="flex items-center gap-2">✓ <strong>Printing Techniques:</strong> Screen, puff, DTF, and embroidery.</li>
+                                <li class="flex items-center gap-2">✓ <strong>Express Dispatch:</strong> 7–12 business day turnaround.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-axSand">
+                            <h4 class="font-bold text-xs uppercase text-axCharcoal">Direct Bulk Coordinator</h4>
+                            <p class="text-xs text-axGrey mt-1">Need immediate fabric swatches or urgent turnaround?</p>
+                            <a href="https://wa.me/918807304713?text=Hello%20AXDORO%20Bulk%20Desk!%20I%20need%20custom%20merchandise%20quotation." target="_blank" class="mt-3 inline-flex items-center gap-2 text-xs font-bold text-axGreen hover:underline">
+                                <span>💬 Chat with Bulk Coordinator on WhatsApp →</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: CONTACT & SUPPORT ================= -->
+        <section id="page-contact" class="page-view hidden animate-fade-in py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold tracking-widest text-axGold uppercase">CUSTOMER CARE</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-axCharcoal font-heading mt-2">CONTACT &amp; SUPPORT</h1>
+                    <p class="text-axGrey text-sm mt-2">We are here to assist with sizing, payments, and delivery.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white p-6 rounded-xl border border-axSand space-y-3">
+                        <div class="text-2xl">📱</div>
+                        <h3 class="font-bold text-sm text-axCharcoal">WhatsApp Support Desk</h3>
+                        <p class="text-xs text-axGrey">Fastest response for sizing advice, payment confirmation, and exchanges.</p>
+                        <a href="https://wa.me/918807304713" target="_blank" class="inline-block text-xs font-bold text-axGreen hover:underline">+91 88073 04713 →</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-axSand space-y-3">
+                        <div class="text-2xl">✉️</div>
+                        <h3 class="font-bold text-sm text-axCharcoal">Email Concierge</h3>
+                        <p class="text-xs text-axGrey">For corporate orders, formal invoices, and order status updates.</p>
+                        <a href="mailto:support@axdoro.com" class="inline-block text-xs font-bold text-axCharcoal hover:underline">support@axdoro.com →</a>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion -->
+                <div class="bg-white p-6 sm:p-8 rounded-xl border border-axSand">
+                    <h3 class="text-xl font-bold text-axCharcoal mb-6">Frequently Asked Questions</h3>
+                    <div class="space-y-4">
+                        <details class="group border-b border-axSand pb-3 cursor-pointer">
+                            <summary class="font-semibold text-sm text-axCharcoal flex justify-between items-center">
+                                <span>How do I pay using UPI via WhatsApp?</span>
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-xs text-axGrey mt-2 leading-relaxed">
+                                When you place an order on our store, a unique WooCommerce Order ID is generated first. You can then complete payment directly on WhatsApp using GPay, PhonePe, or Paytm, and submit your 12-digit UTR reference right on the order screen.
+                            </p>
+                        </details>
+                        <details class="group border-b border-axSand pb-3 cursor-pointer">
+                            <summary class="font-semibold text-sm text-axCharcoal flex justify-between items-center">
+                                <span>What makes 240 GSM tees different?</span>
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-xs text-axGrey mt-2 leading-relaxed">
+                                240 GSM indicates high fabric weight and density. Unlike flimsy 160 GSM shirts, our tees hold an authentic boxy drape, eliminate transparency, and do not lose their collar shape after washing.
+                            </p>
+                        </details>
+                        <details class="group border-b border-axSand pb-3 cursor-pointer">
+                            <summary class="font-semibold text-sm text-axCharcoal flex justify-between items-center">
+                                <span>How do I track my shipment?</span>
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-xs text-axGrey mt-2 leading-relaxed">
+                                You can visit our <a href="#" onclick="navigatePage('track')" class="underline font-bold">Track Order</a> page and enter your Order ID & phone number to view live courier status milestones.
+                            </p>
+                        </details>
+                        <details class="group pb-1 cursor-pointer">
+                            <summary class="font-semibold text-sm text-axCharcoal flex justify-between items-center">
+                                <span>What is your exchange policy?</span>
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="text-xs text-axGrey mt-2 leading-relaxed">
+                                We offer a 7-day hassle-free size exchange from the date of delivery. Garments must be unworn with original tags attached. Simply message us on WhatsApp with your Order ID!
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TRACK ORDER PAGE ================= -->
+        <section id="page-track" class="page-view hidden animate-fade-in py-12">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 sm:p-8 rounded-xl border border-axSand shadow-sm">
+                    <div class="text-center mb-6">
+                        <span class="text-2xl">🚚</span>
+                        <h2 class="text-2xl font-bold text-axCharcoal mt-2">TRACK YOUR AXDORO ORDER</h2>
+                        <p class="text-xs text-axGrey mt-1">Enter your Order Number and Email or Phone used during checkout.</p>
+                    </div>
+
+                    <form id="trackOrderForm" onsubmit="event.preventDefault(); handleTrackSubmit();" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-axCharcoal mb-1">Order ID *</label>
+                                <input type="text" id="trackIdInput" placeholder="e.g. AXD-1024 or 1024" required class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-axCharcoal mb-1">Phone or Email *</label>
+                                <input type="text" id="trackContactInput" placeholder="e.g. 8807304713" required class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-axCharcoal text-white hover:bg-gray-800 font-bold py-3 rounded text-xs uppercase tracking-wider transition-colors">
+                            SEARCH ORDER STATUS →
+                        </button>
+                    </form>
+
+                    <!-- Tracking Result Card -->
+                    <div id="trackResultCard" class="hidden mt-8 pt-6 border-t border-axSand animate-fade-in">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="bg-axSand text-axCharcoal text-[10px] font-bold px-2 py-0.5 rounded" id="trackStatusBadge">PACKED</span>
+                                <h3 class="font-bold text-base text-axCharcoal mt-1" id="trackOrderTitle">Order #AXD-1024</h3>
+                            </div>
+                            <span class="text-xs text-axGrey" id="trackDate">Sept 12, 2026</span>
+                        </div>
+
+                        <!-- Progress Milestones -->
+                        <div class="relative py-4 my-4">
+                            <div class="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-gray-200 z-0"></div>
+                            <div id="trackProgressBar" class="absolute top-1/2 left-4 -translate-y-1/2 h-1 bg-axCharcoal z-0 transition-all duration-500" style="width: 60%;"></div>
+                            <div class="relative z-10 flex justify-between text-center">
+                                <div class="step-item">
+                                    <div class="w-7 h-7 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold mx-auto border-2 border-white">1</div>
+                                    <span class="text-[10px] font-bold text-axCharcoal block mt-1">Placed</span>
+                                </div>
+                                <div class="step-item">
+                                    <div class="w-7 h-7 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold mx-auto border-2 border-white">2</div>
+                                    <span class="text-[10px] font-bold text-axCharcoal block mt-1">Verified</span>
+                                </div>
+                                <div class="step-item">
+                                    <div class="w-7 h-7 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold mx-auto border-2 border-white">3</div>
+                                    <span class="text-[10px] font-bold text-axCharcoal block mt-1">Packed</span>
+                                </div>
+                                <div class="step-item">
+                                    <div class="w-7 h-7 rounded-full bg-gray-300 text-gray-700 flex items-center justify-center text-xs font-bold mx-auto border-2 border-white">4</div>
+                                    <span class="text-[10px] text-gray-500 block mt-1">Shipped</span>
+                                </div>
+                                <div class="step-item">
+                                    <div class="w-7 h-7 rounded-full bg-gray-300 text-gray-700 flex items-center justify-center text-xs font-bold mx-auto border-2 border-white">5</div>
+                                    <span class="text-[10px] text-gray-500 block mt-1">Delivered</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Courier Box -->
+                        <div class="bg-axIvory p-4 rounded-lg border border-axSand text-xs space-y-1">
+                            <div>Courier Partner: <strong id="trackCourierName">Delhivery Surface</strong></div>
+                            <div>AWB Tracking No: <strong class="font-mono" id="trackAwbNumber">142387129031</strong></div>
+                            <div class="pt-2">
+                                <a href="https://shiprocket.co/tracking" target="_blank" class="text-axCharcoal font-bold underline">Track on Courier Portal →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-axCharcoal text-white border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <span class="text-2xl font-black font-heading tracking-tight">AXDORO</span>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">Modern architectural streetwear crafted from dense 240 GSM cotton. Heavyweight drape for the modern Indian wardrobe.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-axGold mb-3">Shop Collections</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#" onclick="filterByCategory('Oversized Tees')" class="hover:text-white">Oversized Tees (240 GSM)</a></li>
+                        <li><a href="#" onclick="filterByCategory('Boxy Half Sleeve')" class="hover:text-white">Boxy Half Sleeve Tees</a></li>
+                        <li><a href="#" onclick="filterByCategory('Graphic & Back-Print')" class="hover:text-white">Graphic &amp; Back-Print Tees</a></li>
+                        <li><a href="#" onclick="filterByCategory('Acid & Vintage Wash')" class="hover:text-white">Acid &amp; Vintage Wash Tees</a></li>
+                        <li><a href="#" onclick="filterByCategory('Heavy Plain & Pocket')" class="hover:text-white">Heavy Plain &amp; Pocket Tees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-axGold mb-3">Customer Service</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#" onclick="navigatePage('track')" class="hover:text-white">Track Your Order</a></li>
+                        <li><a href="#" onclick="openSizeGuideModal()" class="hover:text-white">Size Guide (240 GSM)</a></li>
+                        <li><a href="#" onclick="navigatePage('bulk')" class="hover:text-white">Custom &amp; Bulk Orders</a></li>
+                        <li><a href="#" onclick="navigatePage('contact')" class="hover:text-white">Help &amp; FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-axGold mb-3">Direct Support</h4>
+                    <p class="text-xs text-gray-300">WhatsApp: <strong>+91 88073 04713</strong></p>
+                    <p class="text-xs text-gray-300 mt-1">Email: <strong>support@axdoro.com</strong></p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="bg-gray-800 text-[10px] text-gray-400 px-2 py-1 rounded">UPI Accepted</span>
+                        <span class="bg-gray-800 text-[10px] text-gray-400 px-2 py-1 rounded">Shiprocket Ready</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500">
+                <div>© 2026 AXDORO Clothing. Built with WordPress &amp; WooCommerce.</div>
+                <div class="flex gap-4 mt-2 sm:mt-0">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                    <a href="#" class="hover:underline">Shipping &amp; Returns</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODALS & DRAWERS ================= -->
+
+    <!-- Product Detail Modal -->
+    <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar relative border border-axSand animate-fade-in">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-axIvory hover:bg-gray-200 text-axCharcoal flex items-center justify-center z-20 font-bold">✕</button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Gallery -->
+                <div class="bg-axIvory p-6 flex flex-col items-center justify-center">
+                    <img id="modalMainImg" src="" alt="Product" class="w-full aspect-4-5 object-cover rounded-lg shadow">
+                </div>
+                <!-- Details -->
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <span id="modalCategoryBadge" class="text-[11px] font-bold text-axBurgundy uppercase tracking-wider">Oversized</span>
+                        <h2 id="modalTitle" class="text-xl sm:text-2xl font-bold text-axCharcoal font-heading mt-1"></h2>
+                        <div class="text-xs font-mono text-axGrey mt-1">SKU: <span id="modalSku"></span></div>
+                        
+                        <!-- Price -->
+                        <div class="flex items-baseline gap-2 mt-3">
+                            <span id="modalPrice" class="text-2xl font-extrabold text-axCharcoal font-heading"></span>
+                            <span id="modalRegularPrice" class="text-sm text-axGrey line-through"></span>
+                            <span class="text-xs font-bold text-axBurgundy bg-red-50 px-2 py-0.5 rounded">SAVE ₹300</span>
+                        </div>
+
+                        <!-- Color Selector -->
+                        <div class="mt-5">
+                            <div class="flex justify-between text-xs font-semibold text-axCharcoal mb-2">
+                                <span>Color: <strong id="modalColorName"></strong></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-7 h-7 rounded-full border-2 border-axCharcoal bg-black cursor-pointer shadow-sm"></span>
+                            </div>
+                        </div>
+
+                        <!-- Size Selector & Size Guide Link -->
+                        <div class="mt-5">
+                            <div id="modalStockBadge" class="mb-3"></div>
+                            <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="font-semibold text-axCharcoal">Select Size: <strong id="modalSelectedSizeLabel" class="text-axGold font-bold">M</strong></span>
+                                <button onclick="openSizeGuideModal()" class="text-axCharcoal underline font-bold hover:text-axGold">📏 Size Guide</button>
+                            </div>
+                            <div class="grid grid-cols-6 gap-1.5" id="modalSizeButtons">
+                                <!-- Injected via JS -->
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Size CTA -->
+                        <a id="modalWhatsAppSizeBtn" href="#" target="_blank" class="mt-4 flex items-center justify-center gap-2 w-full py-2 px-3 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded text-xs font-semibold hover:bg-emerald-100 transition-colors">
+                            <span>💬 Need help with size? WhatsApp AXDORO Fit Expert →</span>
+                        </a>
+
+                        <!-- Fabric Specs -->
+                        <div class="mt-5 pt-4 border-t border-axSand text-xs text-axGrey space-y-1.5">
+                            <div>• <strong>Fabric:</strong> 240 GSM 100% Combed Heavy Cotton</div>
+                            <div>• <strong>Fit:</strong> Relaxed Streetwear Drop Shoulder</div>
+                            <div>• <strong>Shipping:</strong> Ships within 24–48 hours via Shiprocket Surface</div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Bag Button -->
+                    <div class="mt-6 pt-4 border-t border-axSand flex gap-3">
+                        <button id="modalAddBagBtn" onclick="addProductFromModalToCart()" class="flex-1 bg-axCharcoal hover:bg-black text-white font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider transition-all shadow-md">
+                            🛍️ ADD TO BAG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="sizeGuideModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full p-6 relative border border-axSand animate-fade-in">
+            <button onclick="closeSizeGuideModal()" class="absolute top-4 right-4 text-axCharcoal font-bold">✕</button>
+            <h3 class="text-lg font-bold text-axCharcoal">AXDORO 240 GSM SIZE MEASUREMENTS</h3>
+            <p class="text-xs text-axGrey mt-1">Garment measurements in inches. Our oversized fit is designed with a dropped shoulder and boxy drape.</p>
+            
+            <div class="mt-4 overflow-x-auto">
+                <table class="w-full text-xs text-left border border-axSand">
+                    <thead class="bg-axIvory font-bold text-axCharcoal">
+                        <tr>
+                            <th class="p-2 border-b border-axSand">Size</th>
+                            <th class="p-2 border-b border-axSand">Chest (in)</th>
+                            <th class="p-2 border-b border-axSand">Length (in)</th>
+                            <th class="p-2 border-b border-axSand">Shoulder (in)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-axSand text-axCharcoal">
+                        <tr><td class="p-2 font-bold">XS</td><td class="p-2">40"</td><td class="p-2">27"</td><td class="p-2">19.5"</td></tr>
+                        <tr><td class="p-2 font-bold">S</td><td class="p-2">42"</td><td class="p-2">28"</td><td class="p-2">20.5"</td></tr>
+                        <tr><td class="p-2 font-bold">M</td><td class="p-2">44"</td><td class="p-2">29"</td><td class="p-2">21.5"</td></tr>
+                        <tr><td class="p-2 font-bold">L</td><td class="p-2">46"</td><td class="p-2">30"</td><td class="p-2">22.5"</td></tr>
+                        <tr><td class="p-2 font-bold">XL</td><td class="p-2">48"</td><td class="p-2">31"</td><td class="p-2">23.5"</td></tr>
+                        <tr><td class="p-2 font-bold">XXL</td><td class="p-2">50"</td><td class="p-2">32"</td><td class="p-2">24.5"</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-[11px] text-axGrey mt-3">Tip: If you prefer a regular classic fit, choose one size smaller than your standard size.</p>
+        </div>
+    </div>
+
+    <!-- Bag / Cart Slide-out Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white border-l border-axSand flex flex-col shadow-2xl">
+                <!-- Cart Header -->
+                <div class="p-5 border-b border-axSand flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl">🛍️</span>
+                        <h2 class="font-bold text-base text-axCharcoal font-heading">YOUR BAG (<span id="cartDrawerCount">0</span>)</h2>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-axCharcoal p-1 font-bold">✕</button>
+                </div>
+
+                <!-- Free Shipping Progress Bar -->
+                <div class="bg-axIvory p-3.5 border-b border-axSand text-xs text-center">
+                    <div id="freeShippingNotice" class="font-semibold text-axCharcoal">Add items to qualify for FREE SHIPPING!</div>
+                    <div class="w-full bg-gray-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                        <div id="freeShippingBar" class="bg-axCharcoal h-full transition-all duration-300" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div id="cartDrawerItems" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Cart Footer / Checkout -->
+                <div class="p-5 border-t border-axSand bg-white space-y-3">
+                    <div class="flex justify-between text-xs text-axGrey">
+                        <span>Subtotal</span>
+                        <span id="cartDrawerSubtotal" class="font-bold text-axCharcoal">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-axGrey">
+                        <span>Shipping</span>
+                        <span id="cartDrawerShipping" class="font-bold text-axGreen">FREE</span>
+                    </div>
+                    <div class="flex justify-between text-base font-extrabold text-axCharcoal pt-2 border-t border-axSand">
+                        <span>Total Amount</span>
+                        <span id="cartDrawerTotal">₹0</span>
+                    </div>
+                    <button onclick="openCheckoutModal()" class="w-full bg-axCharcoal hover:bg-gray-900 text-white font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow">
+                        PROCEED TO CHECKOUT →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative border border-axSand animate-fade-in">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-axCharcoal font-bold">✕</button>
+            
+            <div class="border-b border-axSand pb-4 mb-6">
+                <span class="text-[10px] font-bold uppercase tracking-widest bg-axSand text-axCharcoal px-2 py-0.5 rounded">STEP 1: ORDER CREATION</span>
+                <h2 class="text-2xl font-black text-axCharcoal font-heading mt-1">SHIPPING &amp; ORDER DETAILS</h2>
+                <p class="text-xs text-axGrey">WooCommerce will create your order first before payment is confirmed via WhatsApp.</p>
+            </div>
+
+            <form id="checkoutForm" onsubmit="event.preventDefault(); handlePlaceOrder();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-axCharcoal mb-1">Full Name *</label>
+                    <input type="text" id="custName" required placeholder="e.g. Rahul Sharma" class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-axCharcoal mb-1">WhatsApp / Mobile Number *</label>
+                        <input type="tel" id="custPhone" required placeholder="10-digit mobile" class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                        <span class="text-[10px] text-axGrey">Required for UPI payment link & tracking</span>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-axCharcoal mb-1">Email Address *</label>
+                        <input type="email" id="custEmail" required placeholder="rahul@example.com" class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-axCharcoal mb-1">Delivery Address *</label>
+                    <input type="text" id="custAddress" required placeholder="House/Flat, Street, Area" class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-axCharcoal mb-1">City *</label>
+                        <input type="text" id="custCity" required placeholder="e.g. Mumbai" class="w-full text-xs px-3 py-2 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-axCharcoal mb-1">State *</label>
+                        <input type="text" id="custState" required placeholder="e.g. Maharashtra" class="w-full text-xs px-3 py-2 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-axCharcoal mb-1">PIN Code *</label>
+                        <input type="text" id="custPin" required placeholder="6-digit" maxlength="6" class="w-full text-xs px-3 py-2 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                    </div>
+                </div>
+
+                <!-- Order Summary Breakdown -->
+                <div class="bg-axIvory p-4 rounded-lg border border-axSand text-xs space-y-2 mt-4">
+                    <div class="flex justify-between"><span>Items Subtotal:</span><strong id="chkSubtotal">₹0</strong></div>
+                    <div class="flex justify-between"><span>Shipping:</span><strong class="text-axGreen">FREE</strong></div>
+                    <div class="flex justify-between text-sm font-bold border-t border-axSand pt-2"><span>Final Payable:</span><strong id="chkTotal">₹0</strong></div>
+                </div>
+
+                <button type="submit" class="w-full bg-axCharcoal text-white hover:bg-gray-900 font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow-md">
+                    CONFIRM &amp; PLACE ORDER →
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WhatsApp Payment Flow & Verification Modal -->
+    <div id="whatsappPaymentModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 relative border border-axSand shadow-2xl animate-fade-in">
+            
+            <div class="text-center mb-6">
+                <span class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Step 2: WhatsApp Payment</span>
+                <h2 class="text-2xl font-black text-axCharcoal font-heading mt-2">COMPLETE YOUR PAYMENT</h2>
+                <p class="text-xs text-axGrey mt-1">Order <strong id="payModalOrderId" class="text-axCharcoal">#AXD-2026-1048</strong> generated in WooCommerce (Status: <em class="text-amber-700">Awaiting Payment</em>).</p>
+            </div>
+
+            <!-- Payment Action Cards -->
+            <div class="space-y-3 mb-6">
+                <!-- Option 1: WhatsApp Button -->
+                <a id="payWhatsAppBtn" href="#" target="_blank" class="flex items-center justify-between p-4 bg-[#25D366]/10 border border-[#25D366]/40 hover:bg-[#25D366]/20 rounded-xl transition-colors">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💬</span>
+                        <div class="text-left">
+                            <h4 class="font-bold text-sm text-axCharcoal">Pay via WhatsApp Link</h4>
+                            <p class="text-[11px] text-axGrey">Pre-fills Order ID, amount, and payment link</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-700">OPEN CHAT →</span>
+                </a>
+
+                <!-- Option 2: Direct UPI Intent -->
+                <a id="payUpiBtn" href="#" class="flex items-center justify-between p-4 bg-axIvory border border-axSand hover:bg-gray-100 rounded-xl transition-colors">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">📲</span>
+                        <div class="text-left">
+                            <h4 class="font-bold text-sm text-axCharcoal">Pay via UPI App</h4>
+                            <p class="text-[11px] text-axGrey">GPay, PhonePe, Paytm (axdoro@upi)</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-axCharcoal">PAY <span id="payUpiAmount">₹0</span> →</span>
+                </a>
+            </div>
+
+            <!-- Webhook Auto-Verification Simulator (Demonstrates Rule 19 & 22) -->
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4 text-xs">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-blue-900">⚡ Automated Gateway Webhook Simulation</span>
+                    <span class="text-[10px] bg-blue-200 text-blue-800 px-2 py-0.5 rounded font-mono">HMAC SHA-256</span>
+                </div>
+                <p class="text-blue-800 text-[11px] mb-3">Simulate what happens when Razorpay/Cashfree sends webhook callback with valid signature.</p>
+                <button onclick="simulateWebhookPayment()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded text-xs transition-colors">
+                    Simulate Gateway Payment Success Webhook
+                </button>
+            </div>
+
+            <!-- Manual UTR Submission Fallback -->
+            <div class="border-t border-axSand pt-4">
+                <h4 class="font-bold text-xs text-axCharcoal mb-1">Already Paid? Submit 12-Digit UTR</h4>
+                <p class="text-[11px] text-axGrey mb-3">If you paid via UPI, enter your bank reference number below for instant manual verification.</p>
+                <div class="flex gap-2">
+                    <input type="text" id="manualUtrInput" placeholder="12-digit UTR No." maxlength="20" class="flex-1 text-xs px-3 py-2 border border-axSand rounded font-mono">
+                    <button onclick="submitManualUtr()" class="bg-axCharcoal text-white text-xs font-bold px-4 py-2 rounded">Submit</button>
+                </div>
+                <div id="utrFeedback" class="hidden text-xs text-axGreen font-semibold mt-2">✓ UTR received! Logged to order metadata.</div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="closeWhatsAppModal()" class="text-xs text-axGrey hover:underline">View My Order Details</button>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <!-- Dedicated Luxury Streetwear WhatsApp Floating Action (Bottom-Left) -->
+    <div id="whatsappFloatingWidget" class="fixed bottom-6 left-6 z-40 flex items-center gap-2 group">
+        <a href="https://wa.me/918807304713?text=Hi%20AXDORO!%20I%20am%20looking%20for%20Men%27s%20T-Shirts%20and%20need%20size%2Ffit%20guidance." target="_blank" class="w-14 h-14 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full shadow-2xl flex items-center justify-center relative transition-transform hover:scale-110 active:scale-95 whatsapp-radar" title="Chat with AXDORO Stylist on WhatsApp">
+            <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.062-1.127-.078-.27-.087-.62-.2-1.066-.395-1.89-1.042-3.125-2.957-3.22-3.084-.095-.127-.768-1.021-.768-1.947 0-.926.486-1.381.659-1.57.173-.189.378-.237.504-.237.126 0 .252.002.363.007.117.006.273-.045.427.324.158.378.539 1.314.587 1.411.048.097.08.21.016.337-.063.126-.095.205-.189.316-.095.111-.2.247-.286.332-.095.095-.195.198-.084.388.111.19.493.813 1.057 1.315.727.646 1.34.846 1.53.941.19.095.302.079.413-.048.111-.127.476-.555.603-.745.127-.19.254-.159.428-.095.174.063 1.109.523 1.299.618.19.095.317.142.365.222.048.079.048.459-.095.864z"/></svg>
+            <span class="absolute -top-1 -right-1 bg-axCharcoal text-axGold text-[9px] font-black px-1.5 py-0.5 rounded-full border border-white">FIT DESK</span>
+        </a>
+        <div class="hidden sm:flex bg-white/95 backdrop-blur border border-axSand shadow-xl rounded-full py-1.5 px-3.5 items-center gap-2 text-xs font-semibold text-axCharcoal opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+            <span>Fit Consult • WhatsApp: <strong>8807304713</strong></span>
+        </div>
+    </div>
+
+    <!-- Luxury Toast Notification System -->
+    <div id="toastNotification" class="fixed top-20 right-4 sm:right-8 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out max-w-sm w-[90vw]">
+        <div class="bg-axCharcoal/95 backdrop-blur-md text-white rounded-xl shadow-2xl p-3.5 border border-white/10 flex items-center gap-3">
+            <div id="toastIcon" class="w-9 h-9 rounded-full bg-axGold text-axCharcoal font-bold flex items-center justify-center text-sm flex-shrink-0 animate-badge-bounce">?</div>
+            <div class="flex-1 min-w-0">
+                <h5 id="toastTitle" class="font-bold text-xs uppercase tracking-wider text-white">Added to Bag</h5>
+                <p id="toastMessage" class="text-xs text-gray-300 truncate mt-0.5">AXDORO 240 GSM Oversized Tee</p>
+            </div>
+            <button onclick="dismissToast()" class="text-gray-400 hover:text-white text-xs p-1 ml-1">?</button>
+        </div>
+    </div>
+
+    <!-- Lean AI / FAQ Chatbot Floating Widget -->
+    <div id="chatbotWidget" class="fixed bottom-6 right-6 z-40">
+        <!-- Launcher Button -->
+        <button onclick="toggleChatbot()" id="botLaunchBtn" class="w-14 h-14 bg-axCharcoal hover:bg-gray-800 text-white rounded-full shadow-2xl flex items-center justify-center relative transition-transform hover:scale-105 animate-bot-float">
+            <span class="text-2xl">💬</span>
+            <span class="absolute -top-1 -right-1 bg-axGold text-axCharcoal text-[9px] font-black px-1.5 py-0.5 rounded-full border border-white">AI HELP</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="botWindow" class="hidden absolute bottom-16 right-0 w-[350px] max-w-[calc(100vw-32px)] h-[480px] bg-white rounded-2xl border border-axSand shadow-2xl flex flex-col overflow-hidden animate-fade-in">
+            <!-- Header -->
+            <div class="bg-axCharcoal text-white p-3.5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-full bg-axGold text-axCharcoal flex items-center justify-center font-bold text-xs">⚡</div>
+                    <div>
+                        <h4 class="font-bold text-xs">AXDORO Style &amp; Support</h4>
+                        <span class="text-[10px] text-green-400">● Online Instant Assistance</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatbot()" class="text-gray-400 hover:text-white p-1">✕</button>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="botMessages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-axIvory custom-scrollbar text-xs">
+                <div class="bg-white p-3 rounded-xl rounded-tl-none border border-axSand max-w-[85%] text-axCharcoal">
+                    Hey! Welcome to AXDORO. How can I help you with your streetwear drip today?
+                </div>
+                <!-- Quick Chips -->
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                    <button onclick="askBotQuery('size guide')" class="bg-white hover:bg-axCharcoal hover:text-white border border-axSand px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors">📏 Size Guide</button>
+                    <button onclick="askBotQuery('240 gsm fabric')" class="bg-white hover:bg-axCharcoal hover:text-white border border-axSand px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors">👕 240 GSM Fabric</button>
+                    <button onclick="askBotQuery('shipping delivery')" class="bg-white hover:bg-axCharcoal hover:text-white border border-axSand px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors">🚚 Shipping Time</button>
+                    <button onclick="askBotQuery('return exchange')" class="bg-white hover:bg-axCharcoal hover:text-white border border-axSand px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors">🔄 Returns</button>
+                    <button onclick="askBotQuery('bulk orders')" class="bg-white hover:bg-axCharcoal hover:text-white border border-axSand px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors">📦 Bulk Merch</button>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="p-3 bg-white border-t border-axSand">
+                <form id="botInputForm" onsubmit="event.preventDefault(); handleBotInput();" class="flex gap-2">
+                    <input type="text" id="botTextInput" placeholder="Ask about size, fabric, delivery..." class="flex-1 text-xs px-3 py-2 border border-axSand rounded-full focus:outline-none focus:border-axCharcoal">
+                    <button type="submit" class="w-8 h-8 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs">➤</button>
+                </form>
+                <div class="text-center mt-2 pt-2 border-t border-gray-100">
+                    <a href="https://wa.me/918807304713" target="_blank" class="text-[11px] font-semibold text-axGreen hover:underline">
+                        💬 Need a human? Chat on WhatsApp →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT STATE & LOGIC ================= -->
+    <script>
+        // Sample Products Dataset matching the WordPress CSV Import structure
+        // Sample Products Dataset matching the WordPress CSV Import structure (100% Men Streetwear)
+        const PRODUCTS = [
+            {
+                id: 1,
+                sku: 'AXD-MEN-OVR-BLK',
+                name: 'AXDORO 240 GSM Oversized Heavyweight Tee - Jet Black',
+                category: 'Oversized Tees',
+                price: 999,
+                regularPrice: 1299,
+                color: 'Jet Black',
+                sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 2,
+                sku: 'AXD-MEN-OVR-WHT',
+                name: 'AXDORO 240 GSM Oversized Heavyweight Tee - Vintage Off-White',
+                category: 'Oversized Tees',
+                price: 999,
+                regularPrice: 1299,
+                color: 'Vintage Off-White',
+                sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 3,
+                sku: 'AXD-MEN-RLX-OLV',
+                name: 'AXDORO 240 GSM Relaxed Boxy Crewneck Tee - Sage Olive',
+                category: 'Boxy Half Sleeve',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Sage Olive',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 4,
+                sku: 'AXD-MEN-ACD-CHR',
+                name: 'AXDORO 240 GSM Acid Wash Mineral Street Tee - Charcoal Grey',
+                category: 'Acid & Vintage Wash',
+                price: 1099,
+                regularPrice: 1399,
+                color: 'Charcoal Grey',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_acid_wash_tee.jpg',
+                isBestSeller: false,
+                isNew: false,
+                inStock: false
+            },
+            {
+                id: 5,
+                sku: 'AXD-MEN-HLF-BRN',
+                name: 'AXDORO Heavy Half Sleeve Minimalist Tee - Mocha Brown',
+                category: 'Boxy Half Sleeve',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Mocha Brown',
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 6,
+                sku: 'AXD-MEN-OVR-BLU',
+                name: 'AXDORO 240 GSM Heavyweight Street Tee - Cobalt Blue',
+                category: 'Oversized Tees',
+                price: 999,
+                regularPrice: 1299,
+                color: 'Cobalt Blue',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_cobalt_tee.jpg',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 7,
+                sku: 'AXD-MEN-DRP-SND',
+                name: 'AXDORO Drop-Shoulder Boxy Tee - Desert Sand',
+                category: 'Boxy Half Sleeve',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Vintage Off-White',
+                sizes: ['M', 'L', 'XL', 'XXL'],
+                image: '/images/men_sand_tee.jpg',
+                isBestSeller: true,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 8,
+                sku: 'AXD-MEN-GRP-NOC',
+                name: 'AXDORO Nocturnal Graphic Back-Print Tee - Deep Black',
+                category: 'Graphic & Back-Print',
+                price: 1199,
+                regularPrice: 1499,
+                color: 'Jet Black',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_backprint_tee.jpg',
+                isBestSeller: true,
+                isNew: false,
+                inStock: false
+            },
+            {
+                id: 9,
+                sku: 'AXD-MEN-GRP-BRT',
+                name: 'AXDORO Brutalist Typography Heavy Tee - Bone White',
+                category: 'Graphic & Back-Print',
+                price: 1099,
+                regularPrice: 1399,
+                color: 'Vintage Off-White',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 10,
+                sku: 'AXD-MEN-DRP-TER',
+                name: 'AXDORO Raw Edge Drop-Shoulder Heavy Tee - Terracotta',
+                category: 'Boxy Half Sleeve',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Terracotta',
+                sizes: ['S', 'M', 'L', 'XL'],
+                image: '/images/men_terracotta_tee.jpg',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 11,
+                sku: 'AXD-MEN-PCK-GRY',
+                name: 'AXDORO 240 GSM Heavy Chest-Pocket Crewneck Tee - Stone Grey',
+                category: 'Heavy Plain & Pocket',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Charcoal Grey',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_pocket_tee.jpg',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 12,
+                sku: 'AXD-MEN-PCK-GRN',
+                name: 'AXDORO Heavyweight Chest-Pocket Street Tee - Forest Green',
+                category: 'Heavy Plain & Pocket',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Forest Green',
+                sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 13,
+                sku: 'AXD-MEN-ACD-RED',
+                name: 'AXDORO Acid Wash Mineral Sun-Fade Street Tee - Rust Red',
+                category: 'Acid & Vintage Wash',
+                price: 1099,
+                regularPrice: 1399,
+                color: 'Terracotta',
+                sizes: ['M', 'L', 'XL', 'XXL'],
+                image: '/images/men_burgundy_tee.jpg',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 14,
+                sku: 'AXD-MEN-MCK-BLK',
+                name: 'AXDORO 240 GSM Mock-Neck Heavy Street Tee - Jet Black',
+                category: 'Heavy Plain & Pocket',
+                price: 999,
+                regularPrice: 1299,
+                color: 'Jet Black',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 15,
+                sku: 'AXD-MEN-GRP-TKY',
+                name: 'AXDORO Tokyo Drift Cyber Graphic Oversized Tee - Washed Grey',
+                category: 'Graphic & Back-Print',
+                price: 1199,
+                regularPrice: 1499,
+                color: 'Charcoal Grey',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 16,
+                sku: 'AXD-MEN-DRP-BUR',
+                name: 'AXDORO 240 GSM Boxy Drop Tee - Deep Burgundy',
+                category: 'Oversized Tees',
+                price: 999,
+                regularPrice: 1299,
+                color: 'Terracotta',
+                sizes: ['S', 'M', 'L', 'XL'],
+                image: '/images/men_burgundy_tee.jpg',
+                isBestSeller: false,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 17,
+                sku: 'AXD-MEN-MSL-BLK',
+                name: 'AXDORO Boxy Wide-Sleeve Raw Cut Street Tee - Jet Black',
+                category: 'Boxy Half Sleeve',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Jet Black',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 18,
+                sku: 'AXD-MEN-NVY-HVY',
+                name: 'AXDORO 240 GSM Heavyweight Core Crewneck Tee - Deep Navy',
+                category: 'Heavy Plain & Pocket',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Cobalt Blue',
+                sizes: ['S', 'M', 'L', 'XL'],
+                image: '/images/men_navy_tee.jpg',
+                isBestSeller: false,
+                isNew: false,
+                inStock: false
+            },
+            {
+                id: 19,
+                sku: 'AXD-MEN-GRP-ABS',
+                name: 'AXDORO Abstract Geometry Heavy Street Tee - Off-White',
+                category: 'Graphic & Back-Print',
+                price: 1099,
+                regularPrice: 1399,
+                color: 'Vintage Off-White',
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                image: 'https://images.unsplash.com/photo-1588731234159-8b9963143fca?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 20,
+                sku: 'AXD-MEN-ACD-OLV',
+                name: 'AXDORO Military Olive Acid Wash Street Tee - Olive Dust',
+                category: 'Acid & Vintage Wash',
+                price: 1099,
+                regularPrice: 1399,
+                color: 'Sage Olive',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_olive_acid_tee.jpg',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 21,
+                sku: 'AXD-MEN-STC-BLK',
+                name: 'AXDORO Contrast Stitch Boxy Drop Tee - Black & Sand',
+                category: 'Oversized Tees',
+                price: 1049,
+                regularPrice: 1349,
+                color: 'Jet Black',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: false,
+                inStock: false
+            },
+            {
+                id: 22,
+                sku: 'AXD-MEN-MIN-NVY',
+                name: 'AXDORO Heavy Minimalist Drop-Shoulder Tee - Midnight Navy',
+                category: 'Boxy Half Sleeve',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Cobalt Blue',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: '/images/men_navy_tee.jpg',
+                isBestSeller: false,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 23,
+                sku: 'AXD-MEN-HLF-MUS',
+                name: 'AXDORO Heavy Half Sleeve Relaxed Crewneck Tee - Warm Ochre',
+                category: 'Boxy Half Sleeve',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Terracotta',
+                sizes: ['M', 'L', 'XL'],
+                image: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 24,
+                sku: 'AXD-MEN-GRP-MNL',
+                name: 'AXDORO Monolith Architectural Graphic Tee - Anthracite',
+                category: 'Graphic & Back-Print',
+                price: 1199,
+                regularPrice: 1499,
+                color: 'Charcoal Grey',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 25,
+                sku: 'AXD-MEN-COR-CHR',
+                name: 'AXDORO Core Heavyweight Everyday Tee - Charcoal Heather',
+                category: 'Heavy Plain & Pocket',
+                price: 899,
+                regularPrice: 1199,
+                color: 'Charcoal Grey',
+                sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: true,
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 26,
+                sku: 'AXD-MEN-OVR-WHT2',
+                name: 'AXDORO Heavy Structured Essential Crewneck Tee - Crisp White',
+                category: 'Heavy Plain & Pocket',
+                price: 949,
+                regularPrice: 1249,
+                color: 'Vintage Off-White',
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80',
+                isBestSeller: false,
+                isNew: true,
+                inStock: true
+            }
+        ];
+
+        // Global State
+        let cart = [];
+        let wishlist = [];
+        let selectedProductForModal = null;
+        let selectedModalSize = 'M';
+        let currentOrder = null;
+
+        let filters = {
+            categories: [],
+            sizes: [],
+            colors: [],
+            maxPrice: 1499,
+            inStockOnly: false,
+            sort: 'newest',
+            search: ''
+        };
+
+        // Navigation
+        function navigatePage(pageName) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById(`page-${pageName}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Highlight nav
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                if (btn.getAttribute('data-nav') === pageName) {
+                    btn.classList.add('border-axCharcoal');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-axCharcoal');
+                    btn.classList.add('border-transparent');
+                }
+            });
+
+            // Close mobile menu
+            document.getElementById('mobileNav').classList.add('hidden');
+        }
+
+        // Mobile Nav Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        });
+
+        // Render Home Trending Products
+        function renderHomeTrending() {
+            const container = document.getElementById('homeTrendingGrid');
+            const items = PRODUCTS.slice(0, 4);
+            container.innerHTML = items.map(p => createProductCardHtml(p)).join('');
+        }
+
+        // Render Shop Products with Active Filters
+        function renderShopProducts() {
+            const container = document.getElementById('shopProductGrid');
+            const emptyState = document.getElementById('shopEmptyState');
+            const countLabel = document.getElementById('productResultCount');
+
+            let filtered = PRODUCTS.filter(p => {
+                // Category
+                if (filters.categories.length > 0 && !filters.categories.includes(p.category)) return false;
+                // Size
+                if (filters.sizes.length > 0 && !p.sizes.some(s => filters.sizes.includes(s))) return false;
+                // Color
+                if (filters.colors.length > 0 && !filters.colors.includes(p.color)) return false;
+                // Price
+                if (p.price > filters.maxPrice) return false;
+                // In stock
+                if (filters.inStockOnly && !p.inStock) return false;
+                // Search
+                if (filters.search) {
+                    const q = filters.search.toLowerCase();
+                    const matched = p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+                    if (!matched) return false;
+                }
+                return true;
+            });
+
+            // Sort
+            if (filters.sort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (filters.sort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (filters.sort === 'popular') {
+                filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
+            }
+
+            countLabel.innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                container.innerHTML = filtered.map(p => createProductCardHtml(p)).join('');
+            }
+        }
+
+        // Generate Product Card HTML with Luxury Streetwear Animations
+        function createProductCardHtml(p) {
+            const isWish = wishlist.includes(p.id);
+            const discountPct = Math.round(((p.regularPrice - p.price) / p.regularPrice) * 100);
+            const defaultSize = p.sizes.includes('M') ? 'M' : p.sizes[0];
+
+            return `
+            <div class="product-card group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+                <div class="relative overflow-hidden rounded-lg bg-axIvory aspect-4-5 cursor-pointer" onclick="openProductModal(${p.id})">
+                    <img src="${p.image}" alt="${p.name}" class="img-zoom w-full h-full object-cover ${!p.inStock ? 'grayscale-[35%] opacity-85' : ''}" loading="lazy">
+                    <button onclick="event.stopPropagation(); toggleWishlist(${p.id});" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-axCharcoal flex items-center justify-center hover:bg-white shadow-md hover:scale-110 active:scale-90 transition-all duration-200 z-20 ${isWish ? 'heart-pop text-red-500 bg-white' : ''}" title="${isWish ? 'Remove from Wishlist' : 'Add to Wishlist'}">
+                        ${isWish 
+                            ? '<svg class="w-4 h-4 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
+                            : '<svg class="w-4 h-4 text-axCharcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>'
+                        }
+                    </button>
+                    
+                    ${!p.inStock ? `
+                        <div class="absolute inset-0 bg-black/45 flex items-center justify-center pointer-events-none z-10 backdrop-blur-[1px]">
+                            <span class="bg-axBurgundy text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-widest shadow-lg border border-white/20">SOLD OUT</span>
+                        </div>
+                        <span class="absolute top-2.5 left-2.5 bg-axCharcoal/95 text-red-400 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider z-20 border border-red-500/30">OUT OF STOCK</span>
+                    ` : `
+                        ${p.isNew ? '<span class="absolute top-2.5 left-2.5 bg-axBurgundy text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shimmer-badge shadow-sm z-10">NEW DROP</span>' : ''}
+                        ${p.isBestSeller ? '<span class="absolute bottom-2.5 left-2.5 bg-axCharcoal/90 backdrop-blur text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shadow-sm z-10">BESTSELLER</span>' : ''}
+                    `}
+                </div>
+
+                <div class="pt-3 flex flex-col flex-1 justify-between">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-semibold text-axGrey uppercase tracking-wider">${p.category} • 240 GSM</span>
+                            ${!p.inStock ? '<span class="text-[9px] font-bold text-red-600 uppercase">Sold Out</span>' : '<span class="text-[9px] font-bold text-green-600 uppercase">In Stock</span>'}
+                        </div>
+                        <h3 onclick="openProductModal(${p.id})" class="font-semibold text-xs sm:text-sm text-axCharcoal line-clamp-1 cursor-pointer hover:underline mt-0.5 transition-colors">${p.name}</h3>
+                        <div class="flex items-baseline gap-2 mt-1.5">
+                            <span class="font-extrabold text-sm sm:text-base text-axCharcoal font-heading">&#8377;${p.price}</span>
+                            <span class="text-xs text-axGrey line-through">&#8377;${p.regularPrice}</span>
+                            <span class="text-[10px] font-bold text-green-600">${discountPct}% OFF</span>
+                        </div>
+                    </div>
+
+                    ${!p.inStock ? `
+                        <div class="mt-3 pt-2.5 border-t border-axSand/70">
+                            <a href="https://wa.me/918807304713?text=${encodeURIComponent('Hi AXDORO! Please alert me on WhatsApp when ' + p.name + ' (' + p.sku + ') is restocked.')}" target="_blank" onclick="event.stopPropagation();" 
+                                class="w-full bg-gray-100 hover:bg-axCharcoal hover:text-white border border-gray-300 text-gray-700 text-[11px] font-bold py-2.5 rounded-lg flex items-center justify-center gap-1.5 transition-all shadow-2xs cursor-pointer">
+                                <span>🔔 Restock Alert via WhatsApp</span>
+                            </a>
+                        </div>
+                    ` : `
+                        <div class="mt-3 pt-2.5 border-t border-axSand/70">
+                            <!-- 1. Select Size Label & Size Chart Link -->
+                            <div class="flex items-center justify-between text-[10px] mb-1.5 font-semibold">
+                                <span class="text-axCharcoal font-bold uppercase tracking-wider">Select Size:</span>
+                                <button onclick="event.stopPropagation(); openProductModal(${p.id});" class="text-axGold font-bold hover:underline cursor-pointer">Size Chart 📏</button>
+                            </div>
+
+                            <!-- 2. Size Selection Buttons -->
+                            <div class="grid grid-cols-6 gap-1 mb-2" id="card-sizes-${p.id}">
+                                ${p.sizes.map(sz => {
+                                    const isSelected = sz === defaultSize;
+                                    return `
+                                    <button onclick="event.stopPropagation(); setCardSize(${p.id}, '${sz}')" 
+                                        class="card-size-btn-${p.id} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer ${isSelected ? 'bg-axCharcoal text-white border-axCharcoal' : 'bg-white text-axCharcoal border-axSand hover:border-axCharcoal'}" 
+                                        data-size="${sz}"
+                                        title="Select size ${sz}">
+                                        ${sz}
+                                    </button>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <!-- 3. Prominent Add to Bag Button Immediately Below Size Selection -->
+                            <button onclick="event.stopPropagation(); addCardToBag(this, ${p.id})" 
+                                id="card-add-btn-${p.id}"
+                                class="card-add-bag-btn w-full bg-axCharcoal hover:bg-black active:scale-98 text-white text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow flex items-center justify-center gap-1.5 cursor-pointer">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                <span id="card-btn-text-${p.id}">+ ADD TO BAG</span>
+                            </button>
+                        </div>
+                    `}
+                </div>
+            </div>
+            `;
+        }
+
+        function openProductModal(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p) return;
+            selectedProductForModal = p;
+            selectedModalSize = p.sizes[0];
+
+            document.getElementById('modalMainImg').src = p.image;
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalCategoryBadge').innerText = `${p.category} • 240 GSM`;
+            document.getElementById('modalSku').innerText = p.sku;
+            document.getElementById('modalPrice').innerHTML = `&#8377;${p.price}`;
+            document.getElementById('modalRegularPrice').innerHTML = `&#8377;${p.regularPrice}`;
+            document.getElementById('modalColorName').innerText = p.color;
+
+            const stockBadge = document.getElementById('modalStockBadge');
+            const addBtn = document.getElementById('modalAddBagBtn');
+            const waBtn = document.getElementById('modalWhatsAppSizeBtn');
+            const sizeLabel = document.getElementById('modalSelectedSizeLabel');
+
+            if (!p.inStock) {
+                if (stockBadge) {
+                    stockBadge.innerHTML = `
+                        <div class="bg-red-50 border border-red-200 text-red-800 p-2.5 rounded-lg text-xs font-bold flex items-center justify-between">
+                            <span>⚠️ CURRENTLY OUT OF STOCK (DROP EXHAUSTED)</span>
+                            <span class="bg-red-200 text-red-900 text-[10px] px-2 py-0.5 rounded uppercase">SOLD OUT</span>
+                        </div>
+                    `;
+                }
+                if (sizeLabel) sizeLabel.innerText = 'Sold Out';
+                if (addBtn) {
+                    addBtn.disabled = true;
+                    addBtn.innerHTML = '❌ OUT OF STOCK (DROP SOLD OUT)';
+                    addBtn.className = 'flex-1 bg-gray-200 border border-gray-300 text-gray-400 font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider cursor-not-allowed';
+                }
+                if (waBtn) {
+                    const waMsg = `Hi AXDORO! Please alert me on WhatsApp as soon as ${p.name} (SKU: ${p.sku}) is back in stock.`;
+                    waBtn.href = `https://wa.me/918807304713?text=${encodeURIComponent(waMsg)}`;
+                    waBtn.innerHTML = `<span>🔔 WhatsApp Restock Alert: Notify me when ready →</span>`;
+                }
+                const sizeBox = document.getElementById('modalSizeButtons');
+                sizeBox.innerHTML = p.sizes.map(s => `
+                    <button disabled class="modal-sz-btn text-xs font-bold py-2 border rounded opacity-35 bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed line-through" data-size="${s}">
+                        ${s}
+                    </button>
+                `).join('');
+            } else {
+                if (stockBadge) {
+                    stockBadge.innerHTML = `
+                        <div class="text-xs text-green-700 font-semibold flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                            <span>In Stock • Ships in 24–48 Hours</span>
+                        </div>
+                    `;
+                }
+                if (sizeLabel) sizeLabel.innerText = selectedModalSize;
+                if (addBtn) {
+                    addBtn.disabled = false;
+                    addBtn.innerHTML = `🛍️ ADD TO BAG (SIZE: ${selectedModalSize})`;
+                    addBtn.className = 'flex-1 bg-axCharcoal hover:bg-black active:scale-95 text-white font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider transition-all shadow-md';
+                }
+                if (waBtn) {
+                    const waMsg = `Hello AXDORO! I need sizing guidance for: ${p.name} (SKU: ${p.sku}). Could you help me choose between sizes?`;
+                    waBtn.href = `https://wa.me/918807304713?text=${encodeURIComponent(waMsg)}`;
+                    waBtn.innerHTML = `<span>💬 Need help with size? WhatsApp AXDORO Fit Expert →</span>`;
+                }
+                const sizeBox = document.getElementById('modalSizeButtons');
+                sizeBox.innerHTML = p.sizes.map(s => `
+                    <button onclick="selectModalSize('${s}')" class="modal-sz-btn text-xs font-bold py-2 border rounded transition-colors ${s === selectedModalSize ? 'bg-axCharcoal text-white border-axCharcoal' : 'bg-white text-axCharcoal border-axSand hover:border-axCharcoal'}" data-size="${s}">
+                        ${s}
+                    </button>
+                `).join('');
+            }
+
+            document.getElementById('productDetailModal').classList.remove('hidden');
+        }
+
+        function selectModalSize(s) {
+            if (!selectedProductForModal || !selectedProductForModal.inStock) return;
+            selectedModalSize = s;
+            const sizeLabel = document.getElementById('modalSelectedSizeLabel');
+            if (sizeLabel) sizeLabel.innerText = s;
+
+            const addBtn = document.getElementById('modalAddBagBtn');
+            if (addBtn) addBtn.innerHTML = `🛍️ ADD TO BAG (SIZE: ${s})`;
+
+            document.querySelectorAll('.modal-sz-btn').forEach(btn => {
+                if (btn.getAttribute('data-size') === s) {
+                    btn.className = 'modal-sz-btn text-xs font-bold py-2 border rounded transition-colors bg-axCharcoal text-white border-axCharcoal';
+                } else {
+                    btn.className = 'modal-sz-btn text-xs font-bold py-2 border rounded transition-colors bg-white text-axCharcoal border-axSand hover:border-axCharcoal';
+                }
+            });
+        }
+
+        function closeProductModal() {
+            document.getElementById('productDetailModal').classList.add('hidden');
+        }
+
+        function openSizeGuideModal() {
+            document.getElementById('sizeGuideModal').classList.remove('hidden');
+        }
+
+        function closeSizeGuideModal() {
+            document.getElementById('sizeGuideModal').classList.add('hidden');
+        }
+
+        // Cart State & Drawers
+        let cardSelectedSizes = {};
+
+        function setCardSize(productId, size) {
+            cardSelectedSizes[productId] = size;
+
+            // Highlight selected size button on this specific product card
+            const container = document.getElementById(`card-sizes-${productId}`);
+            if (container) {
+                container.querySelectorAll('button').forEach(btn => {
+                    if (btn.getAttribute('data-size') === size) {
+                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-axCharcoal text-white border-axCharcoal scale-105`;
+                    } else {
+                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-white text-axCharcoal border-axSand hover:border-axCharcoal`;
+                    }
+                });
+            }
+
+            // Update Add to Bag button label below
+            const btnText = document.getElementById(`card-btn-text-${productId}`);
+            if (btnText) {
+                btnText.innerText = `+ ADD TO BAG (SIZE: ${size})`;
+            }
+        }
+
+        function addCardToBag(btn, productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p || !p.inStock) return;
+
+            const defaultSize = p.sizes.includes('M') ? 'M' : p.sizes[0];
+            const size = cardSelectedSizes[productId] || defaultSize;
+
+            // Tactile confirmation animation on the Add to Bag button
+            if (btn) {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = `<span class="text-green-400 font-bold">✓ Added to Bag (${size})</span>`;
+                btn.classList.add('bg-green-950');
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.remove('bg-green-950');
+                }, 1200);
+            }
+
+            addToCart(p, size);
+        }
+
+        function quickAddWithSize(btn, id, size) {
+            setCardSize(id, size);
+            const addBtn = document.getElementById(`card-add-btn-${id}`);
+            addCardToBag(addBtn, id);
+        }
+
+        function quickAddToCart(id) {
+            const p = PRODUCTS.find(item => item.id === id);
+            if (!p || !p.inStock) return;
+            openProductModal(id);
+        }
+
+        function addProductFromModalToCart() {
+            if (!selectedProductForModal) return;
+            addToCart(selectedProductForModal, selectedModalSize);
+            closeProductModal();
+        }
+
+        
+        // Toast Notification System
+        let toastTimeout = null;
+        function showToast(title, message, icon = '?') {
+            const toast = document.getElementById('toastNotification');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIco = document.getElementById('toastIcon');
+            if (!toast) return;
+
+            toastTitle.innerText = title;
+            toastMsg.innerText = message;
+            toastIco.innerText = icon;
+
+            toast.classList.remove('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                dismissToast();
+            }, 3200);
+        }
+
+        function dismissToast() {
+            const toast = document.getElementById('toastNotification');
+            if (!toast) return;
+            toast.classList.add('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
+            toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        }
+
+        function addToCart(p, size) {
+            const existing = cart.find(item => item.product.id === p.id && item.size === size);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ product: p, size: size, qty: 1 });
+            }
+            updateCartUI();
+            showToast("Added to Bag!", `${p.name} (${size})`, "???");
+            toggleCartDrawer(true);
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cartCountBadge');
+            const drawerCount = document.getElementById('cartDrawerCount');
+            const container = document.getElementById('cartDrawerItems');
+            const subtotalEl = document.getElementById('cartDrawerSubtotal');
+            const totalEl = document.getElementById('cartDrawerTotal');
+            const freeBar = document.getElementById('freeShippingBar');
+            const freeNotice = document.getElementById('freeShippingNotice');
+
+            const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+            countBadge.innerText = totalCount;
+            drawerCount.innerText = totalCount;
+            // Pop badge animation
+            countBadge.classList.remove('animate-badge-bounce');
+            void countBadge.offsetWidth;
+            countBadge.classList.add('animate-badge-bounce');
+
+            const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
+            subtotalEl.innerText = `₹${subtotal}`;
+            totalEl.innerText = `₹${subtotal}`;
+
+            // Free shipping meter (Threshold: ₹999)
+            if (subtotal >= 999) {
+                freeBar.style.width = '100%';
+                freeNotice.innerHTML = '🎉 You have unlocked <strong>FREE EXPRESS SHIPPING!</strong>';
+            } else {
+                const diff = 999 - subtotal;
+                const pct = Math.min(100, Math.round((subtotal / 999) * 100));
+                freeBar.style.width = `${pct}%`;
+                freeNotice.innerHTML = `Add <strong>₹${diff}</strong> more to get <strong>FREE SHIPPING</strong>`;
+            }
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-axGrey">
+                        <span class="text-4xl block mb-2">🛍️</span>
+                        <p class="font-bold text-sm text-axCharcoal">Your bag is empty</p>
+                        <p class="text-xs mt-1">Explore our 240 GSM heavyweight tees to get started.</p>
+                        <button onclick="toggleCartDrawer(false); navigatePage('shop');" class="mt-4 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold">Shop All Tees</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex gap-3 pb-3 border-b border-axSand">
+                        <img src="${item.product.image}" class="w-16 h-20 object-cover rounded bg-axIvory flex-shrink-0">
+                        <div class="flex-1 text-xs">
+                            <h4 class="font-bold text-axCharcoal line-clamp-1">${item.product.name}</h4>
+                            <span class="text-axGrey">Size: <strong class="text-axCharcoal">${item.size}</strong> • 240 GSM</span>
+                            <div class="font-bold text-sm text-axCharcoal mt-1">₹${item.product.price}</div>
+
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center border border-axSand rounded overflow-hidden">
+                                    <button onclick="changeCartQty(${idx}, -1)" class="px-2 py-0.5 bg-axIvory text-axCharcoal font-bold hover:bg-gray-200">-</button>
+                                    <span class="px-2.5 py-0.5 text-xs font-bold">${item.qty}</span>
+                                    <button onclick="changeCartQty(${idx}, 1)" class="px-2 py-0.5 bg-axIvory text-axCharcoal font-bold hover:bg-gray-200">+</button>
+                                </div>
+                                <button onclick="removeCartItem(${idx})" class="text-[11px] text-axBurgundy hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function changeCartQty(idx, delta) {
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(idx) {
+            cart.splice(idx, 1);
+            updateCartUI();
+        }
+
+        function toggleCartDrawer(forceOpen) {
+            const drawer = document.getElementById('cartDrawer');
+            if (forceOpen === true) {
+                drawer.classList.remove('hidden');
+            } else if (forceOpen === false) {
+                drawer.classList.add('hidden');
+            } else {
+                drawer.classList.toggle('hidden');
+            }
+        }
+
+        // Wishlist
+        function toggleWishlist(id) {
+            const idx = wishlist.indexOf(id);
+            const p = PRODUCTS.find(item => item.id === id);
+            if (idx === -1) {
+                wishlist.push(id);
+                if (p) showToast("Saved to Wishlist", p.name, "??");
+            } else {
+                wishlist.splice(idx, 1);
+                if (p) showToast("Removed from Wishlist", p.name, "??");
+            }
+            const badge = document.getElementById('wishlistCountBadge');
+            badge.innerText = wishlist.length;
+            if (wishlist.length > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+            renderShopProducts();
+            renderHomeTrending();
+        }
+
+        function toggleWishlistDrawer() {
+            navigatePage('shop');
+        }
+
+        // Filters Handling
+        function filterByCategory(cat) {
+            filters.categories = [cat];
+            document.querySelectorAll('.filter-check-cat').forEach(cb => {
+                cb.checked = (cb.value === cat);
+            });
+            navigatePage('shop');
+            renderShopProducts();
+        }
+
+        function handleFilterCheck(type, val, checked) {
+            if (type === 'category') {
+                if (checked) filters.categories.push(val);
+                else filters.categories = filters.categories.filter(c => c !== val);
+            } else if (type === 'color') {
+                if (checked) filters.colors.push(val);
+                else filters.colors = filters.colors.filter(c => c !== val);
+            }
+            renderShopProducts();
+        }
+
+        function handleSizeChip(sz) {
+            const idx = filters.sizes.indexOf(sz);
+            if (idx === -1) {
+                filters.sizes.push(sz);
+            } else {
+                filters.sizes.splice(idx, 1);
+            }
+            document.querySelectorAll('.size-chip').forEach(btn => {
+                const s = btn.getAttribute('data-size');
+                if (filters.sizes.includes(s)) {
+                    btn.classList.add('bg-axCharcoal', 'text-white');
+                } else {
+                    btn.classList.remove('bg-axCharcoal', 'text-white');
+                }
+            });
+            renderShopProducts();
+        }
+
+        function handlePriceRange(val) {
+            filters.maxPrice = parseInt(val);
+            document.getElementById('priceSliderLabel').innerText = `₹${val}`;
+            renderShopProducts();
+        }
+
+        function handleInStock(checked) {
+            filters.inStockOnly = checked;
+            renderShopProducts();
+        }
+
+        function handleSortChange(val) {
+            filters.sort = val;
+            renderShopProducts();
+        }
+
+        function handleSearch(val) {
+            filters.search = val.trim();
+            if (filters.search) {
+                navigatePage('shop');
+            }
+            renderShopProducts();
+        }
+
+        function toggleMobileFilters() {
+            const sidebar = document.getElementById('filterSidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('hidden');
+            }
+        }
+
+        function clearAllFilters() {
+            filters = {
+                categories: [],
+                sizes: [],
+                colors: [],
+                maxPrice: 1499,
+                inStockOnly: false,
+                sort: 'newest',
+                search: ''
+            };
+            document.querySelectorAll('.filter-check-cat, .filter-check-color, #inStockOnly').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.size-chip').forEach(btn => btn.classList.remove('bg-axCharcoal', 'text-white'));
+            document.getElementById('priceRange').value = 1499;
+            document.getElementById('priceSliderLabel').innerText = '₹1,499';
+            document.getElementById('headerSearch').value = '';
+            renderShopProducts();
+        }
+
+        // Checkout & Order Creation Flow (Rule 18 & 19)
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                alert('Your bag is empty! Add products to proceed.');
+                return;
+            }
+            toggleCartDrawer(false);
+            const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
+            document.getElementById('chkSubtotal').innerText = `₹${subtotal}`;
+            document.getElementById('chkTotal').innerText = `₹${subtotal}`;
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function handlePlaceOrder() {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const city = document.getElementById('custCity').value.trim();
+            const pin = document.getElementById('custPin').value.trim();
+
+            const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
+            const orderNum = '1048'; // Sample WooCommerce Order ID
+            const orderIdFormatted = `AXD-2026-${orderNum}`;
+
+            currentOrder = {
+                orderId: orderNum,
+                orderFormatted: orderIdFormatted,
+                name: name,
+                phone: phone,
+                email: email,
+                address: `${address}, ${city} - ${pin}`,
+                total: subtotal,
+                status: 'Awaiting Payment',
+                items: [...cart],
+                utr: null
+            };
+
+            closeCheckoutModal();
+            openWhatsAppPaymentModal(currentOrder);
+        }
+
+        function openWhatsAppPaymentModal(order) {
+            document.getElementById('payModalOrderId').innerText = `#${order.orderFormatted}`;
+            document.getElementById('payUpiAmount').innerText = `₹${order.total}`;
+
+            // NPCI UPI intent link
+            const upiIntent = `upi://pay?pa=axdoro@upi&pn=AXDORO%20Clothing&am=${order.total}.00&cu=INR&tn=Order-${order.orderId}`;
+            document.getElementById('payUpiBtn').href = upiIntent;
+
+            // WhatsApp Prefilled Link
+            const itemsText = order.items.map(i => `• ${i.qty}x ${i.product.name} (${i.size})`).join('%0A');
+            const waText = `Hello%20AXDORO!%0A%0AI%20have%20placed%20order%20on%20axdoro.com:%0A`
+                + `🛒%20Order%20ID:%20%23${order.orderFormatted}%0A`
+                + `👤%20Name:%20${encodeURIComponent(order.name)}%0A`
+                + `💰%20Amount:%20%E2%82%B9${order.total}%0A%0A`
+                + `📦%20Items:%0A${itemsText}%0A%0A`
+                + `💳%20UPI%20Link:%20${encodeURIComponent(upiIntent)}%0A%0A`
+                + `Kindly%20confirm%20once%20payment%20is%20verified.`;
+
+            document.getElementById('payWhatsAppBtn').href = `https://wa.me/918807304713?text=${waText}`;
+
+            document.getElementById('whatsappPaymentModal').classList.remove('hidden');
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsappPaymentModal').classList.add('hidden');
+            // Clear cart
+            cart = [];
+            updateCartUI();
+            // Pre-fill track order input
+            document.getElementById('trackIdInput').value = currentOrder.orderFormatted;
+            document.getElementById('trackContactInput').value = currentOrder.phone;
+            navigatePage('track');
+            handleTrackSubmit();
+        }
+
+        function simulateWebhookPayment() {
+            if (!currentOrder) return;
+            currentOrder.status = 'Payment Verified';
+            alert(`✅ Webhook Triggered!\nGateway: Razorpay\nSignature Verified: HMAC-SHA256\nOrder #${currentOrder.orderFormatted} marked as "Payment Verified".`);
+            closeWhatsAppModal();
+        }
+
+        function submitManualUtr() {
+            const utr = document.getElementById('manualUtrInput').value.trim();
+            if (utr.length < 6) {
+                alert('Please enter a valid 12-digit UPI UTR number.');
+                return;
+            }
+            if (currentOrder) {
+                currentOrder.utr = utr;
+            }
+            document.getElementById('utrFeedback').classList.remove('hidden');
+            setTimeout(() => {
+                closeWhatsAppModal();
+            }, 1200);
+        }
+
+        // Track Order Logic
+        function handleTrackSubmit() {
+            const idInput = document.getElementById('trackIdInput').value.trim();
+            const contactInput = document.getElementById('trackContactInput').value.trim();
+
+            const card = document.getElementById('trackResultCard');
+            const title = document.getElementById('trackOrderTitle');
+            const badge = document.getElementById('trackStatusBadge');
+            const pBar = document.getElementById('trackProgressBar');
+
+            title.innerText = `Order #${idInput || 'AXD-1024'}`;
+            
+            if (currentOrder && currentOrder.status === 'Payment Verified') {
+                badge.innerText = 'PAYMENT VERIFIED';
+                badge.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded';
+                pBar.style.width = '40%';
+            } else {
+                badge.innerText = 'PACKED AT WAREHOUSE';
+                badge.className = 'bg-axSand text-axCharcoal text-[10px] font-bold px-2 py-0.5 rounded';
+                pBar.style.width = '60%';
+            }
+
+            card.classList.remove('hidden');
+        }
+
+        // Bulk Form
+        function submitBulkForm() {
+            const name = document.getElementById('bulkName').value.trim();
+            const phone = document.getElementById('bulkPhone').value.trim();
+            const product = document.getElementById('bulkProduct').value;
+            const qty = document.getElementById('bulkQty').value;
+            const sizes = document.getElementById('bulkSizes').value;
+            const notes = document.getElementById('bulkNotes').value;
+
+            const text = `Hello%20AXDORO%20Bulk%20Desk!%0A%0A*Bulk%20Order%20Enquiry*%0A`
+                + `•%20Name:%20${encodeURIComponent(name)}%0A`
+                + `•%20Phone:%20${encodeURIComponent(phone)}%0A`
+                + `•%20Product:%20${encodeURIComponent(product)}%0A`
+                + `•%20Quantity:%20${encodeURIComponent(qty)}%20pcs%0A`
+                + `•%20Sizes/Colors:%20${encodeURIComponent(sizes || 'Open')}%0A`
+                + `•%20Notes:%20${encodeURIComponent(notes || 'None')}%0A%0A`
+                + `Please%20share%20quotation.`;
+
+            window.open(`https://wa.me/918807304713?text=${text}`, '_blank');
+        }
+
+        // Lean AI Chatbot Logic
+        function toggleChatbot() {
+            const win = document.getElementById('botWindow');
+            win.classList.toggle('hidden');
+            if (!win.classList.contains('hidden')) {
+                document.getElementById('botTextInput').focus();
+            }
+        }
+
+        const FAQ_BOT_DATA = [
+            { keys: ['size', 'fit', 'measurement', 'chart'], reply: 'AXDORO tees feature a relaxed drop-shoulder oversized streetwear fit. If you prefer a classic regular look, size down one size. For a true streetwear boxy drape, pick your regular size!' },
+            { keys: ['fabric', 'gsm', 'cotton', 'heavyweight'], reply: 'We craft with dense 240 GSM 100% combed cotton. It gives structured weight, eliminates see-through transparency, and keeps collar shape wash after wash.' },
+            { keys: ['shipping', 'delivery', 'dispatch', 'courier'], reply: 'Orders dispatch within 24–48 hours via Shiprocket partners. Delivery takes 3–5 working days. Enjoy FREE SHIPPING on orders above ₹999!' },
+            { keys: ['return', 'exchange', 'refund'], reply: 'We offer a 7-day size exchange window from delivery date. Items must be unworn with tags attached. WhatsApp us your Order ID to initiate an exchange.' },
+            { keys: ['bulk', 'custom', 'college', 'corporate'], reply: 'We supply custom 240 GSM merchandise (minimum order 20 pcs) with screen printing or embroidery. Check our Custom Orders page or WhatsApp our bulk desk!' }
+        ];
+
+        function askBotQuery(query) {
+            handleBotQuery(query);
+        }
+
+        function handleBotInput() {
+            const input = document.getElementById('botTextInput');
+            const q = input.value.trim();
+            if (!q) return;
+            input.value = '';
+            handleBotQuery(q);
+        }
+
+        function handleBotQuery(query) {
+            const box = document.getElementById('botMessages');
+            // User msg
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-axCharcoal text-white p-3 rounded-xl rounded-tr-none ml-auto max-w-[85%] text-xs';
+            userMsg.innerText = query;
+            box.appendChild(userMsg);
+
+            // Bot reply
+            setTimeout(() => {
+                const lower = query.toLowerCase();
+                let match = FAQ_BOT_DATA.find(item => item.keys.some(k => lower.includes(k)));
+                let replyText = match ? match.reply : "I'm not fully sure about that yet, but our AXDORO team is active on WhatsApp to help you directly!";
+                
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-white p-3 rounded-xl rounded-tl-none border border-axSand max-w-[85%] text-axCharcoal text-xs';
+                botMsg.innerHTML = replyText;
+                box.appendChild(botMsg);
+                box.scrollTop = box.scrollHeight;
+            }, 250);
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHomeTrending();
+            renderShopProducts();
+        });
+    </script>
+</body>
+</html>
