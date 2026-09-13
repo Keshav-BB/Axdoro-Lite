@@ -71,6 +71,12 @@ class AXDORO_Payment_Webhook {
             return new WP_REST_Response( array( 'error' => 'Order not found' ), 404 );
         }
 
+        // 3b. Verify event payment status (Ensure payment was actually captured/paid)
+        if ( ! $extracted['is_paid'] ) {
+            $order->add_order_note( sprintf( 'Payment webhook received from %s, but event status indicates payment was not captured/paid. Payment ID: %s', strtoupper( $gateway ), $payment_id ) );
+            return new WP_REST_Response( array( 'success' => true, 'message' => 'Event acknowledged without status transition' ), 200 );
+        }
+
         // 4. Idempotency Check: Prevent duplicate processing
         $existing_tx_id = $order->get_meta( '_axdoro_transaction_id' );
         if ( $existing_tx_id === $payment_id && $order->has_status( array( 'payment-verified', 'processing', 'completed' ) ) ) {
@@ -133,10 +139,21 @@ class AXDORO_Payment_Webhook {
             return hash_equals( $expected_signature, trim( $headers['x_razorpay_signature'][0] ) );
         }
 
-        // 2. Check Cashfree signature header
+        // 2. Check Cashfree signature header with timestamp verification
         if ( isset( $headers['x_webhook_signature'][0] ) ) {
+            $received_sig = trim( $headers['x_webhook_signature'][0] );
+            $timestamp    = isset( $headers['x_webhook_timestamp'][0] ) ? trim( $headers['x_webhook_timestamp'][0] ) : '';
+
+            if ( ! empty( $timestamp ) ) {
+                $cf_expected_ts = base64_encode( hash_hmac( 'sha256', $timestamp . $payload, $secret, true ) );
+                if ( hash_equals( $cf_expected_ts, $received_sig ) ) {
+                    return true;
+                }
+            }
+
+            // Fallback Cashfree HMAC variations
             $cf_expected = base64_encode( hash_hmac( 'sha256', $payload, $secret, true ) );
-            return hash_equals( $cf_expected, trim( $headers['x_webhook_signature'][0] ) ) || hash_equals( $expected_signature, trim( $headers['x_webhook_signature'][0] ) );
+            return hash_equals( $cf_expected, $received_sig ) || hash_equals( $expected_signature, $received_sig );
         }
 
         // 3. Check custom AXDORO signature header
@@ -155,16 +172,20 @@ class AXDORO_Payment_Webhook {
             'order_id'   => null,
             'payment_id' => null,
             'amount'     => 0.0,
-            'gateway'    => 'generic'
+            'gateway'    => 'generic',
+            'is_paid'    => false
         );
 
         // Case A: Razorpay Webhook format
         if ( isset( $data['event'] ) && isset( $data['payload']['payment']['entity'] ) ) {
-            $p = $data['payload']['payment']['entity'];
+            $event = sanitize_text_field( $data['event'] );
+            $p     = $data['payload']['payment']['entity'];
+
             $extracted['gateway']    = 'razorpay';
             $extracted['payment_id'] = $p['id'];
             // Razorpay amounts are in paise (e.g. 99900 = ₹999.00)
             $extracted['amount']     = (float) ( $p['amount'] / 100 );
+            $extracted['is_paid']    = in_array( $event, array( 'order.paid', 'payment.captured' ), true );
 
             // Order ID can be in notes or description
             if ( ! empty( $p['notes']['woocommerce_order_id'] ) ) {
@@ -177,9 +198,11 @@ class AXDORO_Payment_Webhook {
         }
         // Case B: Cashfree Webhook format
         elseif ( isset( $data['data']['order']['order_id'] ) && isset( $data['data']['payment'] ) ) {
+            $event_type = $data['type'] ?? $data['event'] ?? '';
             $extracted['gateway']    = 'cashfree';
             $extracted['payment_id'] = $data['data']['payment']['payment_id'] ?? $data['data']['payment']['cf_payment_id'] ?? '';
             $extracted['amount']     = (float) ( $data['data']['payment']['payment_amount'] ?? $data['data']['order']['order_amount'] ?? 0 );
+            $extracted['is_paid']    = empty( $event_type ) || in_array( $event_type, array( 'PAYMENT_SUCCESS_WEBHOOK', 'ORDER_PAID' ), true );
             
             $cf_order_id = $data['data']['order']['order_id'];
             if ( preg_match( '/(?:AXD-)?([0-9]+)/i', $cf_order_id, $matches ) ) {
@@ -194,6 +217,7 @@ class AXDORO_Payment_Webhook {
             $extracted['order_id']   = $data['order_id'];
             $extracted['payment_id'] = $data['payment_id'];
             $extracted['amount']     = (float) ( $data['amount'] ?? 0 );
+            $extracted['is_paid']    = true;
         }
 
         return $extracted;

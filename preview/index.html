@@ -419,16 +419,13 @@
 
     <!-- Header Navigation -->
     <header id="mainHeader" class="bg-white/95 backdrop-blur border-b border-axSand sticky top-[37px] z-40 transition-all animate-header-enter">
-        <div class="header-inner-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div class="header-inner-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
             
-            <!-- Mobile Menu Toggle & Brand Logo -->
-            <div class="flex items-center gap-3">
-                <button id="mobileMenuBtn" class="lg:hidden p-2 text-axCharcoal hover:bg-axIvory rounded">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-                <a href="#" onclick="navigatePage('home')" class="flex items-center gap-2">
-                    <span class="text-2xl font-black tracking-tighter text-axCharcoal font-heading">AXDORO</span>
-                    <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest bg-axCharcoal text-axGold px-1.5 py-0.5 rounded border border-axGold/40">MEN • 240 GSM</span>
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                <a href="#" onclick="event.preventDefault(); navigatePage('home')" class="flex items-center gap-2">
+                    <span class="text-xl sm:text-2xl font-black tracking-tighter text-axCharcoal font-heading">AXDORO</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest bg-axCharcoal text-axGold px-1.5 py-0.5 rounded border border-axGold/40">MEN • 240 GSM</span>
                 </a>
             </div>
 
@@ -436,48 +433,81 @@
             <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs xl:text-sm font-semibold tracking-wide text-axCharcoal whitespace-nowrap flex-shrink-0">
                 <button onclick="navigatePage('home')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="home">Home</button>
                 <button onclick="navigatePage('shop')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="shop">Men's T-Shirts</button>
-                <button onclick="navigatePage('about')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="about">About</button>
+                <button onclick="navigatePage('about')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="about">About AXDORO</button>
                 <button onclick="navigatePage('bulk')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="bulk">Bulk Orders</button>
                 <button onclick="navigatePage('contact')" class="nav-link py-1 border-b-2 border-transparent hover:border-axCharcoal transition-all whitespace-nowrap" data-nav="contact">Contact &amp; Support</button>
             </nav>
 
             <!-- Search Bar & Action Icons -->
-            <div class="flex items-center gap-2 sm:gap-3 xl:gap-4 flex-shrink-0">
-                <!-- Search Input Container -->
+            <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+                <!-- Desktop Search Input Container -->
                 <div class="relative hidden sm:block w-36 md:w-44 lg:w-48 xl:w-60">
-                    <input type="text" id="headerSearch" oninput="handleSearch(this.value)" placeholder="Search Men's T-Shirts..." class="w-full bg-axIvory text-xs px-3.5 py-2 pl-8 rounded-full border border-axSand focus:outline-none focus:border-axCharcoal transition-colors">
+                    <input type="text" id="headerSearch" oninput="handleSearch(this.value, false)" placeholder="Search Men's T-Shirts..." class="w-full bg-axIvory text-xs px-3.5 py-2 pl-8 rounded-full border border-axSand focus:outline-none focus:border-axCharcoal transition-colors" autocomplete="off">
                     <svg class="w-4 h-4 text-axGrey absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    <div id="searchSuggestions" class="hidden absolute top-full left-0 right-0 mt-1.5 bg-white border border-axSand rounded-lg shadow-xl py-2 z-50 max-h-64 overflow-y-auto"></div>
+                    <!-- Desktop Autocomplete Suggestions Dropdown -->
+                    <div id="searchSuggestions" class="hidden absolute top-full left-0 right-0 mt-1.5 bg-white border border-axSand rounded-xl shadow-2xl py-2 z-50 max-h-80 overflow-y-auto custom-scrollbar"></div>
                 </div>
 
-                <!-- Track Order Quick Button -->
+                <!-- Mobile Search Trigger Button (Rule 10 & 11) -->
+                <button onclick="toggleMobileSearchDrawer(true)" class="sm:hidden p-2 hover:bg-axIvory rounded-full text-axCharcoal relative" title="Search Catalogue" aria-label="Search">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+
+                <!-- Track Order Quick Button (Desktop) -->
                 <button onclick="navigatePage('track')" title="Track Order" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative hidden md:flex items-center gap-1.5 text-xs font-semibold">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
                     <span>Track</span>
                 </button>
 
-                <!-- Wishlist Icon -->
-                <button onclick="toggleWishlistDrawer()" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative" title="Wishlist">
+                <!-- Wishlist Icon (Rules 29 & 30) -->
+                <button onclick="toggleWishlistDrawer(true)" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative" title="Wishlist" aria-label="Wishlist">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                     <span id="wishlistCountBadge" class="absolute -top-1 -right-1 bg-axBurgundy text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
 
                 <!-- Cart / Bag Icon -->
-                <button onclick="toggleCartDrawer()" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative flex items-center gap-1.5" title="Bag">
+                <button onclick="toggleCartDrawer(true)" class="p-2 hover:bg-axIvory rounded-full text-axCharcoal relative flex items-center gap-1.5" title="Bag" aria-label="Shopping Bag">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                     <span id="cartCountBadge" class="bg-axCharcoal text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Mobile Menu Hamburger Button (Rule 10) -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-axCharcoal hover:bg-axIvory rounded" aria-label="Toggle Navigation Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobileNav" class="hidden lg:hidden border-t border-axSand bg-white px-4 py-3 space-y-2">
+        <div id="mobileNav" class="hidden lg:hidden border-t border-axSand bg-white px-4 py-3 space-y-2 animate-fade-in">
             <button onclick="navigatePage('home')" class="block w-full text-left py-2 font-medium text-axCharcoal">Home</button>
-            <button onclick="navigatePage('shop')" class="block w-full text-left py-2 font-medium text-axCharcoal">Men's T-Shirts (26 Styles)</button>
+            <button onclick="navigatePage('shop')" class="block w-full text-left py-2 font-medium text-axCharcoal">Men's T-Shirts (26 Drops)</button>
             <button onclick="navigatePage('about')" class="block w-full text-left py-2 font-medium text-axCharcoal">About AXDORO</button>
-            <button onclick="navigatePage('bulk')" class="block w-full text-left py-2 font-medium text-axCharcoal">Bulk Orders</button>
-            <button onclick="navigatePage('contact')" class="block w-full text-left py-2 font-medium text-axCharcoal">Contact & Support</button>
+            <button onclick="navigatePage('bulk')" class="block w-full text-left py-2 font-medium text-axCharcoal">Bulk Orders (Custom Merch)</button>
+            <button onclick="navigatePage('contact')" class="block w-full text-left py-2 font-medium text-axCharcoal">Contact &amp; Support</button>
             <button onclick="navigatePage('track')" class="block w-full text-left py-2 font-semibold text-axGold">📍 Track Order</button>
+        </div>
+
+        <!-- Full-Width Mobile Search Drawer / Overlay (Rule 11 & 14) -->
+        <div id="mobileSearchDrawer" class="hidden sm:hidden border-t border-axSand bg-white px-4 py-3 shadow-xl animate-fade-in">
+            <div class="relative flex items-center gap-2">
+                <div class="relative flex-1">
+                    <input type="text" id="mobileSearchInput" oninput="handleSearch(this.value, true)" placeholder="Search 240 GSM styles, fits, colors..." class="w-full bg-axIvory text-xs px-3.5 py-2.5 pl-8 rounded-full border border-axSand focus:outline-none focus:border-axCharcoal" autocomplete="off">
+                    <svg class="w-4 h-4 text-axGrey absolute left-2.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <button onclick="toggleMobileSearchDrawer(false)" class="text-xs font-bold text-axCharcoal px-2 py-1">Cancel</button>
+            </div>
+            <!-- Suggested Quick Search Chips -->
+            <div class="flex items-center gap-1.5 overflow-x-auto py-2.5 no-scrollbar text-[11px]">
+                <span class="text-axGrey font-semibold whitespace-nowrap">Suggested:</span>
+                <button onclick="applyQuickSearch('Oversized')" class="px-2.5 py-0.5 bg-axIvory hover:bg-axSand rounded-full text-axCharcoal font-medium whitespace-nowrap border border-axSand">Oversized</button>
+                <button onclick="applyQuickSearch('Acid Wash')" class="px-2.5 py-0.5 bg-axIvory hover:bg-axSand rounded-full text-axCharcoal font-medium whitespace-nowrap border border-axSand">Acid Wash</button>
+                <button onclick="applyQuickSearch('240 GSM')" class="px-2.5 py-0.5 bg-axIvory hover:bg-axSand rounded-full text-axCharcoal font-medium whitespace-nowrap border border-axSand">240 GSM</button>
+                <button onclick="applyQuickSearch('Boxy')" class="px-2.5 py-0.5 bg-axIvory hover:bg-axSand rounded-full text-axCharcoal font-medium whitespace-nowrap border border-axSand">Boxy</button>
+                <button onclick="applyQuickSearch('Back Print')" class="px-2.5 py-0.5 bg-axIvory hover:bg-axSand rounded-full text-axCharcoal font-medium whitespace-nowrap border border-axSand">Back Print</button>
+            </div>
+            <!-- Mobile Autocomplete Suggestions Container -->
+            <div id="mobileSearchSuggestions" class="hidden max-h-72 overflow-y-auto divide-y divide-axSand border-t border-axSand mt-2 pt-1 custom-scrollbar"></div>
         </div>
     </header>
 
@@ -702,7 +732,9 @@
                 </div>
 
                 <!-- Active Filter Tags Row -->
-                <div id="activeFilterTags" class="flex flex-wrap gap-2 py-3 items-center empty:hidden"></div>
+                <div id="activeFilterTags" class="flex flex-wrap gap-2 py-3 items-center empty:hidden">
+                    <!-- Populated dynamically by renderActiveFilterChips() -->
+                </div>
 
                 <!-- Main Shop Layout: Sidebar + Product Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
@@ -737,6 +769,25 @@
                                 <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
                                     <input type="checkbox" value="Heavy Plain & Pocket" onchange="handleFilterCheck('category', 'Heavy Plain & Pocket', this.checked)" class="filter-check-cat rounded text-axCharcoal">
                                     <span>Heavy Plain &amp; Pocket Tees</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Fit Filter (Rule 16) -->
+                        <div id="fitFilterSection">
+                            <h4 class="text-xs font-bold text-axCharcoal uppercase mb-3">Streetwear Fit</h4>
+                            <div class="space-y-2 text-xs text-axGrey">
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Oversized Boxy" onchange="handleFilterCheck('fit', 'Oversized Boxy', this.checked)" class="filter-check-fit rounded text-axCharcoal">
+                                    <span>Oversized Boxy (Drop Shoulder)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Relaxed Drape" onchange="handleFilterCheck('fit', 'Relaxed Drape', this.checked)" class="filter-check-fit rounded text-axCharcoal">
+                                    <span>Relaxed Drape (Street Cut)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-axCharcoal">
+                                    <input type="checkbox" value="Regular Core" onchange="handleFilterCheck('fit', 'Regular Core', this.checked)" class="filter-check-fit rounded text-axCharcoal">
+                                    <span>Regular Core (Standard Fit)</span>
                                 </label>
                             </div>
                         </div>
@@ -922,7 +973,12 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-axCharcoal mb-1">Customization / Print Notes</label>
-                                <textarea id="bulkNotes" rows="3" placeholder="Describe screen print, puff print, DTF, or embroidery..." class="w-full text-xs p-3 border border-axSand rounded focus:outline-none focus:border-axCharcoal"></textarea>
+                                <div>
+                            <label class="block text-xs font-semibold text-axCharcoal mb-1">Required By / Target Delivery Date * (Rule 56)</label>
+                            <input type="date" id="bulkDeliveryDate" required class="w-full text-xs px-3.5 py-2.5 border border-axSand rounded focus:outline-none focus:border-axCharcoal">
+                            <span class="text-[10px] text-axGrey">Minimum production turnaround: 3-5 business days</span>
+                        </div>
+                        <textarea id="bulkNotes" rows="3" placeholder="Describe screen print, puff print, DTF, or embroidery..." class="w-full text-xs p-3 border border-axSand rounded focus:outline-none focus:border-axCharcoal"></textarea>
                             </div>
                             <button type="submit" class="w-full bg-axCharcoal text-white hover:bg-gray-800 font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow">
                                 SUBMIT &amp; CONTINUE ON WHATSAPP →
@@ -1102,6 +1158,17 @@
     </main>
 
     <!-- Footer -->
+    
+    <!-- Legal Policy Modal (Rules 70-73) -->
+    <div id="policyModal" class="modal-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="modal-box bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative border border-axSand shadow-2xl">
+            <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-axCharcoal font-bold text-base p-1">✕</button>
+            <div id="policyModalContent" class="text-xs text-axCharcoal space-y-4">
+                <!-- Injected via openPolicyModal() -->
+            </div>
+        </div>
+    </div>
+    
     <footer class="bg-axCharcoal text-white border-t border-gray-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -1141,9 +1208,9 @@
             <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500">
                 <div>© 2026 AXDORO Clothing. Built with WordPress &amp; WooCommerce.</div>
                 <div class="flex gap-4 mt-2 sm:mt-0">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                    <a href="#" class="hover:underline">Terms of Service</a>
-                    <a href="#" class="hover:underline">Shipping &amp; Returns</a>
+                    <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" class="hover:underline">Privacy Policy</a>
+                    <a href="javascript:void(0)" onclick="openPolicyModal('terms')" class="hover:underline">Terms of Service</a>
+                    <a href="javascript:void(0)" onclick="openPolicyModal('returns')" class="hover:underline">Shipping &amp; Returns</a>
                 </div>
             </div>
         </div>
@@ -1251,6 +1318,126 @@
         </div>
     </div>
 
+    
+    <!-- Mobile Filter Drawer / Bottom Sheet (Rule 17 & 18) -->
+    <div id="mobileFilterDrawer" class="drawer-overlay fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="toggleMobileFilters(false)" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-8">
+            <div class="drawer-slide-panel w-screen max-w-sm bg-white border-l border-axSand flex flex-col shadow-2xl">
+                <div class="p-4 border-b border-axSand flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-sm text-axCharcoal font-heading uppercase tracking-wider">FILTERS &amp; SORT</span>
+                    </div>
+                    <button onclick="toggleMobileFilters(false)" class="text-axCharcoal p-1 font-bold text-base">✕</button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-5 space-y-6 custom-scrollbar text-xs">
+                    <!-- Category -->
+                    <div>
+                        <h4 class="font-bold text-axCharcoal uppercase mb-2">Category</h4>
+                        <div class="space-y-2 text-axGrey">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Oversized Tees" onchange="handleFilterCheck('category', 'Oversized Tees', this.checked)" class="mob-filter-cat rounded text-axCharcoal">
+                                <span>Oversized Tees (240 GSM)</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Boxy Half Sleeve" onchange="handleFilterCheck('category', 'Boxy Half Sleeve', this.checked)" class="mob-filter-cat rounded text-axCharcoal">
+                                <span>Boxy Half Sleeve Tees</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Graphic & Back-Print" onchange="handleFilterCheck('category', 'Graphic & Back-Print', this.checked)" class="mob-filter-cat rounded text-axCharcoal">
+                                <span>Graphic &amp; Back-Prints</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Acid & Vintage Wash" onchange="handleFilterCheck('category', 'Acid & Vintage Wash', this.checked)" class="mob-filter-cat rounded text-axCharcoal">
+                                <span>Acid &amp; Vintage Wash</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Heavy Plain & Pocket" onchange="handleFilterCheck('category', 'Heavy Plain & Pocket', this.checked)" class="mob-filter-cat rounded text-axCharcoal">
+                                <span>Heavy Plain &amp; Pocket</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Fit -->
+                    <div>
+                        <h4 class="font-bold text-axCharcoal uppercase mb-2">Fit Silhouette</h4>
+                        <div class="space-y-2 text-axGrey">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Oversized Boxy" onchange="handleFilterCheck('fit', 'Oversized Boxy', this.checked)" class="mob-filter-fit rounded text-axCharcoal">
+                                <span>Oversized Boxy</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Relaxed Drape" onchange="handleFilterCheck('fit', 'Relaxed Drape', this.checked)" class="mob-filter-fit rounded text-axCharcoal">
+                                <span>Relaxed Drape</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" value="Regular Core" onchange="handleFilterCheck('fit', 'Regular Core', this.checked)" class="mob-filter-fit rounded text-axCharcoal">
+                                <span>Regular Core</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div>
+                        <h4 class="font-bold text-axCharcoal uppercase mb-2">Size</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="handleSizeChip('XS')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="XS">XS</button>
+                            <button onclick="handleSizeChip('S')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="S">S</button>
+                            <button onclick="handleSizeChip('M')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="M">M</button>
+                            <button onclick="handleSizeChip('L')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="L">L</button>
+                            <button onclick="handleSizeChip('XL')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="XL">XL</button>
+                            <button onclick="handleSizeChip('XXL')" class="size-chip text-xs font-semibold py-1.5 border border-axSand rounded hover:border-axCharcoal" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+
+                    <!-- Stock Only -->
+                    <div>
+                        <label class="flex items-center gap-2 cursor-pointer font-bold text-axCharcoal">
+                            <input type="checkbox" id="mobInStockOnly" onchange="handleInStock(this.checked)" class="rounded text-axCharcoal">
+                            <span>In Stock Only</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="p-4 border-t border-axSand bg-white flex gap-2">
+                    <button onclick="clearAllFilters()" class="flex-1 py-3 border border-axSand rounded text-xs font-bold text-axCharcoal hover:bg-axIvory">Clear</button>
+                    <button onclick="toggleMobileFilters(false)" class="flex-2 py-3 bg-axCharcoal text-white rounded text-xs font-bold uppercase tracking-wider">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Dedicated Wishlist Slide-out Drawer (Rules 29 & 30) -->
+    <div id="wishlistDrawer" class="drawer-overlay fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="toggleWishlistDrawer(false)" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="drawer-slide-panel w-screen max-w-md bg-white border-l border-axSand flex flex-col shadow-2xl">
+                <!-- Wishlist Header -->
+                <div class="p-5 border-b border-axSand flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl">🤍</span>
+                        <h2 class="font-bold text-base text-axCharcoal font-heading">YOUR WISHLIST (<span id="wishlistDrawerCount">0</span>)</h2>
+                    </div>
+                    <button onclick="toggleWishlistDrawer(false)" class="text-axCharcoal p-1 font-bold text-base">✕</button>
+                </div>
+
+                <!-- Wishlist Items List -->
+                <div id="wishlistDrawerItems" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+                    <!-- Injected dynamically via renderWishlistDrawer() -->
+                </div>
+
+                <!-- Wishlist Footer -->
+                <div class="p-5 border-t border-axSand bg-white space-y-2">
+                    <button onclick="toggleWishlistDrawer(false); navigatePage('shop');" class="w-full bg-axCharcoal hover:bg-black text-white font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow">
+                        EXPLORE ALL 26 DROPS →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Bag / Cart Slide-out Drawer -->
     <div id="cartDrawer" class="drawer-overlay fixed inset-0 z-50 overflow-hidden hidden">
         <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
@@ -1352,10 +1539,16 @@
                 <!-- Order Summary Breakdown -->
                 <div class="bg-axIvory p-4 rounded-lg border border-axSand text-xs space-y-2 mt-4">
                     <div class="flex justify-between"><span>Items Subtotal:</span><strong id="chkSubtotal">₹0</strong></div>
-                    <div class="flex justify-between"><span>Shipping:</span><strong class="text-axGreen">FREE</strong></div>
+                    <div class="flex justify-between"><span>Shipping:</span><strong id="chkShipping" class="text-axGreen">FREE</strong></div>
                     <div class="flex justify-between text-sm font-bold border-t border-axSand pt-2"><span>Final Payable:</span><strong id="chkTotal">₹0</strong></div>
                 </div>
 
+                <div class="flex items-start gap-2 pt-2">
+                    <input type="checkbox" id="chkTermsAgree" required class="mt-0.5 rounded border-axSand text-axCharcoal focus:ring-black cursor-pointer">
+                    <label for="chkTermsAgree" class="text-[11px] text-axGrey leading-tight cursor-pointer">
+                        I confirm this order and agree to the <a href="javascript:void(0)" onclick="openPolicyModal('terms')" class="text-axCharcoal font-semibold underline">Terms of Service</a> &amp; <a href="javascript:void(0)" onclick="openPolicyModal('returns')" class="text-axCharcoal font-semibold underline">7-Day Return Policy</a>.
+                    </label>
+                </div>
                 <button type="submit" class="w-full bg-axCharcoal text-white hover:bg-gray-900 font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors shadow-md">
                     CONFIRM &amp; PLACE ORDER →
                 </button>
@@ -1446,19 +1639,19 @@
     <!-- Luxury Toast Notification System -->
     <div id="toastNotification" class="fixed top-20 right-4 sm:right-8 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out max-w-sm w-[90vw]">
         <div class="bg-axCharcoal/95 backdrop-blur-md text-white rounded-xl shadow-2xl p-3.5 border border-white/10 flex items-center gap-3">
-            <div id="toastIcon" class="w-9 h-9 rounded-full bg-axGold text-axCharcoal font-bold flex items-center justify-center text-sm flex-shrink-0 animate-bag-pop">?</div>
+            <div id="toastIcon" class="w-9 h-9 rounded-full bg-axGold text-axCharcoal font-bold flex items-center justify-center text-sm flex-shrink-0 animate-bag-pop">🛍️</div>
             <div class="flex-1 min-w-0">
                 <h5 id="toastTitle" class="font-bold text-xs uppercase tracking-wider text-white">Added to Bag</h5>
                 <p id="toastMessage" class="text-xs text-gray-300 truncate mt-0.5">AXDORO 240 GSM Oversized Tee</p>
             </div>
-            <button onclick="dismissToast()" class="text-gray-400 hover:text-white text-xs p-1 ml-1">?</button>
+            <button onclick="dismissToast()" class="text-gray-400 hover:text-white text-xs p-1 ml-1" aria-label="Dismiss Notification">✕</button>
         </div>
     </div>
 
-    <!-- Lean AI / FAQ Chatbot Floating Widget -->
-    <div id="chatbotWidget" class="fixed bottom-6 right-6 z-40">
+    <!-- Lean AI / FAQ Chatbot Floating Widget (Rule 74 & 75) -->
+    <div id="chatbotWidget" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40">
         <!-- Launcher Button -->
-        <button onclick="toggleChatbot()" id="botLaunchBtn" class="w-14 h-14 bg-axCharcoal hover:bg-gray-800 text-white rounded-full shadow-2xl flex items-center justify-center relative transition-transform hover:scale-105 animate-bot-float">
+        <button onclick="toggleChatbot()" id="botLaunchBtn" class="w-14 h-14 bg-axCharcoal hover:bg-gray-800 text-white rounded-full shadow-2xl flex items-center justify-center relative transition-transform hover:scale-105 animate-bot-float" aria-label="Open AI Assistant">
             <span class="text-2xl">💬</span>
             <span class="absolute -top-1 -right-1 bg-axGold text-axCharcoal text-[9px] font-black px-1.5 py-0.5 rounded-full border border-white">AI HELP</span>
         </button>
@@ -1878,15 +2071,33 @@
             }
         ];
 
-        // Global State
+        // Initialized App State
+        
+        // Ensure all products have fit attribute
+        PRODUCTS.forEach(p => {
+            if (!p.fit) {
+                if (p.category === 'Oversized Tees' || p.category === 'Boxy Half Sleeve') {
+                    p.fit = 'Oversized Boxy';
+                } else if (p.category === 'Graphic & Back-Print' || p.category === 'Acid & Vintage Wash') {
+                    p.fit = 'Relaxed Drape';
+                } else {
+                    p.fit = 'Regular Core';
+                }
+            }
+        });
+
+        // App State
+        let currentPage = 'home';
         let cart = [];
-        let wishlist = [];
+        let wishlist = JSON.parse(localStorage.getItem('axdoro_wishlist') || '[]');
+        let cardSelectedSizes = {};
         let selectedProductForModal = null;
-        let selectedModalSize = 'M';
+        let selectedModalSize = null;
         let currentOrder = null;
 
         let filters = {
             categories: [],
+            fits: [],
             sizes: [],
             colors: [],
             maxPrice: 1499,
@@ -1896,18 +2107,20 @@
         };
 
         // Navigation
-        function navigatePage(pageName) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
-            const target = document.getElementById(`page-${pageName}`);
-            if (target) {
-                target.classList.remove('hidden');
+        function navigatePage(pageId) {
+            currentPage = pageId;
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Highlight nav
+            // Update active nav links
             document.querySelectorAll('.nav-link').forEach(btn => {
-                if (btn.getAttribute('data-nav') === pageName) {
-                    btn.classList.add('border-axCharcoal');
+                if (btn.getAttribute('data-nav') === pageId) {
+                    btn.classList.add('border-axCharcoal', 'text-axCharcoal');
                     btn.classList.remove('border-transparent');
                 } else {
                     btn.classList.remove('border-axCharcoal');
@@ -1915,79 +2128,165 @@
                 }
             });
 
-            // Close mobile menu
-            document.getElementById('mobileNav').classList.add('hidden');
+            // Close mobile nav drawer if open
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) mobileNav.classList.add('hidden');
+
+            // Render specific page views
+            if (pageId === 'home') {
+                renderHomeTrending();
+            } else if (pageId === 'shop') {
+                renderShopProducts();
+            }
         }
 
-        // Mobile Nav Toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            document.getElementById('mobileNav').classList.toggle('hidden');
-        });
-
-        // Render Home Trending Products
+        // Render Home Trending Products (First 4 styles)
         function renderHomeTrending() {
             const container = document.getElementById('homeTrendingGrid');
+            if (!container) return;
             const items = PRODUCTS.slice(0, 4);
             container.innerHTML = items.map(p => createProductCardHtml(p)).join('');
         }
 
-        // Render Shop Products with Active Filters
+        // Render Shop Products with Active Filters & Active Filter Chips (Rules 4, 5, 15-18)
         function renderShopProducts() {
             const container = document.getElementById('shopProductGrid');
             const emptyState = document.getElementById('shopEmptyState');
             const countLabel = document.getElementById('productResultCount');
+            if (!container) return;
 
             let filtered = PRODUCTS.filter(p => {
-                // Category
+                // Category filter
                 if (filters.categories.length > 0 && !filters.categories.includes(p.category)) return false;
-                // Size
+                // Fit filter (Rule 16)
+                if (filters.fits.length > 0 && !filters.fits.includes(p.fit)) return false;
+                // Size filter
                 if (filters.sizes.length > 0 && !p.sizes.some(s => filters.sizes.includes(s))) return false;
-                // Color
+                // Color filter
                 if (filters.colors.length > 0 && !filters.colors.includes(p.color)) return false;
-                // Price
+                // Price filter
                 if (p.price > filters.maxPrice) return false;
-                // In stock
+                // In stock filter
                 if (filters.inStockOnly && !p.inStock) return false;
-                // Search
+                // Search filter (Rule 12)
                 if (filters.search) {
                     const q = filters.search.toLowerCase();
-                    const matched = p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+                    const matched = p.name.toLowerCase().includes(q) || 
+                                    p.sku.toLowerCase().includes(q) || 
+                                    p.category.toLowerCase().includes(q) || 
+                                    p.color.toLowerCase().includes(q) ||
+                                    (p.fit && p.fit.toLowerCase().includes(q));
                     if (!matched) return false;
                 }
                 return true;
             });
 
-            // Sort
+            // Sorting
             if (filters.sort === 'price-low') {
                 filtered.sort((a, b) => a.price - b.price);
             } else if (filters.sort === 'price-high') {
                 filtered.sort((a, b) => b.price - a.price);
             } else if (filters.sort === 'popular') {
                 filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
+            } else {
+                // Default: newest drops
+                filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
             }
 
-            countLabel.innerText = filtered.length;
+            // Update Dynamic Product Count (Rule 4 & 5)
+            if (countLabel) {
+                countLabel.innerText = filtered.length;
+            }
+
+            // Render Active Filter Chips (Rule 17)
+            renderActiveFilterChips();
 
             if (filtered.length === 0) {
                 container.innerHTML = '';
-                emptyState.classList.remove('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
             } else {
-                emptyState.classList.add('hidden');
+                if (emptyState) emptyState.classList.add('hidden');
                 container.innerHTML = filtered.map(p => createProductCardHtml(p)).join('');
             }
         }
 
-        // Generate Product Card HTML with Luxury Streetwear Animations
+        // Render Active Filter Chips Row (Rule 17)
+        function renderActiveFilterChips() {
+            const chipsBox = document.getElementById('activeFilterTags');
+            if (!chipsBox) return;
+
+            const chips = [];
+
+            filters.categories.forEach(cat => {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-axCharcoal text-white shadow-xs">
+                    ${cat}
+                    <button onclick="handleFilterCheck('category', '${cat}', false)" class="hover:text-red-300 font-bold ml-0.5">✕</button>
+                </span>`);
+            });
+
+            filters.fits.forEach(fit => {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-axCharcoal text-white shadow-xs">
+                    Fit: ${fit}
+                    <button onclick="handleFilterCheck('fit', '${fit}', false)" class="hover:text-red-300 font-bold ml-0.5">✕</button>
+                </span>`);
+            });
+
+            filters.sizes.forEach(sz => {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-axSand text-axCharcoal border border-axCharcoal/30 shadow-xs">
+                    Size: ${sz}
+                    <button onclick="handleSizeChip('${sz}')" class="hover:text-red-600 font-bold ml-0.5">✕</button>
+                </span>`);
+            });
+
+            filters.colors.forEach(col => {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-axCharcoal border border-axSand shadow-xs">
+                    Color: ${col}
+                    <button onclick="handleFilterCheck('color', '${col}', false)" class="hover:text-red-600 font-bold ml-0.5">✕</button>
+                </span>`);
+            });
+
+            if (filters.maxPrice < 1499) {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-axIvory text-axCharcoal border border-axSand">
+                    Under ₹${filters.maxPrice}
+                    <button onclick="resetPriceFilter()" class="hover:text-red-600 font-bold ml-0.5">✕</button>
+                </span>`);
+            }
+
+            if (filters.inStockOnly) {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-300">
+                    In Stock Only
+                    <button onclick="handleInStock(false)" class="hover:text-red-600 font-bold ml-0.5">✕</button>
+                </span>`);
+            }
+
+            if (filters.search) {
+                chips.push(`<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-axBurgundy text-white">
+                    Search: "${filters.search}"
+                    <button onclick="clearSearchFilter()" class="hover:text-red-300 font-bold ml-0.5">✕</button>
+                </span>`);
+            }
+
+            if (chips.length > 0) {
+                chips.push(`<button onclick="clearAllFilters()" class="text-xs font-bold text-axBurgundy hover:underline ml-1">Clear All (${chips.length})</button>`);
+                chipsBox.innerHTML = chips.join('');
+                chipsBox.classList.remove('hidden');
+            } else {
+                chipsBox.innerHTML = '';
+                chipsBox.classList.add('hidden');
+            }
+        }
+
+        // Product Card HTML - Mandatory Deliberate Size Selection (Rule 22)
         function createProductCardHtml(p) {
             const isWish = wishlist.includes(p.id);
             const discountPct = Math.round(((p.regularPrice - p.price) / p.regularPrice) * 100);
-            const defaultSize = p.sizes.includes('M') ? 'M' : p.sizes[0];
+            const selectedSize = cardSelectedSizes[p.id] || null;
 
             return `
             <div class="product-card reveal-on-scroll group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
                 <div class="relative overflow-hidden rounded-lg bg-axIvory aspect-4-5 cursor-pointer" onclick="openProductModal(${p.id})">
                     <img src="${p.image}" alt="${p.name}" class="img-zoom w-full h-full object-cover ${!p.inStock ? 'grayscale-[35%] opacity-85' : ''}" loading="lazy">
-                    <button onclick="event.stopPropagation(); toggleWishlist(${p.id});" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-axCharcoal flex items-center justify-center hover:bg-white shadow-md hover:scale-110 active:scale-90 transition-all duration-200 z-20 ${isWish ? 'heart-pop text-red-500 bg-white' : ''}" title="${isWish ? 'Remove from Wishlist' : 'Add to Wishlist'}">
+                    <button onclick="event.stopPropagation(); toggleWishlist(${p.id});" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-axCharcoal flex items-center justify-center hover:bg-white shadow-md hover:scale-110 active:scale-90 transition-all duration-200 z-20 ${isWish ? 'heart-pop text-red-500 bg-white' : ''}" title="${isWish ? 'Remove from Wishlist' : 'Add to Wishlist'}" aria-label="Toggle Wishlist">
                         ${isWish 
                             ? '<svg class="w-4 h-4 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
                             : '<svg class="w-4 h-4 text-axCharcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>'
@@ -2031,16 +2330,16 @@
                             <!-- 1. Select Size Label & Size Chart Link -->
                             <div class="flex items-center justify-between text-[10px] mb-1.5 font-semibold">
                                 <span class="text-axCharcoal font-bold uppercase tracking-wider">Select Size:</span>
-                                <button onclick="event.stopPropagation(); openProductModal(${p.id});" class="text-axGold font-bold hover:underline cursor-pointer">Size Chart 📏</button>
+                                <button onclick="event.stopPropagation(); openSizeGuideModal();" class="text-axGold font-bold hover:underline cursor-pointer">Size Chart 📏</button>
                             </div>
 
-                            <!-- 2. Size Selection Buttons -->
+                            <!-- 2. Size Selection Buttons (Deliberate Selection - Rule 22) -->
                             <div class="grid grid-cols-6 gap-1 mb-2" id="card-sizes-${p.id}">
                                 ${p.sizes.map(sz => {
-                                    const isSelected = sz === defaultSize;
+                                    const isSelected = sz === selectedSize;
                                     return `
                                     <button onclick="event.stopPropagation(); setCardSize(${p.id}, '${sz}')" 
-                                        class="card-size-btn-${p.id} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer ${isSelected ? 'bg-axCharcoal text-white border-axCharcoal' : 'bg-white text-axCharcoal border-axSand hover:border-axCharcoal'}" 
+                                        class="card-size-btn-${p.id} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer ${isSelected ? 'bg-axCharcoal text-white border-axCharcoal scale-105' : 'bg-white text-axCharcoal border-axSand hover:border-axCharcoal'}" 
                                         data-size="${sz}"
                                         title="Select size ${sz}">
                                         ${sz}
@@ -2049,12 +2348,12 @@
                                 }).join('')}
                             </div>
 
-                            <!-- 3. Prominent Add to Bag Button Immediately Below Size Selection -->
+                            <!-- 3. Add to Bag Button: Disabled until deliberate size is picked -->
                             <button onclick="event.stopPropagation(); addCardToBag(this, ${p.id})" 
                                 id="card-add-btn-${p.id}"
-                                class="card-add-bag-btn btn-press w-full bg-axCharcoal hover:bg-black active:scale-98 text-white text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow flex items-center justify-center gap-1.5 cursor-pointer">
+                                class="card-add-bag-btn w-full ${selectedSize ? 'bg-axCharcoal hover:bg-black active:scale-98 text-white cursor-pointer shadow-sm hover:shadow' : 'bg-gray-100 border border-gray-300 text-gray-500 cursor-pointer hover:bg-gray-200'} text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                                <span id="card-btn-text-${p.id}">+ ADD TO BAG</span>
+                                <span id="card-btn-text-${p.id}">${selectedSize ? '+ ADD TO BAG • SIZE ' + selectedSize : 'PLEASE SELECT A SIZE'}</span>
                             </button>
                         </div>
                     `}
@@ -2063,11 +2362,69 @@
             `;
         }
 
+        // Size Setting on Card (Rule 22)
+        function setCardSize(productId, size) {
+            cardSelectedSizes[productId] = size;
+
+            // Highlight size button
+            const container = document.getElementById(`card-sizes-${productId}`);
+            if (container) {
+                container.querySelectorAll('button').forEach(btn => {
+                    if (btn.getAttribute('data-size') === size) {
+                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-axCharcoal text-white border-axCharcoal scale-105`;
+                    } else {
+                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-white text-axCharcoal border-axSand hover:border-axCharcoal`;
+                    }
+                });
+            }
+
+            // Enable & Update Add to Bag button
+            const addBtn = document.getElementById(`card-add-btn-${productId}`);
+            const btnText = document.getElementById(`card-btn-text-${productId}`);
+            if (addBtn && btnText) {
+                addBtn.className = 'card-add-bag-btn w-full bg-axCharcoal hover:bg-black active:scale-98 text-white cursor-pointer shadow-sm hover:shadow text-[11px] font-bold py-2.5 rounded-lg uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5';
+                btnText.innerText = `+ ADD TO BAG • SIZE ${size}`;
+            }
+        }
+
+        // Add Card to Bag with Mandatory Size Check (Rule 22)
+        function addCardToBag(btn, productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p || !p.inStock) return;
+
+            const size = cardSelectedSizes[productId];
+            if (!size) {
+                showToast("Size Selection Required", "Please tap a size (S, M, L, XL, XXL) before adding to bag.", "⚠️");
+                const container = document.getElementById(`card-sizes-${productId}`);
+                if (container) {
+                    container.classList.add('ring-2', 'ring-axGold', 'rounded', 'p-0.5');
+                    setTimeout(() => {
+                        container.classList.remove('ring-2', 'ring-axGold', 'rounded', 'p-0.5');
+                    }, 1400);
+                }
+                return;
+            }
+
+            // Visual confirmation
+            if (btn) {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = `<span class="text-green-400 font-bold">✓ Added (${size})</span>`;
+                btn.classList.add('bg-green-950');
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.remove('bg-green-950');
+                }, 1200);
+            }
+
+            addToCart(p, size);
+        }
+
+        // Open Product Modal (Rule 22 & 23)
         function openProductModal(productId) {
             const p = PRODUCTS.find(item => item.id === productId);
             if (!p) return;
             selectedProductForModal = p;
-            selectedModalSize = p.sizes[0];
+            selectedModalSize = null; // Deliberate size selection initially null
 
             document.getElementById('modalMainImg').src = p.image;
             document.getElementById('modalTitle').innerText = p.name;
@@ -2117,11 +2474,11 @@
                         </div>
                     `;
                 }
-                if (sizeLabel) sizeLabel.innerText = selectedModalSize;
+                if (sizeLabel) sizeLabel.innerText = 'Please select a size';
                 if (addBtn) {
-                    addBtn.disabled = false;
-                    addBtn.innerHTML = `🛍️ ADD TO BAG (SIZE: ${selectedModalSize})`;
-                    addBtn.className = 'flex-1 bg-axCharcoal hover:bg-black active:scale-95 text-white font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider transition-all shadow-md';
+                    addBtn.disabled = true;
+                    addBtn.innerHTML = 'PLEASE SELECT A SIZE';
+                    addBtn.className = 'flex-1 bg-gray-200 border border-gray-300 text-gray-500 font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider cursor-not-allowed';
                 }
                 if (waBtn) {
                     const waMsg = `Hello AXDORO! I need sizing guidance for: ${p.name} (SKU: ${p.sku}). Could you help me choose between sizes?`;
@@ -2130,7 +2487,7 @@
                 }
                 const sizeBox = document.getElementById('modalSizeButtons');
                 sizeBox.innerHTML = p.sizes.map(s => `
-                    <button onclick="selectModalSize('${s}')" class="modal-sz-btn text-xs font-bold py-2 border rounded transition-colors ${s === selectedModalSize ? 'bg-axCharcoal text-white border-axCharcoal' : 'bg-white text-axCharcoal border-axSand hover:border-axCharcoal'}" data-size="${s}">
+                    <button onclick="selectModalSize('${s}')" class="modal-sz-btn text-xs font-bold py-2 border rounded transition-colors bg-white text-axCharcoal border-axSand hover:border-axCharcoal" data-size="${s}">
                         ${s}
                     </button>
                 `).join('');
@@ -2149,7 +2506,11 @@
             if (sizeLabel) sizeLabel.innerText = s;
 
             const addBtn = document.getElementById('modalAddBagBtn');
-            if (addBtn) addBtn.innerHTML = `🛍️ ADD TO BAG (SIZE: ${s})`;
+            if (addBtn) {
+                addBtn.disabled = false;
+                addBtn.innerHTML = `🛍️ ADD TO BAG (SIZE: ${s})`;
+                addBtn.className = 'flex-1 bg-axCharcoal hover:bg-black active:scale-95 text-white font-bold py-3.5 px-6 rounded text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer';
+            }
 
             document.querySelectorAll('.modal-sz-btn').forEach(btn => {
                 if (btn.getAttribute('data-size') === s) {
@@ -2164,6 +2525,16 @@
             document.getElementById('productDetailModal').classList.add('hidden');
         }
 
+        function addProductFromModalToCart() {
+            if (!selectedProductForModal) return;
+            if (!selectedModalSize) {
+                showToast("Size Required", "Please choose a size before adding to bag.", "⚠️");
+                return;
+            }
+            addToCart(selectedProductForModal, selectedModalSize);
+            closeProductModal();
+        }
+
         function openSizeGuideModal() {
             document.getElementById('sizeGuideModal').classList.remove('hidden');
         }
@@ -2172,74 +2543,9 @@
             document.getElementById('sizeGuideModal').classList.add('hidden');
         }
 
-        // Cart State & Drawers
-        let cardSelectedSizes = {};
-
-        function setCardSize(productId, size) {
-            cardSelectedSizes[productId] = size;
-
-            // Highlight selected size button on this specific product card
-            const container = document.getElementById(`card-sizes-${productId}`);
-            if (container) {
-                container.querySelectorAll('button').forEach(btn => {
-                    if (btn.getAttribute('data-size') === size) {
-                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-axCharcoal text-white border-axCharcoal scale-105`;
-                    } else {
-                        btn.className = `card-size-btn-${productId} py-1.5 text-[11px] font-extrabold rounded border transition-all duration-150 text-center shadow-xs cursor-pointer bg-white text-axCharcoal border-axSand hover:border-axCharcoal`;
-                    }
-                });
-            }
-
-            // Update Add to Bag button label below
-            const btnText = document.getElementById(`card-btn-text-${productId}`);
-            if (btnText) {
-                btnText.innerText = `+ ADD TO BAG (SIZE: ${size})`;
-            }
-        }
-
-        function addCardToBag(btn, productId) {
-            const p = PRODUCTS.find(item => item.id === productId);
-            if (!p || !p.inStock) return;
-
-            const defaultSize = p.sizes.includes('M') ? 'M' : p.sizes[0];
-            const size = cardSelectedSizes[productId] || defaultSize;
-
-            // Tactile confirmation animation on the Add to Bag button
-            if (btn) {
-                const originalHtml = btn.innerHTML;
-                btn.innerHTML = `<span class="text-green-400 font-bold">✓ Added to Bag (${size})</span>`;
-                btn.classList.add('bg-green-950');
-                setTimeout(() => {
-                    btn.innerHTML = originalHtml;
-                    btn.classList.remove('bg-green-950');
-                }, 1200);
-            }
-
-            addToCart(p, size);
-        }
-
-        function quickAddWithSize(btn, id, size) {
-            setCardSize(id, size);
-            const addBtn = document.getElementById(`card-add-btn-${id}`);
-            addCardToBag(addBtn, id);
-        }
-
-        function quickAddToCart(id) {
-            const p = PRODUCTS.find(item => item.id === id);
-            if (!p || !p.inStock) return;
-            openProductModal(id);
-        }
-
-        function addProductFromModalToCart() {
-            if (!selectedProductForModal) return;
-            addToCart(selectedProductForModal, selectedModalSize);
-            closeProductModal();
-        }
-
-        
-        // Toast Notification System
+        // Toast Notifications
         let toastTimeout = null;
-        function showToast(title, message, icon = '?') {
+        function showToast(title, message, icon = '🛍️') {
             const toast = document.getElementById('toastNotification');
             const toastTitle = document.getElementById('toastTitle');
             const toastMsg = document.getElementById('toastMessage');
@@ -2266,6 +2572,7 @@
             toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
         }
 
+        // Cart Actions
         function addToCart(p, size) {
             const existing = cart.find(item => item.product.id === p.id && item.size === size);
             if (existing) {
@@ -2274,55 +2581,88 @@
                 cart.push({ product: p, size: size, qty: 1 });
             }
             updateCartUI();
-            showToast("Added to Bag!", `${p.name} (${size})`, "???");
+            showToast("Added to Bag!", `${p.name} (${size})`, "🛍️");
             toggleCartDrawer(true);
         }
 
+        // Accurate Shipping Calculation & Free Shipping Threshold (Rule 32 & 33)
         function updateCartUI() {
             const countBadge = document.getElementById('cartCountBadge');
             const drawerCount = document.getElementById('cartDrawerCount');
             const container = document.getElementById('cartDrawerItems');
             const subtotalEl = document.getElementById('cartDrawerSubtotal');
+            const shippingEl = document.getElementById('cartDrawerShipping');
             const totalEl = document.getElementById('cartDrawerTotal');
             const freeBar = document.getElementById('freeShippingBar');
             const freeNotice = document.getElementById('freeShippingNotice');
 
             const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
-            countBadge.innerText = totalCount;
-            drawerCount.innerText = totalCount;
-            // Pop badge animation
-            countBadge.classList.remove('animate-badge-bounce');
-            void countBadge.offsetWidth;
-            countBadge.classList.add('animate-badge-bounce');
+            if (countBadge) {
+                countBadge.innerText = totalCount;
+                countBadge.classList.remove('animate-badge-bounce');
+                void countBadge.offsetWidth;
+                countBadge.classList.add('animate-badge-bounce');
+            }
+            if (drawerCount) drawerCount.innerText = totalCount;
 
             const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-            subtotalEl.innerText = `₹${subtotal}`;
-            totalEl.innerText = `₹${subtotal}`;
+            let shipping = 0;
 
-            // Free shipping meter (Threshold: ₹999)
-            if (subtotal >= 999) {
-                freeBar.style.width = '100%';
-                freeNotice.innerHTML = '🎉 You have unlocked <strong>FREE EXPRESS SHIPPING!</strong>';
+            if (subtotal === 0) {
+                shipping = 0;
+                if (shippingEl) {
+                    shippingEl.innerText = '—';
+                    shippingEl.className = 'font-bold text-axGrey';
+                }
+                if (freeBar) freeBar.style.width = '0%';
+                if (freeNotice) freeNotice.innerHTML = 'Add 240 GSM tees to qualify for <strong>FREE EXPRESS SHIPPING</strong> (₹999 threshold)';
+            } else if (subtotal >= 999) {
+                shipping = 0;
+                if (shippingEl) {
+                    shippingEl.innerText = 'FREE';
+                    shippingEl.className = 'font-bold text-green-600';
+                }
+                if (freeBar) freeBar.style.width = '100%';
+                if (freeNotice) freeNotice.innerHTML = '🎉 You have unlocked <strong>FREE EXPRESS SHIPPING!</strong>';
             } else {
+                shipping = 99;
                 const diff = 999 - subtotal;
                 const pct = Math.min(100, Math.round((subtotal / 999) * 100));
-                freeBar.style.width = `${pct}%`;
-                freeNotice.innerHTML = `Add <strong>₹${diff}</strong> more to get <strong>FREE SHIPPING</strong>`;
+                if (shippingEl) {
+                    shippingEl.innerText = '₹99 (Express)';
+                    shippingEl.className = 'font-bold text-axCharcoal';
+                }
+                if (freeBar) freeBar.style.width = `${pct}%`;
+                if (freeNotice) freeNotice.innerHTML = `Add <strong>₹${diff}</strong> more to get <strong>FREE SHIPPING</strong>`;
             }
+
+            const total = subtotal + shipping;
+            if (subtotalEl) subtotalEl.innerText = `₹${subtotal}`;
+            if (totalEl) totalEl.innerText = `₹${total}`;
+
+            // Checkout Summary Sync
+            const chkSub = document.getElementById('chkSubtotal');
+            const chkShip = document.getElementById('chkShipping');
+            const chkTot = document.getElementById('chkTotal');
+            if (chkSub) chkSub.innerText = `₹${subtotal}`;
+            if (chkShip) chkShip.innerText = shipping === 0 ? (subtotal === 0 ? '—' : 'FREE') : '₹99 (Express)';
+            if (chkTot) chkTot.innerText = `₹${total}`;
+
+            if (!container) return;
 
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12 text-axGrey">
                         <span class="text-4xl block mb-2">🛍️</span>
                         <p class="font-bold text-sm text-axCharcoal">Your bag is empty</p>
-                        <p class="text-xs mt-1">Explore our 240 GSM heavyweight tees to get started.</p>
-                        <button onclick="toggleCartDrawer(false); navigatePage('shop');" class="mt-4 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold">Shop All Tees</button>
+                        <p class="text-xs mt-1">Explore our 240 GSM heavyweight drops to get started.</p>
+                        <button onclick="toggleCartDrawer(false); navigatePage('shop');" class="mt-4 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold">Shop All Drops</button>
                     </div>
                 `;
             } else {
                 container.innerHTML = cart.map((item, idx) => `
                     <div class="flex gap-3 pb-3 border-b border-axSand">
-                        <img src="${item.product.image}" class="w-16 h-20 object-cover rounded bg-axIvory flex-shrink-0">
+                        <img src="${item.product.image}" class="w-16 h-20 object-cover rounded bg-axIvory flex-shrink-0" alt="${item.product.name}">
                         <div class="flex-1 text-xs">
                             <h4 class="font-bold text-axCharcoal line-clamp-1">${item.product.name}</h4>
                             <span class="text-axGrey">Size: <strong class="text-axCharcoal">${item.size}</strong> • 240 GSM</span>
@@ -2357,6 +2697,7 @@
 
         function toggleCartDrawer(forceOpen) {
             const drawer = document.getElementById('cartDrawer');
+            if (!drawer) return;
             if (forceOpen === true) {
                 drawer.classList.remove('hidden');
             } else if (forceOpen === false) {
@@ -2366,36 +2707,208 @@
             }
         }
 
-        // Wishlist
+        // Dedicated Wishlist Slide-in Drawer (Rules 29 & 30)
         function toggleWishlist(id) {
             const idx = wishlist.indexOf(id);
             const p = PRODUCTS.find(item => item.id === id);
             if (idx === -1) {
                 wishlist.push(id);
-                if (p) showToast("Saved to Wishlist", p.name, "??");
+                if (p) showToast("Saved to Wishlist", p.name, "🤍");
             } else {
                 wishlist.splice(idx, 1);
-                if (p) showToast("Removed from Wishlist", p.name, "??");
+                if (p) showToast("Removed from Wishlist", p.name, "🤍");
             }
-            const badge = document.getElementById('wishlistCountBadge');
-            badge.innerText = wishlist.length;
-            if (wishlist.length > 0) {
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
+            localStorage.setItem('axdoro_wishlist', JSON.stringify(wishlist));
+            updateWishlistBadges();
             renderShopProducts();
             renderHomeTrending();
+            renderWishlistDrawer();
         }
 
-        function toggleWishlistDrawer() {
+        function updateWishlistBadges() {
+            const badge = document.getElementById('wishlistCountBadge');
+            const drawerCount = document.getElementById('wishlistDrawerCount');
+            if (badge) {
+                badge.innerText = wishlist.length;
+                if (wishlist.length > 0) badge.classList.remove('hidden');
+                else badge.classList.add('hidden');
+            }
+            if (drawerCount) drawerCount.innerText = wishlist.length;
+        }
+
+        function toggleWishlistDrawer(forceOpen) {
+            const drawer = document.getElementById('wishlistDrawer');
+            if (!drawer) return;
+            if (forceOpen === true) {
+                renderWishlistDrawer();
+                drawer.classList.remove('hidden');
+            } else if (forceOpen === false) {
+                drawer.classList.add('hidden');
+            } else {
+                if (drawer.classList.contains('hidden')) {
+                    renderWishlistDrawer();
+                    drawer.classList.remove('hidden');
+                } else {
+                    drawer.classList.add('hidden');
+                }
+            }
+        }
+
+        function renderWishlistDrawer() {
+            const container = document.getElementById('wishlistDrawerItems');
+            if (!container) return;
+            updateWishlistBadges();
+
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-axGrey">
+                        <span class="text-4xl block mb-2">🤍</span>
+                        <p class="font-bold text-sm text-axCharcoal">Your wishlist is empty</p>
+                        <p class="text-xs mt-1">Tap the heart on any 240 GSM drop to save it for later.</p>
+                        <button onclick="toggleWishlistDrawer(false); navigatePage('shop');" class="mt-4 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold">Browse 26 Styles</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const items = PRODUCTS.filter(p => wishlist.includes(p.id));
+            container.innerHTML = items.map(p => `
+                <div class="flex gap-3 pb-3 border-b border-axSand">
+                    <img src="${p.image}" class="w-16 h-20 object-cover rounded bg-axIvory flex-shrink-0" alt="${p.name}">
+                    <div class="flex-1 text-xs">
+                        <div class="flex items-start justify-between">
+                            <h4 class="font-bold text-axCharcoal line-clamp-1">${p.name}</h4>
+                            <button onclick="toggleWishlist(${p.id})" class="text-axGrey hover:text-red-600 ml-1 font-bold">✕</button>
+                        </div>
+                        <span class="text-axGrey">${p.category} • 240 GSM</span>
+                        <div class="font-bold text-sm text-axCharcoal mt-1">&#8377;${p.price}</div>
+
+                        <!-- Size selection + Move to Bag -->
+                        <div class="mt-2 flex items-center gap-2">
+                            <select id="wishlist-size-${p.id}" class="bg-axIvory border border-axSand text-xs font-bold py-1 px-1.5 rounded text-axCharcoal focus:outline-none">
+                                ${p.sizes.map(s => `<option value="${s}">Size ${s}</option>`).join('')}
+                            </select>
+                            <button onclick="moveWishlistToBag(${p.id})" class="flex-1 bg-axCharcoal hover:bg-black text-white text-[10px] font-bold py-1 px-2 rounded uppercase tracking-wider">
+                                Move to Bag →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function moveWishlistToBag(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p) return;
+            const sizeSelect = document.getElementById(`wishlist-size-${productId}`);
+            const size = sizeSelect ? sizeSelect.value : (p.sizes[0] || 'M');
+
+            addToCart(p, size);
+            toggleWishlist(productId); // Remove from wishlist
+            toggleWishlistDrawer(false);
+            toggleCartDrawer(true);
+        }
+
+        // Live Search & Autocomplete System (Rules 11-14)
+        function handleSearch(val, isMobile = false) {
+            filters.search = val.trim();
+            const suggestionsBox = document.getElementById(isMobile ? 'mobileSearchSuggestions' : 'searchSuggestions');
+
+            if (!filters.search) {
+                if (suggestionsBox) {
+                    suggestionsBox.innerHTML = '';
+                    suggestionsBox.classList.add('hidden');
+                }
+                if (currentPage === 'shop') renderShopProducts();
+                return;
+            }
+
+            const q = filters.search.toLowerCase();
+            const matched = PRODUCTS.filter(p => 
+                p.name.toLowerCase().includes(q) || 
+                p.sku.toLowerCase().includes(q) || 
+                p.category.toLowerCase().includes(q) || 
+                p.color.toLowerCase().includes(q) ||
+                (p.fit && p.fit.toLowerCase().includes(q))
+            ).slice(0, 6);
+
+            if (suggestionsBox) {
+                if (matched.length === 0) {
+                    suggestionsBox.innerHTML = `
+                        <div class="p-3 text-center text-axGrey text-xs">
+                            No styles matching "<strong>${val}</strong>"
+                        </div>
+                    `;
+                } else {
+                    suggestionsBox.innerHTML = `
+                        <div class="p-2 text-[10px] uppercase font-bold text-axGrey border-b border-axSand flex justify-between">
+                            <span>Found ${matched.length} styles</span>
+                            <button onclick="commitSearch('${val}')" class="text-axGold hover:underline">View All in Shop →</button>
+                        </div>
+                        ${matched.map(p => `
+                            <div onclick="openProductModal(${p.id}); toggleMobileSearchDrawer(false);" class="flex items-center gap-3 p-2.5 hover:bg-axIvory cursor-pointer transition-colors">
+                                <img src="${p.image}" class="w-10 h-12 object-cover rounded bg-axSand flex-shrink-0" alt="${p.name}">
+                                <div class="flex-1 min-w-0">
+                                    <h5 class="font-bold text-xs text-axCharcoal truncate">${p.name}</h5>
+                                    <span class="text-[10px] text-axGrey">${p.category} • ${p.color}</span>
+                                </div>
+                                <span class="font-extrabold text-xs text-axCharcoal font-heading">&#8377;${p.price}</span>
+                            </div>
+                        `).join('')}
+                    `;
+                }
+                suggestionsBox.classList.remove('hidden');
+            }
+
+            if (currentPage === 'shop') {
+                renderShopProducts();
+            }
+        }
+
+        function commitSearch(val) {
+            filters.search = val.trim();
+            toggleMobileSearchDrawer(false);
+            const deskSuggest = document.getElementById('searchSuggestions');
+            if (deskSuggest) deskSuggest.classList.add('hidden');
             navigatePage('shop');
+            renderShopProducts();
+        }
+
+        function applyQuickSearch(term) {
+            const input = document.getElementById('mobileSearchInput');
+            if (input) input.value = term;
+            commitSearch(term);
+        }
+
+        function toggleMobileSearchDrawer(forceOpen) {
+            const drawer = document.getElementById('mobileSearchDrawer');
+            if (!drawer) return;
+            if (forceOpen === true) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    const inp = document.getElementById('mobileSearchInput');
+                    if (inp) inp.focus();
+                }, 100);
+            } else if (forceOpen === false) {
+                drawer.classList.add('hidden');
+            } else {
+                drawer.classList.toggle('hidden');
+            }
+        }
+
+        function clearSearchFilter() {
+            filters.search = '';
+            const deskInp = document.getElementById('headerSearch');
+            const mobInp = document.getElementById('mobileSearchInput');
+            if (deskInp) deskInp.value = '';
+            if (mobInp) mobInp.value = '';
+            renderShopProducts();
         }
 
         // Filters Handling
         function filterByCategory(cat) {
             filters.categories = [cat];
-            document.querySelectorAll('.filter-check-cat').forEach(cb => {
+            document.querySelectorAll('.filter-check-cat, .mob-filter-cat').forEach(cb => {
                 cb.checked = (cb.value === cat);
             });
             navigatePage('shop');
@@ -2404,25 +2917,25 @@
 
         function handleFilterCheck(type, val, checked) {
             if (type === 'category') {
-                if (checked) filters.categories.push(val);
-                else filters.categories = filters.categories.filter(c => c !== val);
+                if (checked && !filters.categories.includes(val)) filters.categories.push(val);
+                else if (!checked) filters.categories = filters.categories.filter(c => c !== val);
+            } else if (type === 'fit') {
+                if (checked && !filters.fits.includes(val)) filters.fits.push(val);
+                else if (!checked) filters.fits = filters.fits.filter(f => f !== val);
             } else if (type === 'color') {
-                if (checked) filters.colors.push(val);
-                else filters.colors = filters.colors.filter(c => c !== val);
+                if (checked && !filters.colors.includes(val)) filters.colors.push(val);
+                else if (!checked) filters.colors = filters.colors.filter(c => c !== val);
             }
             renderShopProducts();
         }
 
         function handleSizeChip(sz) {
             const idx = filters.sizes.indexOf(sz);
-            if (idx === -1) {
-                filters.sizes.push(sz);
-            } else {
-                filters.sizes.splice(idx, 1);
-            }
-            document.querySelectorAll('.size-chip').forEach(btn => {
-                const s = btn.getAttribute('data-size');
-                if (filters.sizes.includes(s)) {
+            if (idx === -1) filters.sizes.push(sz);
+            else filters.sizes.splice(idx, 1);
+
+            document.querySelectorAll(`.size-chip[data-size="${sz}"]`).forEach(btn => {
+                if (filters.sizes.includes(sz)) {
                     btn.classList.add('bg-axCharcoal', 'text-white');
                 } else {
                     btn.classList.remove('bg-axCharcoal', 'text-white');
@@ -2432,13 +2945,27 @@
         }
 
         function handlePriceRange(val) {
-            filters.maxPrice = parseInt(val);
-            document.getElementById('priceSliderLabel').innerText = `₹${val}`;
+            filters.maxPrice = parseInt(val, 10);
+            const lbl = document.getElementById('priceSliderLabel');
+            if (lbl) lbl.innerText = `₹${filters.maxPrice.toLocaleString('en-IN')}`;
+            renderShopProducts();
+        }
+
+        function resetPriceFilter() {
+            filters.maxPrice = 1499;
+            const slider = document.getElementById('priceRange');
+            const lbl = document.getElementById('priceSliderLabel');
+            if (slider) slider.value = 1499;
+            if (lbl) lbl.innerText = '₹1,499';
             renderShopProducts();
         }
 
         function handleInStock(checked) {
             filters.inStockOnly = checked;
+            const cb1 = document.getElementById('inStockOnly');
+            const cb2 = document.getElementById('mobInStockOnly');
+            if (cb1) cb1.checked = checked;
+            if (cb2) cb2.checked = checked;
             renderShopProducts();
         }
 
@@ -2447,24 +2974,18 @@
             renderShopProducts();
         }
 
-        function handleSearch(val) {
-            filters.search = val.trim();
-            if (filters.search) {
-                navigatePage('shop');
-            }
-            renderShopProducts();
-        }
-
-        function toggleMobileFilters() {
-            const sidebar = document.getElementById('filterSidebar');
-            if (sidebar) {
-                sidebar.classList.toggle('hidden');
-            }
+        function toggleMobileFilters(forceOpen) {
+            const drawer = document.getElementById('mobileFilterDrawer');
+            if (!drawer) return;
+            if (forceOpen === true) drawer.classList.remove('hidden');
+            else if (forceOpen === false) drawer.classList.add('hidden');
+            else drawer.classList.toggle('hidden');
         }
 
         function clearAllFilters() {
             filters = {
                 categories: [],
+                fits: [],
                 sizes: [],
                 colors: [],
                 maxPrice: 1499,
@@ -2472,219 +2993,501 @@
                 sort: 'newest',
                 search: ''
             };
-            document.querySelectorAll('.filter-check-cat, .filter-check-color, #inStockOnly').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.filter-check-cat, .filter-check-fit, .filter-check-color, .mob-filter-cat, .mob-filter-fit, #inStockOnly, #mobInStockOnly').forEach(cb => cb.checked = false);
             document.querySelectorAll('.size-chip').forEach(btn => btn.classList.remove('bg-axCharcoal', 'text-white'));
-            document.getElementById('priceRange').value = 1499;
-            document.getElementById('priceSliderLabel').innerText = '₹1,499';
-            document.getElementById('headerSearch').value = '';
+            resetPriceFilter();
+            clearSearchFilter();
             renderShopProducts();
         }
 
-        // Checkout & Order Creation Flow (Rule 18 & 19)
+        // Checkout Flow & Validation (Rules 34-39)
         function openCheckoutModal() {
             if (cart.length === 0) {
-                alert('Your bag is empty! Add products to proceed.');
+                showToast("Cart is Empty", "Add items to your bag before checking out.", "🛍️");
                 return;
             }
             toggleCartDrawer(false);
-            const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-            document.getElementById('chkSubtotal').innerText = `₹${subtotal}`;
-            document.getElementById('chkTotal').innerText = `₹${subtotal}`;
-            document.getElementById('checkoutModal').classList.remove('hidden');
+            updateCartUI();
+            const modal = document.getElementById('checkoutModal');
+            if (modal) modal.classList.remove('hidden');
         }
 
         function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.add('hidden');
+            const modal = document.getElementById('checkoutModal');
+            if (modal) modal.classList.add('hidden');
         }
 
         function handlePlaceOrder() {
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
             const email = document.getElementById('custEmail').value.trim();
-            const address = document.getElementById('custAddress').value.trim();
+            const addr = document.getElementById('custAddress').value.trim();
             const city = document.getElementById('custCity').value.trim();
+            const state = document.getElementById('custState').value.trim();
             const pin = document.getElementById('custPin').value.trim();
+            const terms = document.getElementById('chkTermsAgree');
+
+            // 1. Validate Indian Phone: exactly 10 digits starting with 6-9
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(phone)) {
+                showToast("Invalid Mobile Number", "Please enter a valid 10-digit Indian mobile number.", "⚠️");
+                document.getElementById('custPhone').focus();
+                return;
+            }
+
+            // 2. Validate PIN Code: 6 digits
+            const pinRegex = /^\d{6}$/;
+            if (!pinRegex.test(pin)) {
+                showToast("Invalid PIN Code", "Please enter a valid 6-digit Indian postal code.", "⚠️");
+                document.getElementById('custPin').focus();
+                return;
+            }
+
+            // 3. Validate Terms & Conditions Checkbox
+            if (terms && !terms.checked) {
+                showToast("Terms Agreement Required", "Please accept the Terms of Service to proceed.", "⚠️");
+                terms.focus();
+                return;
+            }
 
             const subtotal = cart.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-            const orderNum = '1048'; // Sample WooCommerce Order ID
-            const orderIdFormatted = `AXD-2026-${orderNum}`;
+            const shipping = subtotal >= 999 ? 0 : 99;
+            const total = subtotal + shipping;
+
+            // Generate Dynamic Order ID
+            const orderId = 'AXD-' + Math.floor(100000 + Math.random() * 900000);
 
             currentOrder = {
-                orderId: orderNum,
-                orderFormatted: orderIdFormatted,
-                name: name,
-                phone: phone,
-                email: email,
-                address: `${address}, ${city} - ${pin}`,
-                total: subtotal,
-                status: 'Awaiting Payment',
+                orderId: orderId,
+                customer: { name, phone, email, addr, city, state, pin },
                 items: [...cart],
-                utr: null
+                subtotal: subtotal,
+                shipping: shipping,
+                total: total,
+                status: 'Awaiting Payment',
+                createdAt: new Date().toISOString(),
+                trackingStage: 2
             };
+
+            // Save order to localStorage for real tracking verification
+            const existingOrders = JSON.parse(localStorage.getItem('axdoro_orders') || '[]');
+            existingOrders.unshift(currentOrder);
+            localStorage.setItem('axdoro_orders', JSON.stringify(existingOrders));
 
             closeCheckoutModal();
             openWhatsAppPaymentModal(currentOrder);
         }
 
+        // WhatsApp Payment Flow & Verification Modal
         function openWhatsAppPaymentModal(order) {
-            document.getElementById('payModalOrderId').innerText = `#${order.orderFormatted}`;
+            const modal = document.getElementById('whatsappPaymentModal');
+            if (!modal) return;
+
+            document.getElementById('payModalOrderId').innerText = `#${order.orderId}`;
             document.getElementById('payUpiAmount').innerText = `₹${order.total}`;
 
-            // NPCI UPI intent link
-            const upiIntent = `upi://pay?pa=axdoro@upi&pn=AXDORO%20Clothing&am=${order.total}.00&cu=INR&tn=Order-${order.orderId}`;
-            document.getElementById('payUpiBtn').href = upiIntent;
+            // Prepare WhatsApp link
+            const itemsText = order.items.map(i => `• ${i.product.name} (Size: ${i.size}) x${i.qty}`).join('\n');
+            const waMsg = `Hi AXDORO! I would like to confirm my order:\n\n*Order ID:* ${order.orderId}\n*Name:* ${order.customer.name}\n*Phone:* ${order.customer.phone}\n*Items:*\n${itemsText}\n\n*Subtotal:* ₹${order.subtotal}\n*Shipping:* ${order.shipping === 0 ? 'FREE' : '₹99'}\n*Total Payable:* ₹${order.total}\n\nPlease share UPI QR / Payment link to complete order.`;
 
-            // WhatsApp Prefilled Link
-            const itemsText = order.items.map(i => `• ${i.qty}x ${i.product.name} (${i.size})`).join('%0A');
-            const waText = `Hello%20AXDORO!%0A%0AI%20have%20placed%20order%20on%20axdoro.com:%0A`
-                + `🛒%20Order%20ID:%20%23${order.orderFormatted}%0A`
-                + `👤%20Name:%20${encodeURIComponent(order.name)}%0A`
-                + `💰%20Amount:%20%E2%82%B9${order.total}%0A%0A`
-                + `📦%20Items:%0A${itemsText}%0A%0A`
-                + `💳%20UPI%20Link:%20${encodeURIComponent(upiIntent)}%0A%0A`
-                + `Kindly%20confirm%20once%20payment%20is%20verified.`;
+            const waBtn = document.getElementById('payWhatsAppBtn');
+            if (waBtn) waBtn.href = `https://wa.me/918807304713?text=${encodeURIComponent(waMsg)}`;
 
-            document.getElementById('payWhatsAppBtn').href = `https://wa.me/918807304713?text=${waText}`;
+            const upiBtn = document.getElementById('payUpiBtn');
+            if (upiBtn) upiBtn.href = `upi://pay?pa=axdoro@upi&pn=AXDORO%20Clothing&am=${order.total}&cu=INR&tn=${encodeURIComponent('Order ' + order.orderId)}`;
 
-            document.getElementById('whatsappPaymentModal').classList.remove('hidden');
+            modal.classList.remove('hidden');
         }
 
         function closeWhatsAppModal() {
-            document.getElementById('whatsappPaymentModal').classList.add('hidden');
-            // Clear cart
-            cart = [];
-            updateCartUI();
-            // Pre-fill track order input
-            document.getElementById('trackIdInput').value = currentOrder.orderFormatted;
-            document.getElementById('trackContactInput').value = currentOrder.phone;
-            navigatePage('track');
-            handleTrackSubmit();
+            const modal = document.getElementById('whatsappPaymentModal');
+            if (modal) modal.classList.add('hidden');
         }
 
+        // Gateway Webhook Simulator (Sandbox / Client Simulation - Rule 43-46)
         function simulateWebhookPayment() {
             if (!currentOrder) return;
-            currentOrder.status = 'Payment Verified';
-            alert(`✅ Webhook Triggered!\nGateway: Razorpay\nSignature Verified: HMAC-SHA256\nOrder #${currentOrder.orderFormatted} marked as "Payment Verified".`);
-            closeWhatsAppModal();
+            const btn = document.getElementById('simulateWebhookBtn');
+            if (btn) {
+                btn.innerHTML = '⚡ Verifying HMAC Signature & Updating Order...';
+                btn.classList.add('bg-emerald-700');
+            }
+
+            setTimeout(() => {
+                currentOrder.status = 'Payment Verified';
+                currentOrder.trackingStage = 3;
+
+                // Update in localStorage
+                const existingOrders = JSON.parse(localStorage.getItem('axdoro_orders') || '[]');
+                const found = existingOrders.find(o => o.orderId === currentOrder.orderId);
+                if (found) {
+                    found.status = 'Payment Verified';
+                    found.trackingStage = 3;
+                    localStorage.setItem('axdoro_orders', JSON.stringify(existingOrders));
+                }
+
+                showToast("Payment Verified!", `Order #${currentOrder.orderId} status: Processing`, "✅");
+                closeWhatsAppModal();
+                cart = [];
+                updateCartUI();
+
+                // Navigate to track order
+                navigatePage('track');
+                const idInput = document.getElementById('trackIdInput');
+                const contactInput = document.getElementById('trackContactInput');
+                if (idInput) idInput.value = currentOrder.orderId;
+                if (contactInput) contactInput.value = currentOrder.customer.phone;
+                handleTrackSubmit();
+            }, 1200);
         }
 
         function submitManualUtr() {
             const utr = document.getElementById('manualUtrInput').value.trim();
-            if (utr.length < 6) {
-                alert('Please enter a valid 12-digit UPI UTR number.');
+            if (!utr || utr.length < 8) {
+                showToast("Invalid UTR", "Please enter a valid 12-digit bank reference number.", "⚠️");
                 return;
             }
-            if (currentOrder) {
-                currentOrder.utr = utr;
-            }
+            showToast("UTR Submitted", "Our payment verification team is verifying your transfer.", "✅");
             document.getElementById('utrFeedback').classList.remove('hidden');
             setTimeout(() => {
                 closeWhatsAppModal();
-            }, 1200);
+                cart = [];
+                updateCartUI();
+            }, 1400);
         }
 
-        // Track Order Logic
+        // Real Order Tracking with Strict Verification (Rules 50-52)
         function handleTrackSubmit() {
             const idInput = document.getElementById('trackIdInput').value.trim();
             const contactInput = document.getElementById('trackContactInput').value.trim();
-
             const card = document.getElementById('trackResultCard');
             const title = document.getElementById('trackOrderTitle');
             const badge = document.getElementById('trackStatusBadge');
             const pBar = document.getElementById('trackProgressBar');
+            if (!card) return;
 
-            title.innerText = `Order #${idInput || 'AXD-1024'}`;
-            
-            if (currentOrder && currentOrder.status === 'Payment Verified') {
-                badge.innerText = 'PAYMENT VERIFIED';
-                badge.className = 'bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded';
-                pBar.style.width = '40%';
-            } else {
-                badge.innerText = 'PACKED AT WAREHOUSE';
-                badge.className = 'bg-axSand text-axCharcoal text-[10px] font-bold px-2 py-0.5 rounded';
-                pBar.style.width = '60%';
+            // Seed demo orders for testing verification
+            const demoOrders = [
+                {
+                    orderId: 'AXD-1024',
+                    contact: '9876543210',
+                    email: 'demo@axdoro.com',
+                    name: 'Vikram Singh',
+                    status: 'Dispatched via Bluedart (AWB: BD-8492049102)',
+                    trackingStage: 5,
+                    itemsSummary: "AXDORO 240 GSM Oversized Heavyweight Tee - Jet Black (L) x2",
+                    total: 1998,
+                    city: 'Mumbai, Maharashtra'
+                }
+            ];
+
+            const storedOrders = JSON.parse(localStorage.getItem('axdoro_orders') || '[]');
+            const allOrders = [...storedOrders, ...demoOrders];
+
+            // Real verification: matches ID AND (Phone OR Email)
+            const matched = allOrders.find(o => {
+                const idMatches = o.orderId.toLowerCase() === idInput.toLowerCase() || 
+                                  o.orderId.toLowerCase() === ('axd-' + idInput.toLowerCase()) ||
+                                  ('axd-' + o.orderId.toLowerCase()) === idInput.toLowerCase();
+                
+                const contact = (o.customer && o.customer.phone) || o.contact || '';
+                const email = (o.customer && o.customer.email) || o.email || '';
+
+                const contactMatches = contact.includes(contactInput) || 
+                                      (contactInput && email.toLowerCase() === contactInput.toLowerCase());
+                return idMatches && contactMatches;
+            });
+
+            if (!matched) {
+                card.classList.remove('hidden');
+                card.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-800 rounded-xl p-6 text-center space-y-3">
+                        <span class="text-3xl block">⚠️</span>
+                        <h4 class="font-bold text-sm text-red-900">No Matching Order Found</h4>
+                        <p class="text-xs text-red-700 max-w-md mx-auto">
+                            We could not locate an order matching Order ID <strong>"${idInput || 'Empty'}"</strong> with contact <strong>"${contactInput || 'Empty'}"</strong>.
+                        </p>
+                        <p class="text-[11px] text-axGrey">
+                            Tip: For instant testing, use Order ID: <code class="font-mono bg-red-100 px-1 py-0.5 rounded text-red-900">AXD-1024</code> and Mobile: <code class="font-mono bg-red-100 px-1 py-0.5 rounded text-red-900">9876543210</code>, or place a new order.
+                        </p>
+                        <div class="pt-2">
+                            <a href="https://wa.me/918807304713?text=${encodeURIComponent('Hello AXDORO! I need help tracking my order: ' + idInput)}" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 bg-axCharcoal text-white rounded text-xs font-bold hover:bg-black transition-colors">
+                                <span>💬 WhatsApp Live Dispatch Support</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                return;
             }
 
+            // Order Found - Render 7-Milestone Timeline
+            const stage = matched.trackingStage || 4;
+            const pct = Math.min(100, Math.round((stage / 7) * 100));
+
             card.classList.remove('hidden');
+            card.innerHTML = `
+                <div class="bg-white border border-axSand rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+                    <!-- Order Header -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-axSand gap-2">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-axGold bg-axCharcoal px-2 py-0.5 rounded">VERIFIED ORDER</span>
+                            <h3 class="text-xl font-black font-heading text-axCharcoal mt-1">Order #${matched.orderId}</h3>
+                            <p class="text-xs text-axGrey">Customer: <strong>${(matched.customer && matched.customer.name) || matched.name}</strong> • Total: <strong>₹${matched.total}</strong></p>
+                        </div>
+                        <div class="text-right">
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${matched.status}</span>
+                        </div>
+                    </div>
+
+                    <!-- 7-Milestone Progress Timeline (Rule 51 & 52) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-axCharcoal mb-2">
+                            <span>Fulfillment Progress</span>
+                            <span>${pct}% Completed</span>
+                        </div>
+                        <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-6">
+                            <div class="bg-axCharcoal h-full transition-all duration-500" style="width: ${pct}%;"></div>
+                        </div>
+
+                        <!-- Timeline Milestones -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-center text-[10px]">
+                            <div class="p-2 rounded ${stage >= 1 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">1. Placed</span>
+                                <span class="text-[9px]">${stage >= 1 ? '✓ Confirmed' : 'Pending'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 2 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">2. Payment</span>
+                                <span class="text-[9px]">${stage >= 2 ? '✓ Verified' : 'Pending'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 3 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">3. 240 GSM QC</span>
+                                <span class="text-[9px]">${stage >= 3 ? '✓ Passed' : 'Queued'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 4 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">4. Packed</span>
+                                <span class="text-[9px]">${stage >= 4 ? '✓ Eco-Pack' : 'Queued'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 5 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">5. Dispatched</span>
+                                <span class="text-[9px]">${stage >= 5 ? '✓ Carrier Handed' : 'Pending'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 6 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">6. Out for Delivery</span>
+                                <span class="text-[9px]">${stage >= 6 ? '✓ Today' : 'Pending'}</span>
+                            </div>
+                            <div class="p-2 rounded ${stage >= 7 ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-gray-50 text-gray-400'}">
+                                <span class="block font-bold">7. Delivered</span>
+                                <span class="text-[9px]">${stage >= 7 ? '✓ Handed Over' : 'Pending'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dispatch Support CTA -->
+                    <div class="pt-4 border-t border-axSand flex flex-col sm:flex-row items-center justify-between text-xs text-axGrey gap-3">
+                        <div>Courier Partner: <strong>Bluedart Express Surface (Air Priority)</strong></div>
+                        <a href="https://wa.me/918807304713?text=${encodeURIComponent('Hello AXDORO! Inquiring about delivery updates for Order ' + matched.orderId)}" target="_blank" class="px-4 py-2 bg-axIvory hover:bg-axSand text-axCharcoal rounded font-bold border border-axSand flex items-center gap-1.5 transition-colors">
+                            <span>💬 Live Delivery Assistance via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
-        // Bulk Form
+        // Bulk Form with Delivery Date & Local Lead Storage (Rules 56-58)
         function submitBulkForm() {
             const name = document.getElementById('bulkName').value.trim();
             const phone = document.getElementById('bulkPhone').value.trim();
             const product = document.getElementById('bulkProduct').value;
             const qty = document.getElementById('bulkQty').value;
+            const date = document.getElementById('bulkDeliveryDate') ? document.getElementById('bulkDeliveryDate').value : '';
             const sizes = document.getElementById('bulkSizes').value;
             const notes = document.getElementById('bulkNotes').value;
+
+            if (!name || !phone || !qty) {
+                showToast("Required Fields Missing", "Please fill name, phone, and target quantity.", "⚠️");
+                return;
+            }
+
+            // Save lead locally
+            const lead = { name, phone, product, qty, date, sizes, notes, createdAt: new Date().toISOString() };
+            const existingLeads = JSON.parse(localStorage.getItem('axdoro_bulk_leads') || '[]');
+            existingLeads.unshift(lead);
+            localStorage.setItem('axdoro_bulk_leads', JSON.stringify(existingLeads));
 
             const text = `Hello%20AXDORO%20Bulk%20Desk!%0A%0A*Bulk%20Order%20Enquiry*%0A`
                 + `•%20Name:%20${encodeURIComponent(name)}%0A`
                 + `•%20Phone:%20${encodeURIComponent(phone)}%0A`
                 + `•%20Product:%20${encodeURIComponent(product)}%0A`
                 + `•%20Quantity:%20${encodeURIComponent(qty)}%20pcs%0A`
+                + `•%20Target%20Delivery%20Date:%20${encodeURIComponent(date || 'Flexible')}%0A`
                 + `•%20Sizes/Colors:%20${encodeURIComponent(sizes || 'Open')}%0A`
                 + `•%20Notes:%20${encodeURIComponent(notes || 'None')}%0A%0A`
                 + `Please%20share%20quotation.`;
 
-            window.open(`https://wa.me/918807304713?text=${text}`, '_blank');
+            showToast("Inquiry Received!", "Connecting you with AXDORO Bulk Desk on WhatsApp.", "✅");
+            setTimeout(() => {
+                window.open(`https://wa.me/918807304713?text=${text}`, '_blank');
+            }, 600);
         }
 
-        // Lean AI Chatbot Logic
-        function toggleChatbot() {
-            const win = document.getElementById('botWindow');
-            win.classList.toggle('hidden');
-            if (!win.classList.contains('hidden')) {
-                document.getElementById('botTextInput').focus();
+        // Legal Policy Modals (Rules 70-73)
+        function openPolicyModal(type) {
+            const modal = document.getElementById('policyModal');
+            const content = document.getElementById('policyModalContent');
+            if (!modal || !content) return;
+
+            if (type === 'privacy') {
+                content.innerHTML = `
+                    <h3 class="text-xl font-black font-heading text-axCharcoal">PRIVACY POLICY</h3>
+                    <p class="text-axGrey">Effective Date: January 1, 2026 • Compliant with Indian DPDP Act 2023</p>
+                    <div class="space-y-3 pt-2 text-axCharcoal">
+                        <p><strong>1. Information We Collect:</strong> AXDORO collects customer name, phone number, delivery address, and email strictly for order fulfillment, courier tracking via Shiprocket/Bluedart, and WhatsApp transaction updates.</p>
+                        <p><strong>2. Payment Security:</strong> We do NOT store credit card numbers, UPI PINs, or bank account credentials. All transactions are securely routed through PCI-DSS Level 1 compliant gateways (Razorpay / Cashfree).</p>
+                        <p><strong>3. Zero Data Reselling:</strong> Your personal contact details are never sold, rented, or bartered to third-party ad networks.</p>
+                        <p><strong>4. Contact Data Protection Officer:</strong> For grievance redressal or data deletion requests, contact privacy@axdoro.com or +91 88073 04713.</p>
+                    </div>
+                `;
+            } else if (type === 'terms') {
+                content.innerHTML = `
+                    <h3 class="text-xl font-black font-heading text-axCharcoal">TERMS OF SERVICE</h3>
+                    <p class="text-axGrey">Last Revised: January 2026</p>
+                    <div class="space-y-3 pt-2 text-axCharcoal">
+                        <p><strong>1. Acceptance:</strong> By accessing AXDORO or placing an order, you agree to these Terms and our commercial conditions.</p>
+                        <p><strong>2. Product Authenticity & Fabric Standard:</strong> All AXDORO garments are manufactured from 240 GSM dense combed cotton, calibrated for heavy drape. Slight visual variations in vintage/mineral washes are natural to artisan dye processes.</p>
+                        <p><strong>3. Order Confirmation:</strong> Orders are confirmed upon receipt of verified payment (via UPI, Gateway, or COD verification). AXDORO reserves the right to cancel suspicious orders.</p>
+                        <p><strong>4. Jurisdiction:</strong> These terms are governed by the laws of India, subject to courts in Tamil Nadu.</p>
+                    </div>
+                `;
+            } else if (type === 'shipping' || type === 'returns') {
+                content.innerHTML = `
+                    <h3 class="text-xl font-black font-heading text-axCharcoal">SHIPPING, EXCHANGE &amp; RETURN POLICY</h3>
+                    <p class="text-axGrey">Clear • Fair • Hassle-Free Indian Commerce</p>
+                    <div class="space-y-3 pt-2 text-axCharcoal">
+                        <p><strong>1. Free Shipping Threshold:</strong> All orders above <strong>₹999</strong> receive <strong>FREE Express Shipping</strong> across India. Orders below ₹999 are charged a flat standard express fee of ₹99.</p>
+                        <p><strong>2. Dispatch Timeline:</strong> Orders are dispatched from our warehouse within 24 to 48 business hours. Typical delivery takes 3–5 business days via Bluedart / Delhivery.</p>
+                        <p><strong>3. 7-Day Size Exchange:</strong> Got the wrong size? We offer a hassle-free 7-day exchange from the date of delivery. Garments must be unworn, unwashed, and have original tags attached.</p>
+                        <p><strong>4. Reverse Pickup:</strong> Reverse pickup is scheduled through our carrier partner upon WhatsApp notification (+91 88073 04713).</p>
+                    </div>
+                `;
             }
+
+            modal.classList.remove('hidden');
         }
 
-        const FAQ_BOT_DATA = [
-            { keys: ['size', 'fit', 'measurement', 'chart'], reply: 'AXDORO tees feature a relaxed drop-shoulder oversized streetwear fit. If you prefer a classic regular look, size down one size. For a true streetwear boxy drape, pick your regular size!' },
-            { keys: ['fabric', 'gsm', 'cotton', 'heavyweight'], reply: 'We craft with dense 240 GSM 100% combed cotton. It gives structured weight, eliminates see-through transparency, and keeps collar shape wash after wash.' },
-            { keys: ['shipping', 'delivery', 'dispatch', 'courier'], reply: 'Orders dispatch within 24–48 hours via Shiprocket partners. Delivery takes 3–5 working days. Enjoy FREE SHIPPING on orders above ₹999!' },
-            { keys: ['return', 'exchange', 'refund'], reply: 'We offer a 7-day size exchange window from delivery date. Items must be unworn with tags attached. WhatsApp us your Order ID to initiate an exchange.' },
-            { keys: ['bulk', 'custom', 'college', 'corporate'], reply: 'We supply custom 240 GSM merchandise (minimum order 20 pcs) with screen printing or embroidery. Check our Custom Orders page or WhatsApp our bulk desk!' }
-        ];
+        function closePolicyModal() {
+            const modal = document.getElementById('policyModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        // Chatbot Widget
+        function toggleChatbot() {
+            const botWin = document.getElementById('botWindow');
+            if (botWin) botWin.classList.toggle('hidden');
+        }
 
         function askBotQuery(query) {
-            handleBotQuery(query);
+            const inp = document.getElementById('botTextInput');
+            if (inp) inp.value = query;
+            handleBotInput();
         }
 
         function handleBotInput() {
-            const input = document.getElementById('botTextInput');
-            const q = input.value.trim();
+            const inp = document.getElementById('botTextInput');
+            const q = inp.value.trim();
             if (!q) return;
-            input.value = '';
+            inp.value = '';
             handleBotQuery(q);
         }
 
         function handleBotQuery(query) {
-            const box = document.getElementById('botMessages');
-            // User msg
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-axCharcoal text-white p-3 rounded-xl rounded-tr-none ml-auto max-w-[85%] text-xs';
-            userMsg.innerText = query;
-            box.appendChild(userMsg);
+            const messages = document.getElementById('botMessages');
+            if (!messages) return;
 
-            // Bot reply
+            // Append User Message
+            messages.innerHTML += `
+                <div class="bg-axCharcoal text-white p-3 rounded-xl rounded-tr-none ml-auto max-w-[85%] text-xs shadow-xs">
+                    ${query}
+                </div>
+            `;
+
+            // Bot Response Lookup
+            let reply = "I'm here to help! For specific order queries or custom bulk styling, WhatsApp our team directly at +91 88073 04713.";
+            const q = query.toLowerCase();
+
+            if (q.includes('size') || q.includes('fit') || q.includes('chart')) {
+                reply = "AXDORO tees feature a relaxed drop-shoulder boxy drape in 240 GSM. If you prefer a regular tailored fit, pick one size smaller than your standard fit. Need precise measurements? Check our Size Guide link or WhatsApp us!";
+            } else if (q.includes('fabric') || q.includes('gsm') || q.includes('cotton')) {
+                reply = "Every AXDORO tee is crafted from dense 240 GSM combed cotton. This ensures structured drape, zero cling, opaque silhouette, and a collar that never sags after washing.";
+            } else if (q.includes('shipping') || q.includes('deliver') || q.includes('time')) {
+                reply = "We offer FREE Express Shipping on all orders above ₹999 (₹99 for orders below ₹999). Orders dispatch in 24-48 hrs and arrive in 3-5 days across India.";
+            } else if (q.includes('return') || q.includes('exchange')) {
+                reply = "We have a 7-day hassle-free size exchange policy! Simply message us on WhatsApp with your Order ID, and we'll arrange a doorstep exchange.";
+            } else if (q.includes('bulk') || q.includes('merch') || q.includes('custom')) {
+                reply = "For corporate, creator, or bulk orders (50+ units), check our Bulk Orders page or chat with our Bulk Merch desk on WhatsApp at +91 88073 04713 for custom wholesale pricing.";
+            }
+
             setTimeout(() => {
-                const lower = query.toLowerCase();
-                let match = FAQ_BOT_DATA.find(item => item.keys.some(k => lower.includes(k)));
-                let replyText = match ? match.reply : "I'm not fully sure about that yet, but our AXDORO team is active on WhatsApp to help you directly!";
-                
-                const botMsg = document.createElement('div');
-                botMsg.className = 'bg-white p-3 rounded-xl rounded-tl-none border border-axSand max-w-[85%] text-axCharcoal text-xs';
-                botMsg.innerHTML = replyText;
-                box.appendChild(botMsg);
-                box.scrollTop = box.scrollHeight;
-            }, 250);
+                messages.innerHTML += `
+                    <div class="bg-white p-3 rounded-xl rounded-tl-none border border-axSand max-w-[85%] text-axCharcoal text-xs shadow-xs">
+                        ${reply}
+                    </div>
+                `;
+                messages.scrollTop = messages.scrollHeight;
+            }, 300);
         }
 
-        // Init
+        // Global Keyboard Accessibility: Dismiss overlays on Escape key (Rule 75)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleMobileSearchDrawer(false);
+                toggleWishlistDrawer(false);
+                toggleCartDrawer(false);
+                toggleMobileFilters(false);
+                closeProductModal();
+                closeSizeGuideModal();
+                closeCheckoutModal();
+                closeWhatsAppModal();
+                closePolicyModal();
+                const deskSuggest = document.getElementById('searchSuggestions');
+                if (deskSuggest) deskSuggest.classList.add('hidden');
+                const botWin = document.getElementById('botWindow');
+                if (botWin) botWin.classList.add('hidden');
+            }
+        });
+
+        // Initialize on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Button Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileNav.classList.toggle('hidden');
+                });
+            }
+
+            // Set minimum date for bulk delivery (today + 3 days)
+            const bulkDateInp = document.getElementById('bulkDeliveryDate');
+            if (bulkDateInp) {
+                const minDate = new Date();
+                minDate.setDate(minDate.getDate() + 3);
+                bulkDateInp.min = minDate.toISOString().split('T')[0];
+            }
+
+            // Initialize Dynamic Product Count & Views (Rules 4 & 5)
+            updateWishlistBadges();
+            updateCartUI();
             renderHomeTrending();
             renderShopProducts();
+
+            const productCount = document.getElementById('productResultCount');
+            if (productCount) {
+                productCount.innerText = PRODUCTS.length;
+            }
+
+            console.log(`AXDORO Loaded: ${PRODUCTS.length} Men's T-Shirt Drops, Cart initialized.`);
         });
+
     </script>
 </body>
 </html>

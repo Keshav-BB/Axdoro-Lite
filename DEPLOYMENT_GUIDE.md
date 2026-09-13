@@ -86,12 +86,19 @@ Navigate to **WooCommerce > AXDORO Settings**:
 5. **Active Events:** Check `payment.captured` and `payment_link.paid`.
 6. Save the webhook.
 
-### Option B: Zero-Cost WhatsApp UPI + UTR Fallback (Immediate Launch)
+### Option B: Cashfree Automated Webhook
+1. Log into **Cashfree Merchant Dashboard > Developers > Webhooks**.
+2. Click **Add Webhook**.
+3. **Endpoint URL:** `https://your-domain.com/wp-json/axdoro/v1/payment-webhook`
+4. **Events:** Check `ORDER_PAID` and `PAYMENT_SUCCESS_WEBHOOK`.
+5. **Signature Header:** Cashfree sends `x-webhook-timestamp` and `x-webhook-signature`. `class-payment-webhook.php` computes the HMAC on `$timestamp . $raw_payload` with base64 encoding to verify authenticity.
+
+### Option C: Zero-Cost WhatsApp UPI + UTR Fallback (Immediate Launch)
 If payment gateway onboarding is pending or delayed:
 1. Set **Active Payment Mode** to `WhatsApp Direct UPI`.
 2. When customer clicks "Place Order" at checkout:
    - WooCommerce creates the order (`#1024`) with status *Awaiting Payment*.
-   - Thank You page opens with two primary buttons: **"Pay via WhatsApp"** (with prefilled message) and **"Pay via UPI App"** (`upi://pay`).
+   - Thank You page opens with two primary buttons: **"Pay via WhatsApp"** (with prefilled message to `8807304713`) and **"Pay via UPI App"** (`upi://pay`).
    - Customer completes UPI transfer and submits their 12-digit UTR on the screen.
    - The UTR is immediately recorded in order meta and private order notes.
    - Admin verifies in bank app and marks order as *Payment Verified* with one click.
@@ -107,7 +114,7 @@ If payment gateway onboarding is pending or delayed:
    - Orders with status *Payment Verified* or *Processing* automatically sync to Shiprocket.
 3. **Tracking Milestone Display:**
    - Create a page at `/track-order/` and paste the shortcode: `[axdoro_track_order]`.
-   - When AWB number is generated (automatically or entered into the order metabox), customers can track their parcel through the visual 5-step milestone timeline.
+   - When AWB number is generated (automatically or entered into the order metabox), customers can track their parcel through the visual 7-step milestone timeline.
 
 ---
 
@@ -120,28 +127,29 @@ If payment gateway onboarding is pending or delayed:
 - [ ] Tap targets on size selectors and buttons exceed 44px height.
 
 ### Catalogue & Discovery
+- [ ] 100% Men's T-Shirts Only (Zero non-t-shirt apparel or women's/kids items).
 - [ ] Sample products imported and tested across variations (XS, S, M, L, XL, XXL).
 - [ ] Category archive pages (`/product-category/oversized/`, etc.) load properly.
-- [ ] Search icon in header functions with keyword queries.
+- [ ] Search input in desktop and mobile drawer functions with live keyword queries and autocomplete thumbnails.
 - [ ] "Need Help with Size?" WhatsApp button on single product page generates accurate prefilled text with product title and SKU.
 
 ### Commerce & Checkout
-- [ ] Add to Bag adds correct color/size variation.
-- [ ] Cart slide-out/page displays correct pricing and subtotal.
-- [ ] Checkout validates mandatory WhatsApp mobile number and PIN code.
+- [ ] Size selection is deliberate (Initial state is "Select Size", Add to Bag disabled until size is chosen).
+- [ ] Cart slide-out displays correct pricing, subtotal, and ₹999 free shipping threshold (₹99 for orders under ₹999, Free at ₹999+).
+- [ ] Checkout validates mandatory WhatsApp mobile number (`/^[6-9]\d{9}$/`), 6-digit PIN code, and Terms & Conditions agreement checkbox.
 - [ ] Placing order successfully creates unique WooCommerce order in database before payment.
 
 ### Payment & Fulfillment
 - [ ] Thank You page displays "Complete Payment via WhatsApp / UPI" container.
 - [ ] Direct UPI link (`upi://pay`) triggers mobile UPI apps on phone.
 - [ ] Customer UTR submission form saves reference to order note without errors.
-- [ ] Webhook test ping returns HTTP 200 with signature validation.
+- [ ] Webhook test ping returns HTTP 200 with signature validation (HMAC SHA-256).
 - [ ] Admin metabox displays Gateway, Transaction ID, UTR, and AWB fields.
-- [ ] Track Order page `[axdoro_track_order]` renders order progress timeline when valid Order ID and contact details are submitted.
+- [ ] Track Order page `[axdoro_track_order]` validates Order ID AND Phone/Email together before revealing fulfillment progress.
 
 ### Support & Security
 - [ ] Floating AI/FAQ Chatbot opens and responds to queries (sizing, 240 GSM fabric, shipping, returns).
-- [ ] "Talk to Human on WhatsApp" handoff opens chat with client support desk.
+- [ ] "Talk to Human on WhatsApp" handoff opens chat with client support desk (`+91 88073 04713`).
 - [ ] SSL padlock green and active on all URLs.
 - [ ] UpdraftPlus automated backup scheduled.
 
@@ -154,3 +162,19 @@ If payment gateway onboarding is pending or delayed:
 | **Administrator** | PeoplePoint & Client Lead | Full system configuration, gateway API keys, webhooks, plugins, theme options. |
 | **Shop Manager** | AXDORO Operations Staff | Add/edit products, manage stock, view orders, update order status (Packed/Shipped), input AWB tracking numbers, verify UTR payments. |
 | **Marketing** | AXDORO Social Media Lead | Edit homepage banners, announcement messages, and blog/editorial content. |
+
+---
+
+## 9. Commercial Claims Sign-Off & Legal Compliance Protocol (Rule 8)
+
+Before running paid performance marketing (Meta/Google Ads) promoting technical claims, the AXDORO business team must obtain signed physical documentation:
+
+1. **240 GSM Fabric Weight Certification:**
+   - Mill/knitting lab GSM certificate verifying minimum fabric weight of 240 GSM (+/- 3% tolerance) for 100% combed cotton jersey.
+2. **Dimensional Stability / Anti-Shrinkage Test:**
+   - Standard 3-cycle wash test verifying shrinkage does not exceed 3.5% warp and 3.0% weft under normal cold-water wash cycles.
+3. **Dispatch SLA Verification:**
+   - 3-day internal warehouse audit confirming ability to pack and dispatch verified orders within 24 to 48 business hours via Shiprocket Surface/Air.
+4. **Legal Disclosures:**
+   - Privacy Policy (Indian DPDP Act compliant), Terms of Service, and 7-Day Exchange Policy active in footer with direct modal accessibility and zero broken links.
+
