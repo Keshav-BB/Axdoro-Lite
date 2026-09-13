@@ -130,11 +130,18 @@
            3. SCROLL REVEAL SYSTEM & STAGGER
            -------------------------------------------------------------------------- */
         .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(26px);
-            transition: opacity var(--duration-reveal) var(--ease-out-expo), 
-                        transform var(--duration-reveal) var(--ease-out-expo);
+            opacity: 1;
+            transform: none;
+            transition: opacity var(--duration-reveal) var(--ease-out-expo), transform var(--duration-reveal) var(--ease-out-expo);
             will-change: opacity, transform;
+        }
+        .reveal-stagger > * {
+            opacity: 1;
+            transform: none;
+        }
+        .product-card {
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         .reveal-on-scroll.is-revealed {
             opacity: 1;
@@ -253,48 +260,61 @@
         }
 
         /* --------------------------------------------------------------------------
-           6. DRAWERS (BAG / CART & FILTERS) SLIDE-IN
+           6. DRAWERS (BAG / CART, WISHLIST & FILTERS) SLIDE-IN
            -------------------------------------------------------------------------- */
         .drawer-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--duration-standard) var(--ease-out-expo), 
-                        visibility var(--duration-standard);
+            transition: opacity var(--duration-standard) var(--ease-out-expo);
         }
+        .drawer-overlay:not(.hidden),
         .drawer-overlay.is-active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .drawer-overlay:not(.hidden) .drawer-slide-panel,
+        .drawer-overlay.is-active .drawer-slide-panel {
+            transform: translateX(0) !important;
+        }
+        .drawer-overlay.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none;
+        }
+        .drawer-overlay.hidden .drawer-slide-panel {
+            transform: translateX(100%) !important;
         }
         .drawer-slide-panel {
-            transform: translateX(100%);
             transition: transform var(--duration-standard) var(--ease-out-expo);
             will-change: transform;
         }
-        .drawer-overlay.is-active .drawer-slide-panel {
-            transform: translateX(0);
-        }
 
         /* --------------------------------------------------------------------------
-           7. MODALS (QUICK VIEW, CHECKOUT, SIZE GUIDE) SCALE-IN
+           7. MODALS (QUICK VIEW, CHECKOUT, SIZE GUIDE, POLICIES) SCALE-IN
            -------------------------------------------------------------------------- */
         .modal-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 240ms var(--ease-out-expo), visibility 240ms;
+            transition: opacity 240ms var(--ease-out-expo);
         }
+        .modal-overlay:not(.hidden),
         .modal-overlay.is-active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .modal-overlay:not(.hidden) .modal-box,
+        .modal-overlay.is-active .modal-box {
+            opacity: 1 !important;
+            transform: scale(1) translateY(0) !important;
+        }
+        .modal-overlay.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none;
+        }
+        .modal-overlay.hidden .modal-box {
+            opacity: 0 !important;
+            transform: scale(0.96) translateY(10px) !important;
         }
         .modal-box {
-            opacity: 0;
-            transform: scale(0.96) translateY(10px);
             transition: opacity 260ms var(--ease-out-expo), transform 260ms var(--ease-out-expo);
             will-change: transform, opacity;
-        }
-        .modal-overlay.is-active .modal-box {
-            opacity: 1;
-            transform: scale(1) translateY(0);
         }
 
         /* --------------------------------------------------------------------------
@@ -2283,7 +2303,7 @@
             const selectedSize = cardSelectedSizes[p.id] || null;
 
             return `
-            <div class="product-card reveal-on-scroll group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+            <div class="product-card group bg-white rounded-xl border border-axSand p-2.5 sm:p-3 flex flex-col justify-between hover:shadow-xl transition-all duration-300">
                 <div class="relative overflow-hidden rounded-lg bg-axIvory aspect-4-5 cursor-pointer" onclick="openProductModal(${p.id})">
                     <img src="${p.image}" alt="${p.name}" class="img-zoom w-full h-full object-cover ${!p.inStock ? 'grayscale-[35%] opacity-85' : ''}" loading="lazy">
                     <button onclick="event.stopPropagation(); toggleWishlist(${p.id});" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-axCharcoal flex items-center justify-center hover:bg-white shadow-md hover:scale-110 active:scale-90 transition-all duration-200 z-20 ${isWish ? 'heart-pop text-red-500 bg-white' : ''}" title="${isWish ? 'Remove from Wishlist' : 'Add to Wishlist'}" aria-label="Toggle Wishlist">
