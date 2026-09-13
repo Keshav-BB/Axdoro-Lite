@@ -127,42 +127,14 @@
         }
 
         /* --------------------------------------------------------------------------
-           3. SCROLL REVEAL SYSTEM & STAGGER
+           3. SCROLL ANIMATION & VISIBILITY GUARANTEE
            -------------------------------------------------------------------------- */
-        .reveal-on-scroll {
-            opacity: 1;
-            transform: none;
-            transition: opacity var(--duration-reveal) var(--ease-out-expo), transform var(--duration-reveal) var(--ease-out-expo);
-            will-change: opacity, transform;
-        }
-        .reveal-stagger > * {
-            opacity: 1;
-            transform: none;
-        }
+        .cat-card,
         .product-card {
             opacity: 1 !important;
             visibility: visible !important;
+            transform: none !important;
         }
-        .reveal-on-scroll.is-revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Sibling Stagger (Category Cards, Trending Drops, Fabric Points) */
-        .reveal-stagger > * {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 550ms var(--ease-out-expo), transform 550ms var(--ease-out-expo);
-            will-change: opacity, transform;
-        }
-        .reveal-stagger.is-revealed > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.is-revealed > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateY(0); }
 
         /* --------------------------------------------------------------------------
            4. CATEGORY CARDS LUXURY INTERACTION (Zara / COS Style)
@@ -318,15 +290,11 @@
         }
 
         /* --------------------------------------------------------------------------
-           8. FABRIC / 240 GSM SECTION & IMAGE MASK REVEAL
+           8. FABRIC / 240 GSM SECTION
            -------------------------------------------------------------------------- */
-        .img-mask-reveal {
-            clip-path: inset(0 0 100% 0);
-            transition: clip-path 850ms var(--ease-out-expo);
-            will-change: clip-path;
-        }
-        .img-mask-reveal.is-revealed {
-            clip-path: inset(0 0 0% 0);
+        .fabric-visual {
+            opacity: 1 !important;
+            clip-path: none !important;
         }
 
         /* --------------------------------------------------------------------------
@@ -384,12 +352,8 @@
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
-            .marquee-track {
-                animation: none !important;
-            }
-            .reveal-on-scroll, 
-            .reveal-stagger > *, 
-            .img-mask-reveal,
+            .cat-card,
+            .product-card,
             .hero-badge-enter,
             .hero-title-enter,
             .hero-subtitle-enter,
@@ -563,13 +527,13 @@
 
             <!-- Categories Showcase -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center mb-10 reveal-on-scroll">
+                <div class="text-center mb-10 ">
                     <span class="text-xs font-bold uppercase tracking-widest text-axBurgundy">MENSWEAR SILHOUETTES</span>
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal mt-1">SHOP MEN'S T-SHIRTS BY CATEGORY</h2>
                     <p class="text-axGrey text-sm mt-1">26+ distinct cuts, washes, and fabric weights engineered exclusively in Men's T-Shirts.</p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 reveal-stagger">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 ">
                     <div onclick="filterByCategory('Oversized Tees')" class="cat-card group cursor-pointer bg-white rounded-xl overflow-hidden border border-axSand shadow-sm">
                         <div class="aspect-4-5 overflow-hidden bg-axSand relative">
                             <img src="https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?auto=format&fit=crop&w=600&q=80" alt="Men's Oversized Tees" class="cat-img w-full h-full object-cover">
@@ -636,7 +600,7 @@
             <div class="bg-axSand/70 border-y border-axSand py-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="reveal-on-scroll">
+                        <div class="">
                             <div class="inline-flex items-baseline gap-2 mb-2">
                                 <span class="text-5xl sm:text-6xl font-black tracking-tighter text-axCharcoal font-heading stat-counter" data-target="240">0</span>
                                 <span class="text-2xl sm:text-3xl font-black text-axGold font-heading">GSM</span>
@@ -646,7 +610,7 @@
                             <p class="text-axGrey text-base mb-6 leading-relaxed">
                                 Conventional t-shirts range from 160–180 GSM, which cling, curl at the collar, and easily turn translucent. AXDORO garments are constructed with authentic <strong>240 GSM heavy combed cotton</strong>.
                             </p>
-                            <div class="space-y-3.5 reveal-stagger">
+                            <div class="space-y-3.5 ">
                                 <div class="flex items-start gap-3 bg-white/70 p-3.5 rounded-lg border border-axSand shadow-2xs">
                                     <div class="w-6 h-6 rounded-full bg-axCharcoal text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</div>
                                     <div>
@@ -670,8 +634,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="relative reveal-on-scroll">
-                            <div class="overflow-hidden rounded-xl shadow-lg img-mask-reveal">
+                        <div class="relative ">
+                            <div class="overflow-hidden rounded-xl shadow-lg ">
                                 <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80" alt="Fabric Detail" class="w-full object-cover aspect-4-5">
                             </div>
                             <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur p-4 rounded-lg border border-axSand shadow">
@@ -690,7 +654,7 @@
 
             <!-- Trending Drops Grid -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="flex items-end justify-between mb-8 reveal-on-scroll">
+                <div class="flex items-end justify-between mb-8 ">
                     <div>
                         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-axCharcoal">TRENDING DROPS</h2>
                         <p class="text-axGrey text-sm mt-1">Our most sought-after oversized and half-sleeve silhouettes.</p>
@@ -700,7 +664,7 @@
                     </button>
                 </div>
 
-                <div id="homeTrendingGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 reveal-stagger">
+                <div id="homeTrendingGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 ">
                     <!-- Injected via JS -->
                 </div>
             </div>
