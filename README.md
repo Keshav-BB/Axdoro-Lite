@@ -1,4 +1,4 @@
-﻿# Axdoro-Lite – AXDORO Men's T-Shirts E-Commerce Platform
+# Axdoro-Lite – AXDORO Men's T-Shirts E-Commerce Platform
 **Lean E-Commerce MVP Build Package (₹10,000 Scope Cap)**
 **Delivered by:** PeoplePoint Consultants for **AXDORO Clothing / Apparel**
 
@@ -16,6 +16,17 @@ It adheres to the non-negotiable architectural mandates:
 - **Payment Integrity:** Unique WooCommerce order generated *before* payment; automated webhook verification + zero-cost WhatsApp UPI / manual UTR fallback (integrated with WhatsApp 8807304713).
 - **Fulfillment & Tracking:** Shiprocket-ready custom order statuses and customer milestone tracker [axdoro_track_order].
 - **Lean AI Support:** Client-side zero-cost FAQ chatbot with WhatsApp human handoff.
+
+---
+
+## 🌐 Live Interactive Storefront Preview
+**Direct Link:** [https://keshav-bb.github.io/Axdoro-Lite/](https://keshav-bb.github.io/Axdoro-Lite/)
+
+Featuring:
+* **Interactive AXDORO Fit Stylist** (Height/weight sliders, body build selector, session size pre-selection)
+* **High-converting Streetwear Merchandising** (240 GSM Oversized Drops, Acid Wash, Luxury Knits, Signature Duos)
+* **Direct Size Selection → Add to Bag** on every card
+* **Full Indian Commerce System** (₹999 shipping meter, 10-digit mobile & 6-digit PIN validation, WhatsApp order dispatch to 8807304713)
 
 ---
 
